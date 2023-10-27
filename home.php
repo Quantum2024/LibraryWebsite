@@ -36,6 +36,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
     exit();
 
-}
+ }
 
 ?>
