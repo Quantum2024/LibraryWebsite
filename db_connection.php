@@ -19,7 +19,5 @@ if ($mysqli->connect_error) {
                 echo $message;
             }
             exit();
-}else{
-    echo "DB Connection was Succesful.";
 }
 ?>
