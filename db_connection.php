@@ -1,5 +1,6 @@
 <?php
 // Step 1: Establish a database connection
+//$host = "20.163.12.236:3306";
 $host = "localhost";
 $username = "eciraco";
 $password = "eciraco6920";

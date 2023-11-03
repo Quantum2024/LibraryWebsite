@@ -111,7 +111,7 @@
 
                                 <div class="table-responsive">
 
-                                    <table id="check_in-table" class="table table-bordered" style="margin-top: 10px">
+                                    <table id="check_in-table" class="table table-bordered table-hover" style="margin-top: 10px">
                                         <thead>
                                             <tr>
                                                 <th>Loan ID</th>

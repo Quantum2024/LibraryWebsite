@@ -77,7 +77,7 @@
 
                                 <div class="table-responsive">
 
-                                    <table id="inventory-table" class="table table-striped table-bordered"
+                                    <table id="inventory-table" class="table table-striped table-bordered table-hover"
                                         style="margin-top: 10px">
                                         <thead>
                                             <tr>
@@ -85,7 +85,8 @@
                                                 <th>Book Title</th>
                                                 <th>Author(s)</th>
                                                 <th>Genre</th>
-                                                <th>Stock Quantity</th>
+                                                <th style="width: 10%">Stock Quantity</th>
+                                                <th style="width: 15.5%">Number of Copies Available</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -106,19 +107,42 @@
                                                 FROM author AS a
                                                 JOIN wrote AS w ON a.author_id= w.author_id
                                                 JOIN book AS b ON b.book_isbn = w.book_isbn
-                                                WHERE b.book_isbn=".$row['book_isbn'].";";
+                                                WHERE b.book_isbn=" . $row['book_isbn'] . ";";
                                                 $author_result = $mysqli->query($query);
-                                                if(mysqli_num_rows($author_result) == 0) {
-                                                    $authors= "No Authors Found";
-                                                }else{       
-                                                    $authors="";                                          
+                                                if (mysqli_num_rows($author_result) == 0) {
+                                                    $authors = "No Authors Found";
+                                                } else {
+                                                    $authors = "";
                                                     while ($rowA = $author_result->fetch_assoc()) {
-                                                        $authors.= $authors . "<a href=edit_author.php?author_id=".$rowA['author_id'].">" . $rowA["author_first_name"] ." ". $rowA["author_last_name"] ."<br>";
-                                                    }                                                 
-                                                }                                                                                            
-                                                echo "<td>".$authors."</td>";
+                                                        $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
+                                                    }
+                                                }
+                                                echo "<td>" . $authors . "</td>";
                                                 echo "<td>" . $row['genre_name'] . "</td>";
-                                                echo "<td> 1 </td>";
+                                                //get stock quantity
+                                                $query = "SELECT COUNT(*) FROM `copy` WHERE book_isbn=" . $row['book_isbn'];
+                                                $stock_result = $mysqli->query($query);
+                                                if ($stock_result) {
+                                                    $row_count = $stock_result->fetch_row();
+                                                    $count = $row_count[0];
+                                                    echo '<td>'. $count . '</td>';
+                                                } else {
+                                                    echo "Error executing the query: " . $mysqli->error;
+                                                }   
+                                                //get number of books available to check out
+                                                $query = "SELECT COUNT(*) 
+                                                          FROM `loan_log` AS `l`
+                                                          LEFT JOIN `copy` AS `c` ON l.copy_id = c.copy_id
+                                                          LEFT JOIN `book` AS `b` ON b.book_isbn = c.book_isbn
+                                                          WHERE c.book_isbn=" . $row['book_isbn'] . " AND l.date_checked_in IS NULL";
+                                                $checked_out_result = $mysqli->query($query);
+                                                if ($checked_out_result) {
+                                                    $row_count2 = $checked_out_result->fetch_row();
+                                                    $num_of_copies_checked_out = $row_count2[0];
+                                                    echo '<td>'. $count - $num_of_copies_checked_out . '</td>';
+                                                } else {
+                                                    echo "Error executing the query: " . $mysqli->error;
+                                                }                                         
                                                 echo "</tr>";
                                             }
                                             $mysqli->close();

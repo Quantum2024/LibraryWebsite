@@ -67,13 +67,14 @@
                     <section id="main-content">
                         <div class="row">
                             <div class="col">
-                                <button type="button" class="btn btn-sm btn-primary float-right">Create New Member</button>
+                                <a href="create_member.php"><button type="button" class="btn btn-sm btn-primary float-right">Create New
+                                    Member</button></a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-responsive">
-                                    <table id="members-table" class="table table-striped table-bordered"
+                                    <table id="members-table" class="table table-striped table-bordered table-hover"
                                         style="margin-top: 10px">
                                         <thead>
                                             <tr>
@@ -85,14 +86,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>10/1/2023</td>
-                                                <td>10/1/2023</td>
-
-                                            </tr>
+                                            <?php
+                                            include 'db_connection.php';
+                                            // Step 2: Query the database for book information
+                                            $query = "SELECT member_id, first_name, last_name, DOB, phone_number, email_address
+                                                        FROM member;";
+                                            $member_result = $mysqli->query($query);
+                                            while ($row = $member_result->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<td><a href=edit_member.php?member_id=" . $row['member_id'] . ">" . $row['member_id'] . "</td>";
+                                                echo "<td>" . $row['first_name'] . " " . $row['last_name'] . " " ."</td>";                                               
+                                                echo "<td>" . date("m/d/Y", strtotime(($row['DOB']))) . "</td>";
+                                                echo "<td>" . $row['email_address'] . "</td>";
+                                                echo "<td>" . $row['phone_number'] . "</td>";
+                                                echo "</tr>";
+                                            }
+                                            $mysqli->close();
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

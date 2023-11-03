@@ -111,7 +111,7 @@
                         <div class="card">
                             <div class="table-responsive">
                                 <h3 class="text-left mb-3">Loan History</h3>
-                                <table id="check_out-table" class="table table-bordered" style="margin-top: 10px">
+                                <table id="check_out-table" class="table table-bordered table-hover" style="margin-top: 10px">
                                     <thead>
                                         <tr>
                                             <th>Copy ID</th>

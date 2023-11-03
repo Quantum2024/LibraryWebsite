@@ -117,7 +117,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-responsive">
-                                    <table id="check_out-table" class="table table-bordered" style="margin-top: 10px">
+                                    <table id="check_out-table" class="table table-bordered table-hover" style="margin-top: 10px">
                                         <thead>
                                             <tr>
                                                 <th>Copy ID</th>
