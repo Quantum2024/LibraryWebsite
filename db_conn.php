@@ -1,17 +1,25 @@
 <?php
 
-$sname = "localhost";
+$host = "localhost";
 
-$unmae = "root";
+$username = "eciraco";
+$password = "eciraco6920";
 
-$password = "";
+$database = "LIS";
 
-$db_name = "test_db";
+$mysqli = new mysqli($host, $username, $password, $database);
 
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
-
-if (!$conn) {
-
-    echo "Connection failed!";
-
+// Check connection
+if ($mysqli->connect_error) {
+    $message = "Connection failed: " . $conn->connect_error;
+   
+            if (isset($_SERVER['HTTP_REFERER'])) {
+                
+                //$referrer = $_SERVER['HTTP_REFERER'];
+                //header("Location: error_page.php?message=$message&return_page=$referrer");
+            }else{
+                die($message);
+            }
+            exit();
 }
+?>
