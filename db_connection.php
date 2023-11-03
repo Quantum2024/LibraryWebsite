@@ -1,8 +1,8 @@
 <?php
 // Step 1: Establish a database connection
 $host = "localhost";
-$username = "eciraco";
-$password = "eciraco6920";
+$username = "root";
+$password = "";
 $database = "LIS";
 
 $mysqli = new mysqli($host, $username, $password, $database);
