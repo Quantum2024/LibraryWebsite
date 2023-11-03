@@ -16,8 +16,10 @@ if ($mysqli->connect_error) {
                 //$referrer = $_SERVER['HTTP_REFERER'];
                 //header("Location: error_page.php?message=$message&return_page=$referrer");
             }else{
-                die($message);
+                echo $message;
             }
             exit();
+}else{
+    echo "DB Connection was Succesful.";
 }
 ?>
