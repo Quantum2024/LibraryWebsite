@@ -376,3 +376,4 @@ FodyWeavers.xsd
 .vs/phptasks.json
 .vs/slnx.sqlite
 .vs/VSWorkspaceState.json
+db_connection.php

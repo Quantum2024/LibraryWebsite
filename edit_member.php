@@ -65,32 +65,59 @@
                         <div class="row mb-3">
                             <div class="col-lg-12">
                                 <form>
+                                <?php
+                                        include 'db_connection.php';
+                                        if (isset($_GET['member_id'])) {
+                                            $member_id = $_GET['member_id'];
+                                        } else {
+                                            die("No Member ID is set.");
+                                        }
+                                        // Step 2: Query the database for members loan history
+                                        $query = "SELECT m.first_name, m.last_name, m.DOB, m.phone_number, m.email_address FROM member AS m  WHERE m.member_id=" . $member_id;
+                                        $member_result = $mysqli->query($query);
+                                        
+                                        if ($member_result->num_rows == 0) {
+                                            die("Member ID does not exist.");
+                                        } else {
+                                            while ($row = $member_result->fetch_assoc()) {
+                                                $first_name= $row["first_name"];
+                                                $last_name= $row["last_name"];
+                                                $DOB= $row["DOB"];
+                                                $phone_number=$row["phone_number"];
+                                                $email_address=$row["email_address"];
+                                            }
+                                        }
+                                            
+                                        $mysqli->close();
+                                        ?>
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <div class="col">
+                                                <input type="text" id="member_id" name="member_id" class="form-control" value="<?php echo $member_id?>" hidden>
+
                                                 <label for="first_name" class="form-label">First Name</label>
                                                 <input type="text" id="first_name" name="first_name"
-                                                    class="form-control">
+                                                    class="form-control" value="<?php echo $first_name?>">
                                             </div>
                                             <div class="col">
                                                 <label for="last_name" class="form-label">Last Name</label>
-                                                <input type="text" id="last_name" name="last_name" class="form-control">
+                                                <input type="text" id="last_name" name="last_name" class="form-control" value="<?php echo $last_name?>">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <label for="DOB" class="form-label">Date of Birth</label>
-                                                <input type="date" id="DOB" name="DOB" class="form-control">
+                                                <input type="date" id="DOB" name="DOB" class="form-control" value="<?php echo $DOB?>">
                                             </div>
                                             <div class="col">
                                                 <label for="phone_number" class="form-label">Phone Number</label>
                                                 <input type="text" id="phone_number" name="phone_number"
-                                                    class="form-control">
+                                                    class="form-control" value="<?php echo $phone_number?>">
                                             </div>
                                             <div class="col">
                                                 <label for="email_address" class="form-label">Email Address</label>
                                                 <input type="email" id="email_address" name="email_address"
-                                                    class="form-control">
+                                                    class="form-control" value="<?php echo $email_address?>">
                                             </div>
                                         </div>
                                     </div>
