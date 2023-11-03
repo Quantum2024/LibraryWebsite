@@ -111,9 +111,11 @@
                         <div class="card">
                             <div class="table-responsive">
                                 <h3 class="text-left mb-3">Loan History</h3>
-                                <table id="check_out-table" class="table table-bordered table-hover" style="margin-top: 10px">
+                                <table id="check_out-table" class="table table-bordered table-hover"
+                                    style="margin-top: 10px">
                                     <thead>
                                         <tr>
+                                            <th>Transaction ID</th>
                                             <th>Copy ID</th>
                                             <th>Book Title</th>
                                             <th>Author(s)</th>
@@ -124,33 +126,75 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>114165</td>
-                                            <td>Percy Jackson and the Olympians</td>
-                                            <td>Steve Roland</td>
-                                            <td>11/1/2023</td>
-                                            <td>12/1/2023</td>
-                                            <td>N/A</td>
-                                            <td><span class="badge badge-warning">Borrowed</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>114165</td>
-                                            <td>Percy Jackson and the Olympians</td>
-                                            <td>Steve Roland</td>
-                                            <td>10/2023</td>
-                                            <td>11/1/2023</td>
-                                            <td>N/A</td>
-                                            <td><span class="badge badge-danger">Overdue</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>114165</td>
-                                            <td>Percy Jackson and the Olympians</td>
-                                            <td>Steve Roland</td>
-                                            <td>9/1/2023</td>
-                                            <td>10/1/2023</td>
-                                            <td>10/1/2023</td>
-                                            <td><span class="badge badge-success">Returned</span></td>
-                                        </tr>
+                                        <?php
+                                        include 'db_connection.php';
+                                        if (isset($_GET['member_id'])) {
+                                            $member_id = $_GET['member_id'];
+                                        } else {
+                                            die("No Member ID is set.");
+                                        }
+                                        // Step 2: Query the database for members loan history
+                                        $query = "SELECT c.copy_id, b.book_isbn, b.book_title, l.date_checked_out, l.due_date, l.date_checked_in, l.loan_log_id
+                                                            FROM `loan_log` AS l
+                                                            LEFT JOIN `copy` AS c ON l.copy_id=c.copy_id
+                                                            LEFT JOIN `book` AS b ON b.book_isbn=c.book_isbn                                                            
+                                                            LEFT JOIN member AS m ON m.member_id=l.member_id WHERE l.member_id=" . $member_id;
+                                        $loan_result = $mysqli->query($query);
+                                        if ($loan_result->num_rows == 0) {
+                                            echo "<tr><td colspan='7'>No Loan History</td></tr>";
+                                        } else {
+                                            while ($row = $loan_result->fetch_assoc()) {
+                                                //check to see if book is checked out already
+                                        
+                                                echo "<tr>";
+                                                echo "<td><a href=edit_loan_log.php?loan_log_id=" . $row['loan_log_id'] . ">" . $row['loan_log_id'] . "</td>";
+                                                echo "<td><a href=edit_copy.php?copy_id=" . $row['copy_id'] . ">" . $row['copy_id'] . "</td>";
+                                                echo "<td><a href=edit_book.php?book_isbn=" . $row['book_isbn'] . ">" . $row['book_title'] . "</td>";
+
+                                                //query the wrote table for authors
+                                                $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
+                                                    FROM author AS a
+                                                    JOIN wrote AS w ON a.author_id= w.author_id
+                                                    JOIN book AS b ON b.book_isbn = w.book_isbn
+                                                    WHERE b.book_isbn=" . $row['book_isbn'] . ";";
+                                                $author_result = $mysqli->query($query);
+                                                if (mysqli_num_rows($author_result) == 0) {
+                                                    $authors = "No Authors Found";
+                                                } else {
+                                                    $authors = "";
+                                                    while ($rowA = $author_result->fetch_assoc()) {
+                                                        $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
+                                                    }
+                                                }
+                                                echo '<td>' . $authors . '</td>';
+
+                                                $due_date = date("m/d/Y", strtotime(($row['due_date'])));
+                                                $date_checked_out = date("m/d/Y", strtotime(($row['date_checked_out'])));
+
+                                                //check to see if the book has been checked in, and if it hasnt checked to see if its overdue
+                                                if ($row['date_checked_in'] === null) {
+                                                    $date_checked_in = "N/A";
+                                                    $current_date = date("m/d/Y");
+                                                    if (strtotime($due_date) >= strtotime($current_date)) {
+                                                        $badge = '<td><span class="badge badge-warning">Borrowed</span></td>';
+                                                    } else {
+                                                        $badge= '<td><span class="badge badge-danger">Overdue</span></td>';
+                                                    }
+                                                } else {
+                                                    $date_checked_in = date("m/d/Y", strtotime(($row['date_checked_in'])));
+                                                    $badge= '<td><span class="badge badge-success">Returned</span></td>';
+                                                }
+                                                echo '<td>'. $date_checked_out .'</td>';
+                                                echo '<td>' . $due_date . '</td>';
+                                                echo '<td>' . $date_checked_in . '</td>';
+                                                echo $badge;
+                
+                                                echo "</tr>";
+                                            }
+                                        }
+                                        $mysqli->close();
+                                        ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>

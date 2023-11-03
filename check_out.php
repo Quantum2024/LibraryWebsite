@@ -54,14 +54,14 @@
                             </div>
                             <div class="modal-body">
                                 <!-- Your form field here -->
-                                <form id="modalForm"  action="check_out_processor.php" method="post">
+                                <form id="modalForm" action="check_out_processor.php" method="post">
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <label for="copy_id" class="form-label">Copy Number</label>
                                             <input type="text" id="copy_id" name="copy_id" class="form-control"
                                                 readonly>
                                         </div>
-                                        
+
                                         <div class="row mb-3">
                                             <label for="loaned_condition" class="form-label">Loaned Condition</label>
 
@@ -117,7 +117,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-responsive">
-                                    <table id="check_out-table" class="table table-bordered table-hover" style="margin-top: 10px">
+                                    <table id="check_out-table" class="table table-bordered table-hover"
+                                        style="margin-top: 10px">
                                         <thead>
                                             <tr>
                                                 <th>Copy ID</th>
@@ -127,7 +128,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             <?php
                                             include 'db_connection.php';
                                             // Step 2: Query the database for book information
@@ -146,7 +146,7 @@
                                                     continue;
                                                 }
                                                 echo "<tr>";
-                                                echo "<td><a href=edit_loan_log.php?copy_id=" . $row['copy_id'] . ">" . $row['copy_id'] . "</td>";
+                                                echo "<td><a href=edit_copy.php?copy_id=" . $row['copy_id'] . ">" . $row['copy_id'] . "</td>";
                                                 echo "<td><a href=edit_book.php?book_isbn=" . $row['book_isbn'] . ">" . $row['book_title'] . "</td>";
 
                                                 //query the wrote table for authors
@@ -173,8 +173,6 @@
                                             }
                                             $mysqli->close();
                                             ?>
-
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -268,14 +266,14 @@
             $query = "SELECT first_name, last_name, member_id
                 FROM `member`";
             $member_result = $mysqli->query($query);
-            while ($row = $member_result->fetch_assoc()){
+            while ($row = $member_result->fetch_assoc()) {
                 echo ",
                 {
-                    id: ".$row["member_id"].",
-                    text: '". $row["first_name"] . " " . $row["last_name"] ."'
+                    id: " . $row["member_id"] . ",
+                    text: '" . $row["first_name"] . " " . $row["last_name"] . "'
                 }";
             }
-                $mysqli->close();
+            $mysqli->close();
             ?>
 
         ];
