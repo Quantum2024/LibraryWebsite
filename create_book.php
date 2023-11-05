@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,189 +59,134 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /# column -->
 
-                    <!-- /# row -->
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form>
-                                <?php
-                                        include 'db_connection.php';
-                                        if (isset($_GET['member_id'])) {
-                                            $member_id = $_GET['member_id'];
-                                        } else {
-                                            die("No Member ID is set.");
-                                        }
-                                        // Step 2: Query the database for members loan history
-                                        $query = "SELECT m.first_name, m.last_name, m.DOB, m.phone_number, m.email_address FROM member AS m  WHERE m.member_id=" . $member_id;
-                                        $member_result = $mysqli->query($query);
-                                        
-                                        if ($member_result->num_rows == 0) {
-                                            die("Member ID does not exist.");
-                                        } else {
-                                            while ($row = $member_result->fetch_assoc()) {
-                                                $first_name= $row["first_name"];
-                                                $last_name= $row["last_name"];
-                                                $DOB= $row["DOB"];
-                                                $phone_number=$row["phone_number"];
-                                                $email_address=$row["email_address"];
-                                            }
-                                        }
-                                            
-                                        $mysqli->close();
-                                        ?>
+                                <form method="post" action="insert_data.php">
+
                                     <div class="mb-3">
                                         <div class="row mb-3">
-                                            <div class="col">
-                                                <input type="text" id="member_id" name="member_id" class="form-control" value="<?php echo $member_id?>" hidden>
 
-                                                <label for="first_name" class="form-label">First Name</label>
-                                                <input type="text" id="first_name" name="first_name"
-                                                    class="form-control" value="<?php echo $first_name?>">
-                                            </div>
-                                            <div class="col">
-                                                <label for="last_name" class="form-label">Last Name</label>
-                                                <input type="text" id="last_name" name="last_name" class="form-control" value="<?php echo $last_name?>">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col">
-                                                <label for="DOB" class="form-label">Date of Birth</label>
-                                                <input type="date" id="DOB" name="DOB" class="form-control" value="<?php echo $DOB?>">
-                                            </div>
-                                            <div class="col">
-                                                <label for="phone_number" class="form-label">Phone Number</label>
-                                                <input type="text" id="phone_number" name="phone_number"
-                                                    class="form-control" value="<?php echo $phone_number?>">
-                                            </div>
-                                            <div class="col">
-                                                <label for="email_address" class="form-label">Email Address</label>
-                                                <input type="email" id="email_address" name="email_address"
-                                                    class="form-control" value="<?php echo $email_address?>">
+
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label for="book_isbn" class="form-label">Book ISBN</label>
+                                                    <input type="number" id="book_isbn" name="book_isbn"
+                                                        class="form-control">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <button type="button" class="btn btn-primary">Save Changes</button>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label for="book_title" class="form-label">Title</label>
+                                            <input type="text" id="book_title" name="book_title" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <label for="author_first_name" class="form-label">Author First
+                                                Name</label>
+                                            <input type="text" id="author_first_name" name="author_first_name"
+                                                class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <label for="author_last_name" class="form-label">Author Last
+                                                Name</label>
+                                            <input type="text" id="author_last_name" name="author_last_name"
+                                                class="form-control">
+                                        </div>
+
                                     </div>
-                                    <div class="col-1">
-                                        <button type="button" class="btn btn-secondary">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="table-responsive">
-                                <h3 class="text-left mb-3">Loan History</h3>
-                                <table id="check_out-table" class="table table-bordered table-hover"
-                                    style="margin-top: 10px">
-                                    <thead>
-                                        <tr>
-                                            <th>Transaction ID</th>
-                                            <th>Copy ID</th>
-                                            <th>Book Title</th>
-                                            <th>Author(s)</th>
-                                            <th>Date Checked Out</th>
-                                            <th>Due Date</th>
-                                            <th>Date Checked In</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include 'db_connection.php';
-                                        if (isset($_GET['member_id'])) {
-                                            $member_id = $_GET['member_id'];
-                                        } else {
-                                            die("No Member ID is set.");
-                                        }
-                                        // Step 2: Query the database for members loan history
-                                        $query = "SELECT c.copy_id, b.book_isbn, b.book_title, l.date_checked_out, l.due_date, l.date_checked_in, l.loan_log_id
-                                                            FROM `loan_log` AS l
-                                                            LEFT JOIN `copy` AS c ON l.copy_id=c.copy_id
-                                                            LEFT JOIN `book` AS b ON b.book_isbn=c.book_isbn                                                            
-                                                            LEFT JOIN member AS m ON m.member_id=l.member_id WHERE l.member_id=" . $member_id;
-                                        $loan_result = $mysqli->query($query);
-                                        if ($loan_result->num_rows == 0) {
-                                            echo "<tr><td colspan='7'>No Loan History</td></tr>";
-                                        } else {
-                                            while ($row = $loan_result->fetch_assoc()) {
-                                                //check to see if book is checked out already
-                                        
-                                                echo "<tr>";
-                                                echo "<td><a href=edit_loan_log.php?loan_log_id=" . $row['loan_log_id'] . ">" . $row['loan_log_id'] . "</td>";
-                                                echo "<td><a href=edit_copy.php?copy_id=" . $row['copy_id'] . ">" . $row['copy_id'] . "</td>";
-                                                echo "<td><a href=edit_book.php?book_isbn=" . $row['book_isbn'] . ">" . $row['book_title'] . "</td>";
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label for="genre_name" class="form-label">Genre</label>
+                                            <select id="genre_name" name="genre_name" class="form-control">
+                                                <?php include 'db_connection.php';
+                                                // Fetch genres from the database
+                                                $genreQuery = "SELECT genre_name FROM genre";
+                                                $genreResult = mysqli_query($mysqli, $genreQuery);
 
-                                                //query the wrote table for authors
-                                                $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
-                                                    FROM author AS a
-                                                    JOIN wrote AS w ON a.author_id= w.author_id
-                                                    JOIN book AS b ON b.book_isbn = w.book_isbn
-                                                    WHERE b.book_isbn=" . $row['book_isbn'] . ";";
-                                                $author_result = $mysqli->query($query);
-                                                if (mysqli_num_rows($author_result) == 0) {
-                                                    $authors = "No Authors Found";
-                                                } else {
-                                                    $authors = "";
-                                                    while ($rowA = $author_result->fetch_assoc()) {
-                                                        $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
-                                                    }
-                                                }
-                                                echo '<td>' . $authors . '</td>';
-
-                                                $due_date = date("m/d/Y", strtotime(($row['due_date'])));
-                                                $date_checked_out = date("m/d/Y", strtotime(($row['date_checked_out'])));
-
-                                                //check to see if the book has been checked in, and if it hasnt checked to see if its overdue
-                                                if ($row['date_checked_in'] === null) {
-                                                    $date_checked_in = "N/A";
-                                                    $current_date = date("m/d/Y");
-                                                    if (strtotime($due_date) >= strtotime($current_date)) {
-                                                        $badge = '<td><span class="badge badge-warning">Borrowed</span></td>';
-                                                    } else {
-                                                        $badge= '<td><span class="badge badge-danger">Overdue</span></td>';
+                                                if ($genreResult) {
+                                                    while ($row = mysqli_fetch_assoc($genreResult)) {
+                                                        echo "<option value='" . $row['genre_name'] . "'>" . $row['genre_name'] . "</option>";
                                                     }
                                                 } else {
-                                                    $date_checked_in = date("m/d/Y", strtotime(($row['date_checked_in'])));
-                                                    $badge= '<td><span class="badge badge-success">Returned</span></td>';
+                                                    echo "Error: " . mysqli_error($mysqli);
                                                 }
-                                                echo '<td>'. $date_checked_out .'</td>';
-                                                echo '<td>' . $due_date . '</td>';
-                                                echo '<td>' . $date_checked_in . '</td>';
-                                                echo $badge;
-                
-                                                echo "</tr>";
-                                            }
-                                        }
-                                        $mysqli->close();
-                                        ?>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="export-options" style="margin-top: 20px">
-                                <p>Export as: </p>
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <label for="language" class="form-label">Language</label>
+                                            <input type="text" id="language" name="language" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <label for="publisher_name" class="form-label">Publisher</label>
+                                            <select id="publisher_name" name="publisher_name" class="form-control">
+                                                <?php
+                                                // Fetch publishers from the database
+                                                $publisherQuery = "SELECT publisher_name FROM publisher";
+                                                $publisherResult = mysqli_query($mysqli, $publisherQuery);
+
+                                                if ($publisherResult) {
+                                                    while ($row = mysqli_fetch_assoc($publisherResult)) {
+                                                        echo "<option value='" . $row['publisher_name'] . "'>" . $row['publisher_name'] . "</option>";
+                                                    }
+                                                } else {
+                                                    echo "Error: " . mysqli_error($mysqli);
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-4">
+                                            <label for="edition" class="form-label">Edition</label>
+                                            <input type="number" id="edition" name="edition" class="form-control">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="num_of_pages" class="form-label">Number of
+                                                Pages</label>
+                                            <input type="number" id="num_of_pages" name="num_of_pages"
+                                                class="form-control">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="stock_quantity" class="form-label">Quantity</label>
+                                            <input type="number" id="stock_quantity" name="stock_quantity"
+                                                class="form-control">
+                                        </div>
+                                    </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer">
-                            <p>2018 © Admin Board. - <a href="#">example.com</a></p>
+                        <div class="row">
+                            <div class="col-1">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="btn btn-secondary">Close</button>
+                            </div>
                         </div>
-                    </div>
+                        </form>
+
                 </div>
-                </section>
+            </div>
+
+            <div class="export-options" style="margin-top: 20px">
+                <p>Export as: </p>
             </div>
         </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="footer">
+                <p>2018 © Admin Board. - <a href="#">example.com</a></p>
+            </div>
+        </div>
+    </div>
+    </section>
+    </div>
+    </div>
     </div>
 
     <!-- jquery vendor -->

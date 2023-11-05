@@ -6,11 +6,12 @@ $username = "eciraco";
 $password = "eciraco6920";
 $database = "LIS";
 
+
 $mysqli = new mysqli($host, $username, $password, $database);
 
 // Check connection
 if ($mysqli->connect_error) {
-    $message = "Connection failed: " . $conn->connect_error;
+    $message = "Connection failed: " . $connection->connect_error;
    
             if (isset($_SERVER['HTTP_REFERER'])) {
                 
