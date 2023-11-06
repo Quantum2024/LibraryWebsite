@@ -60,7 +60,7 @@ if ($overdue_result) {
 
     $overdue = 0;
 }
-$mysqli->close();
+
 ?>
 
 <head>
@@ -207,7 +207,7 @@ $mysqli->close();
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="table-responsive">
-                                    <h3 class="text-center">Books Due Today</h3>
+                                    <h3 class="text-center color-warning">Books Due Today</h3>
                                     <table id="due-table" class="table table-striped table-bordered"
                                         style="margin-top: 10px">
                                         <thead>
@@ -220,12 +220,34 @@ $mysqli->close();
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>10/1/2023</td>
-                                            </tr>
+                                            <?php
+                                            $query = "SELECT b.book_title, c.copy_id, CONCAT(m.first_name, ' ', m.last_name), l.date_checked_out FROM `loan_log` AS l 
+                                                      LEFT JOIN `copy` AS c ON c.copy_id = l.copy_id
+                                                      LEFT JOIN book AS b ON b.book_isbn = c.book_isbn
+                                                      LEFT JOIN member AS m ON m.member_id = l.member_id
+                                                      WHERE l.date_checked_in IS NULL AND l.due_date = CURDATE()";
+                                                $due_today_result_table = $mysqli->query($query);
+                                                //if the query returns any values, the copy is checked out, so it should be skipped
+                                                if ($due_today_result_table->num_rows > 0) {
+                                                    while ($row = $due_today_result_table->fetch_assoc()) {
+                                                        echo "<tr>";
+                                                        echo "<td>" . $row['book_title'] . "</td>";
+                                                        echo "<td>" . $row['copy_id'] . "</td>";
+                                                        echo "<td>". $row["CONCAT(m.first_name, ' ', m.last_name)"] . "</td>";
+                                                        echo "<td>". date("m/d/Y", strtotime($row["date_checked_out"])) . "</td>";
+                                                        echo "</tr>";
+                                                    }
+                                                }else{
+                                                        echo "<tr>";
+                                                        echo "<td>No Books Due Today</td>";
+                                                        echo "<td> </td>";
+                                                        echo "<td></td>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                }
+                                                
+                                                ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -237,7 +259,7 @@ $mysqli->close();
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="table-responsive">
-                                    <h3 class="text-center">Overdue Books</h3>
+                                    <h3 class="text-center color-danger">Overdue Books</h3>
                                     <table id="overdue-table" class="table table-striped table-bordered"
                                         style="margin-top: 10px">
                                         <thead>
@@ -245,23 +267,38 @@ $mysqli->close();
                                                 <th>Book Title</th>
                                                 <th>Copy ID</th>
                                                 <th>Borrower</th>
-                                                <th>Date Borrowed</th>
+                                                <th>Due Date</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>10/1/2023</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>10/1/2023</td>
-                                            </tr>
+                                        <?php
+                                            $query = "SELECT b.book_title, c.copy_id, CONCAT(m.first_name, ' ', m.last_name), l.due_date FROM `loan_log` AS l 
+                                                      LEFT JOIN `copy` AS c ON c.copy_id = l.copy_id
+                                                      LEFT JOIN book AS b ON b.book_isbn = c.book_isbn
+                                                      LEFT JOIN member AS m ON m.member_id = l.member_id
+                                                      WHERE l.date_checked_in IS NULL AND l.due_date IS NOT NULL AND l.due_date < CURDATE()";
+                                                $overdue_result_table = $mysqli->query($query);
+                                                //if the query returns any values, the copy is checked out, so it should be skipped
+                                                if ($overdue_result_table->num_rows > 0) {
+                                                    while ($overrow = $overdue_result_table->fetch_assoc()) {
+                                                        echo "<tr>";
+                                                        echo "<td>" . $overrow['book_title'] . "</td>";
+                                                        echo "<td>" . $overrow['copy_id'] . "</td>";
+                                                        echo "<td>". $overrow["CONCAT(m.first_name, ' ', m.last_name)"] . "</td>";
+                                                        echo "<td>". date("m/d/Y", strtotime($overrow["due_date"])) . "</td>";
+                                                        echo "</tr>";
+                                                    }
+                                                }else{
+                                                        echo "<tr>";
+                                                        echo "<td>No Overdue Books</td>";
+                                                        echo "<td> </td>";
+                                                        echo "<td></td>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                }
+                                                
+                                                ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -400,6 +437,7 @@ $mysqli->close();
 
         }
         $checked_out_data_final = json_encode($checked_out_data);
+        $mysqli->close();
         ?>
 
         var checkedIn = {
