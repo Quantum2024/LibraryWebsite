@@ -63,7 +63,7 @@
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form method="post" action="insert_data.php">
+                                <form method="post" action="insert_data_new_book.php">
 
                                     <div class="mb-3">
                                         <div class="row mb-3">
