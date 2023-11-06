@@ -138,7 +138,7 @@
                         <div class="card">
                             <div class="table-responsive">
                                 <h3 class="text-left mb-3">Loan History</h3>
-                                <table id="check_out-table" class="table table-bordered table-hover"
+                                <table id="loan-table" class="table table-bordered table-hover"
                                     style="margin-top: 10px">
                                     <thead>
                                         <tr>
@@ -168,7 +168,14 @@
                                                             LEFT JOIN member AS m ON m.member_id=l.member_id WHERE l.member_id=" . $member_id;
                                         $loan_result = $mysqli->query($query);
                                         if ($loan_result->num_rows == 0) {
-                                            echo "<tr><td colspan='7'>No Loan History</td></tr>";
+                                            echo "<tr><td >No Loan History</td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td></tr>";
                                         } else {
                                             while ($row = $loan_result->fetch_assoc()) {
                                                 //check to see if book is checked out already
@@ -275,7 +282,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function () {
-            var table = $('#check_out-table').DataTable({
+            var table = $('#loan-table').DataTable({
                 "dom": 'frtip',
                 "buttons": [
                     'excel',

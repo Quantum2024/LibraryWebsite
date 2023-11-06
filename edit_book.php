@@ -205,7 +205,12 @@ if ($book_result->num_rows == 0) {
                                         $copy_result = $mysqli->query($query);
 
                                         if ($copy_result->num_rows == 0) {
-                                            echo "<tr><td colspan='6'>No Copies in Inventory</td></tr>";
+                                            echo "<tr><td >No Copies</td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td>";
+                                            echo "<td ></td></tr>";
                                         } else {
                                             while ($row = $copy_result->fetch_assoc()) {
                                                 $copy_id = $row["copy_id"];
