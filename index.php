@@ -188,7 +188,7 @@ $mysqli->close();
                         <div class="col-12">
                             <div class="card">
                                 <div class="row justify-content-center">
-                                    <h5>Books Movement Overview</h5>
+                                    <h5>Book Transaction Overview</h5>
                                 </div>
                                 <div class="row justify-content-center" style="height: 30em">
                                     <!--<div class="col-6">-->
