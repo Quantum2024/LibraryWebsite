@@ -3,7 +3,7 @@
 
 
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- theme meta -->
@@ -29,9 +29,7 @@
     <link href="css/lib/menubar/sidebar.css" rel="stylesheet">
     <link href="css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="css/lib/helper.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -67,129 +65,186 @@
 
                                     <div class="mb-3">
                                         <div class="row mb-3">
-
-
-                                            <div class="row mb-3">
-                                                <div class="col">
-                                                    <label for="book_isbn" class="form-label">Book ISBN</label>
-                                                    <input type="number" id="book_isbn" name="book_isbn"
-                                                        class="form-control">
-                                                </div>
+                                            <div class="col-4">
+                                                <label for="book_isbn" class="form-label">Book ISBN</label>
+                                                <input type="number" id="book_isbn" name="book_isbn"
+                                                    class="form-control">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <label for="book_title" class="form-label">Title</label>
-                                            <input type="text" id="book_title" name="book_title" class="form-control">
-                                        </div>
-                                        <div class="col">
-                                            <label for="author_first_name" class="form-label">Author First
-                                                Name</label>
-                                            <input type="text" id="author_first_name" name="author_first_name"
-                                                class="form-control">
-                                        </div>
-                                        <div class="col">
-                                            <label for="author_last_name" class="form-label">Author Last
-                                                Name</label>
-                                            <input type="text" id="author_last_name" name="author_last_name"
-                                                class="form-control">
-                                        </div>
+                                        <div class="mb-3">
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label for="book_title" class="form-label">Title</label>
+                                                    <input type="text" id="book_title" name="book_title"
+                                                        class="form-control">
+                                                </div>
+                                                <div class="col-4">
+                                                    <label for="edition" class="form-label">Edition</label>
+                                                    <input type="number" id="edition" name="edition"
+                                                        class="form-control">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="author_first_name" class="form-label">Author
+                                                        Name</label>
+                                                    <!-- Modal Start-->
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#NewAuthor">Open Modal</button>
+                                                    <div class="modal fade" id="NewAuthor" tabindex="-1"
+                                                        aria-labelledby="NewAuthorLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="NewAuthorLabel">New
+                                                                        Author</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <!-- Your form field here -->
+                                                                    <form id="modalForm" action="check_in_processor.php"
+                                                                        method="post">
+                                                                        <div class="mb-3">
+                                                                            <label for="author_first_name"
+                                                                                class="form-label">Author First
+                                                                                Name</label>
+                                                                            <input type="text" id="author_first_name"
+                                                                                name="author_first_name"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="author_last_name"
+                                                                                class="form-label">Author Last
+                                                                                Name</label>
+                                                                            <input type="text" id="author_last_name"
+                                                                                name="author_last_name"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Save</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <label for="genre_name" class="form-label">Genre</label>
-                                            <select id="genre_name" name="genre_name" class="form-control">
-                                                <?php include 'db_connection.php';
-                                                // Fetch genres from the database
-                                                $genreQuery = "SELECT genre_name FROM genre";
-                                                $genreResult = mysqli_query($mysqli, $genreQuery);
+                                                    <!-- Modal End-->
+                                                    <select id="author_name" name="author_name" class="form-control">
+                                                        <?php
+                                                        // Include the database connection
+                                                        include 'db_connection.php';
 
-                                                if ($genreResult) {
-                                                    while ($row = mysqli_fetch_assoc($genreResult)) {
-                                                        echo "<option value='" . $row['genre_name'] . "'>" . $row['genre_name'] . "</option>";
-                                                    }
-                                                } else {
-                                                    echo "Error: " . mysqli_error($mysqli);
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <label for="language" class="form-label">Language</label>
-                                            <input type="text" id="language" name="language" class="form-control">
-                                        </div>
-                                        <div class="col">
-                                            <label for="publisher_name" class="form-label">Publisher</label>
-                                            <select id="publisher_name" name="publisher_name" class="form-control">
-                                                <?php
-                                                // Fetch publishers from the database
-                                                $publisherQuery = "SELECT publisher_name FROM publisher";
-                                                $publisherResult = mysqli_query($mysqli, $publisherQuery);
+                                                        // SQL query to retrieve author names
+                                                        $query = "SELECT CONCAT(author_first_name, ' ', author_last_name) AS author_name FROM author";
 
-                                                if ($publisherResult) {
-                                                    while ($row = mysqli_fetch_assoc($publisherResult)) {
-                                                        echo "<option value='" . $row['publisher_name'] . "'>" . $row['publisher_name'] . "</option>";
-                                                    }
-                                                } else {
-                                                    echo "Error: " . mysqli_error($mysqli);
-                                                }
-                                                ?>
-                                            </select>
+                                                        // Perform the query
+                                                        $result = $mysqli->query($query);
+
+                                                        // Check for errors
+                                                        if (!$result) {
+                                                            echo "Error: " . $mysqli->error;
+                                                        } else {
+                                                            // Fetch author names and create options
+                                                            while ($row = $result->fetch_assoc()) {
+                                                                $authorName = $row['author_name'];
+                                                                echo "<option value='$authorName'>$authorName</option>";
+                                                            }
+                                                        }
+
+
+                                                        ?>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label for="genre_name" class="form-label">Genre</label>
+                                                    <select id="genre_name" name="genre_name" class="form-control">
+                                                        <?php include 'db_connection.php';
+                                                        // Fetch genres from the database
+                                                        $genreQuery = "SELECT genre_name FROM genre";
+                                                        $genreResult = mysqli_query($mysqli, $genreQuery);
+
+                                                        if ($genreResult) {
+                                                            while ($row = mysqli_fetch_assoc($genreResult)) {
+                                                                echo "<option value='" . $row['genre_name'] . "'>" . $row['genre_name'] . "</option>";
+                                                            }
+                                                        } else {
+                                                            echo "Error: " . mysqli_error($mysqli);
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="language" class="form-label">Language</label>
+                                                    <input type="text" id="language" name="language"
+                                                        class="form-control">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="publisher_name" class="form-label">Publisher</label>
+                                                    <select id="publisher_name" name="publisher_name"
+                                                        class="form-control">
+                                                        <?php
+                                                        // Fetch publishers from the database
+                                                        $publisherQuery = "SELECT publisher_name FROM publisher";
+                                                        $publisherResult = mysqli_query($mysqli, $publisherQuery);
+
+                                                        if ($publisherResult) {
+                                                            while ($row = mysqli_fetch_assoc($publisherResult)) {
+                                                                echo "<option value='" . $row['publisher_name'] . "'>" . $row['publisher_name'] . "</option>";
+                                                            }
+                                                        } else {
+                                                            echo "Error: " . mysqli_error($mysqli);
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-4">
+                                                    <label for="num_of_pages" class="form-label">Number of
+                                                        Pages</label>
+                                                    <input type="number" id="num_of_pages" name="num_of_pages"
+                                                        class="form-control">
+                                                </div>
+
+                                            </div>
+
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="edition" class="form-label">Edition</label>
-                                            <input type="number" id="edition" name="edition" class="form-control">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            </div>
+                                            <div class="col-1">
+                                                <button type="button" class="btn btn-secondary">Close</button>
+                                            </div>
                                         </div>
-                                        <div class="col-4">
-                                            <label for="num_of_pages" class="form-label">Number of
-                                                Pages</label>
-                                            <input type="number" id="num_of_pages" name="num_of_pages"
-                                                class="form-control">
-                                        </div>
-                                        <div class="col-4">
-                                            <label for="stock_quantity" class="form-label">Quantity</label>
-                                            <input type="number" id="stock_quantity" name="stock_quantity"
-                                                class="form-control">
-                                        </div>
-                                    </div>
+                                </form>
+
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-1">
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                            </div>
-                            <div class="col-1">
-                                <button type="button" class="btn btn-secondary">Close</button>
-                            </div>
-                        </div>
-                        </form>
+
 
                 </div>
             </div>
-
-            <div class="export-options" style="margin-top: 20px">
-                <p>Export as: </p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer">
+                    <p>2023 © Caribbean Public Library <a href="#"></a></p>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="footer">
-                <p>2023 © Caribbean Public Library  <a href="#">example.com</a></p>
-            </div>
-        </div>
-    </div>
-    </section>
-    </div>
-    </div>
-    </div>
+        </section>
 
-    <!-- jquery vendor -->
+
+          <!-- jquery vendor -->
     <script src="js/lib/jquery.min.js"></script>
     <script src="js/lib/jquery.nanoscroller.min.js"></script>
     <!-- nano scroller -->
@@ -203,9 +258,7 @@
     <script src="js/lib/circle-progress/circle-progress.min.js"></script>
     <script src="js/lib/circle-progress/circle-progress-init.js"></script>
     <script src="js/lib/chartist/chartist.min.js"></script>
-    <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
-    <script src="js/lib/sparklinechart/sparkline.init.js"></script>
-
+    
     <!-- scripit init-->
     <script src="js/dashboard2.js"></script>
 
@@ -218,30 +271,7 @@
     <script src="js/lib/data-table/buttons.html5.min.js"></script>
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var table = $('#check_out-table').DataTable({
-                "dom": 'frtip',
-                "buttons": [
-                    'excel',
-                    'pdf',
-                    'print'
-                ],
-                "paging": false,
-                "info": false,
-            });
 
-            var buttons = new $.fn.dataTable.Buttons(table, {
-                buttons: [
-                    'excel',
-                    'pdf',
-                    'print'
-                ]
-            }).container().appendTo($('.export-options'));
-        });
-
-    </script>
 
 
 </body>

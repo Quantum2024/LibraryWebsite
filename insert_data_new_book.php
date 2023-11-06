@@ -3,15 +3,18 @@
 include 'db_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Get the combined author name from the form
+    $author_name = $_POST['author_name'];
+    // Split the combined author name into first name and last name
+    list($author_first_name, $author_last_name) = explode(' ', $author_name);
+
     // Get data from the form
     $book_isbn = $_POST['book_isbn'];
     $book_title = $_POST['book_title'];
     $language = $_POST['language'];
     $edition = $_POST['edition'];
     $num_of_pages = $_POST['num_of_pages'];
-    $stock_quantity = $_POST['stock_quantity'];
-    $author_first_name = $_POST['author_first_name'];
-    $author_last_name = $_POST['author_last_name'];
     $genre_name = $_POST['genre_name'];
     $publisher_name = $_POST['publisher_name'];
 
@@ -69,10 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert data into the "book" table
-    $insertBookQuery = "INSERT INTO book (book_isbn, book_title, language, edition, num_of_pages, stock_quantity, genre_id, publisher_id) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $insertBookQuery = "INSERT INTO book (book_isbn, book_title, language, edition, num_of_pages,  genre_id, publisher_id) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmtBook = $mysqli->prepare($insertBookQuery);
-    $stmtBook->bind_param("issiiiii", $book_isbn, $book_title, $language, $edition, $num_of_pages, $stock_quantity, $genre_id, $publisher_id);
+    $stmtBook->bind_param("issiiii", $book_isbn, $book_title, $language, $edition, $num_of_pages, $genre_id, $publisher_id);
 
     // Insert data into the "wrote" table to associate the author with the book
     $insertWroteQuery = "INSERT INTO wrote (book_isbn, author_id) VALUES (?, ?)";
