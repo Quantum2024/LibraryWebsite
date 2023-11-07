@@ -3,7 +3,7 @@
 
 
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- theme meta -->
@@ -86,78 +86,85 @@
                                                 <div class="col">
                                                     <label for="author_first_name" class="form-label">Author
                                                         Name</label>
+
                                                     <!-- Modal Start-->
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#NewAuthor">Open Modal</button>
-                                                    <div class="modal fade" id="NewAuthor" tabindex="-1"
-                                                        aria-labelledby="NewAuthorLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="NewAuthorLabel">New
-                                                                        Author</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!-- Your form field here -->
-                                                                    <form id="modalForm" action="check_in_processor.php"
-                                                                        method="post">
-                                                                        <div class="mb-3">
-                                                                            <label for="author_first_name"
-                                                                                class="form-label">Author First
-                                                                                Name</label>
-                                                                            <input type="text" id="author_first_name"
-                                                                                name="author_first_name"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="author_last_name"
-                                                                                class="form-label">Author Last
-                                                                                Name</label>
-                                                                            <input type="text" id="author_last_name"
-                                                                                name="author_last_name"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Save</button>
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-toggle="modal" data-bs-target="#NewAuthor">New
+                                                        Author</button>
+                                                        <div class="modal fade" id="NewAuthor" tabindex="-1"
+                                                            aria-labelledby="NewAuthorLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="NewAuthorLabel">New
+                                                                            Author</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <!-- Your form field here -->
+                                                                        <form id="modalForm">
+                                                                            <div class="mb-3">
+                                                                                <label for="author_first_name"
+                                                                                    class="form-label">Author First
+                                                                                    Name</label>
+                                                                                <input type="text"
+                                                                                    id="author_first_name"
+                                                                                    name="author_first_name"
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                                <label for="author_last_name"
+                                                                                    class="form-label">Author Last
+                                                                                    Name</label>
+                                                                                <input type="text" id="author_last_name"
+                                                                                    name="author_last_name"
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Close</button>
+                                                                        <button type="button" id="submitAuthor"
+                                                                            class="btn btn-primary">Save</button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <!-- Modal End-->
-                                                    <select id="author_name" name="author_name" class="form-control">
-                                                        <?php
-                                                        // Include the database connection
-                                                        include 'db_connection.php';
 
-                                                        // SQL query to retrieve author names
-                                                        $query = "SELECT CONCAT(author_first_name, ' ', author_last_name) AS author_name FROM author";
 
-                                                        // Perform the query
-                                                        $result = $mysqli->query($query);
+                                                        <!-- Modal End-->
 
-                                                        // Check for errors
-                                                        if (!$result) {
-                                                            echo "Error: " . $mysqli->error;
-                                                        } else {
-                                                            // Fetch author names and create options
-                                                            while ($row = $result->fetch_assoc()) {
-                                                                $authorName = $row['author_name'];
-                                                                echo "<option value='$authorName'>$authorName</option>";
+                                                        <div id="successMessage"></div>
+                                                        <select id="author_name" name="author_name"
+                                                            class="form-control">
+                                                            <?php
+                                                            // Include the database connection
+                                                            include 'db_connection.php';
+
+                                                            // SQL query to retrieve author names
+                                                            $query = "SELECT CONCAT(author_first_name, ' ', author_last_name) AS author_name FROM author";
+
+                                                            // Perform the query
+                                                            $result = $mysqli->query($query);
+
+                                                            // Check for errors
+                                                            if (!$result) {
+                                                                echo "Error: " . $mysqli->error;
+                                                            } else {
+                                                                // Fetch author names and create options
+                                                                while ($row = $result->fetch_assoc()) {
+                                                                    $authorName = $row['author_name'];
+                                                                    echo "<option value='$authorName'>$authorName</option>";
+                                                                }
                                                             }
-                                                        }
 
 
-                                                        ?>
-                                                    </select>
+                                                            ?>
+                                                        </select>
                                                 </div>
 
 
@@ -244,33 +251,65 @@
         </section>
 
 
-          <!-- jquery vendor -->
-    <script src="js/lib/jquery.min.js"></script>
-    <script src="js/lib/jquery.nanoscroller.min.js"></script>
-    <!-- nano scroller -->
-    <script src="js/lib/menubar/sidebar.js"></script>
-    <script src="js/lib/preloader/pace.min.js"></script>
-    <!-- sidebar -->
-    <script src="js/lib/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <!-- bootstrap -->
+        <!-- jquery vendor -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="js/lib/jquery.nanoscroller.min.js"></script>
+        <!-- nano scroller -->
+        <script src="js/lib/menubar/sidebar.js"></script>
+        <script src="js/lib/preloader/pace.min.js"></script>
+        <!-- sidebar -->
 
-    <script src="js/lib/circle-progress/circle-progress.min.js"></script>
-    <script src="js/lib/circle-progress/circle-progress-init.js"></script>
-    <script src="js/lib/chartist/chartist.min.js"></script>
-    
-    <!-- scripit init-->
-    <script src="js/dashboard2.js"></script>
+        <script src="js/scripts.js"></script>
+        <!-- bootstrap -->
 
-    <script src="js/lib/data-table/datatables.min.js"></script>
-    <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="js/lib/data-table/buttons.flash.min.js"></script>
-    <script src="js/lib/data-table/jszip.min.js"></script>
-    <script src="js/lib/data-table/pdfmake.min.js"></script>
-    <script src="js/lib/data-table/vfs_fonts.js"></script>
-    <script src="js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="js/lib/data-table/buttons.print.min.js"></script>
-    <script src="js/lib/data-table/datatables-init.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+
+        <!-- scripit init-->
+        <script src="js/dashboard2.js"></script>
+
+        <script src="js/lib/data-table/datatables.min.js"></script>
+        <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
+        <script src="js/lib/data-table/buttons.flash.min.js"></script>
+        <script src="js/lib/data-table/jszip.min.js"></script>
+        <script src="js/lib/data-table/pdfmake.min.js"></script>
+        <script src="js/lib/data-table/vfs_fonts.js"></script>
+        <script src="js/lib/data-table/buttons.html5.min.js"></script>
+        <script src="js/lib/data-table/buttons.print.min.js"></script>
+        <script src="js/lib/data-table/datatables-init.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#submitAuthor").click(function () {
+                    var author_first_name = $("#author_first_name").val();
+                    var author_last_name = $("#author_last_name").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "insert_data_new_author.php",
+                        data: {
+                            author_first_name: author_first_name,
+                            author_last_name: author_last_name
+                        },
+                        success: function (data) {
+                            // Update the modal or display a success message
+                            $("#NewAuthor").modal('hide'); // Close the modal
+                            $("#successMessage").html("Author data inserted successfully!");
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("Error: " + error);
+                        }
+                    });
+                });
+            });
+        </script>
+
+
+
+
+
+
 
 
 
