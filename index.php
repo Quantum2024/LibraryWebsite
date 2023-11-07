@@ -207,7 +207,7 @@ if ($overdue_result) {
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="table-responsive">
-                                    <h3 class="text-center color-warning">Books Due Today</h3>
+                                    <h3 class="text-center color-warning ">Books Due Today</h3>
                                     <table id="due-table" class="table table-striped table-bordered"
                                         style="margin-top: 10px">
                                         <thead>
