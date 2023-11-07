@@ -8,10 +8,12 @@ if (isset($_GET['book_isbn'])) {
     die("No Member ID is set.");
 }
 // Step 2: Query the database for members loan history
-$query = "SELECT b.book_title, b.edition, b.language, g.genre_name, p.publisher_id, p.publisher_name, b.num_of_pages 
+$query = "SELECT b.book_title, b.edition, b.language, g.genre_name, p.publisher_id, p.publisher_name, b.num_of_pages, a.author_first_name, a.author_last_name 
                                         FROM book AS b
                                         LEFT JOIN genre AS g ON b.genre_id=g.genre_id
                                         LEFT JOIN publisher AS p ON p.publisher_id = b.publisher_id
+                                        RIGHT JOIN wrote AS w on w.book_isbn=b.book_isbn
+                                        LEFT JOIN author AS a on a.author_id=w.author_id
                                         WHERE b.book_isbn=" . $book_isbn . ";";
 $book_result = $mysqli->query($query);
 
@@ -25,6 +27,8 @@ if ($book_result->num_rows == 0) {
         $genre = $row["genre_name"];
         $publisher = $row["publisher_name"];
         $num_of_pages = $row["num_of_pages"];
+        $author_first_name = $row["author_first_name"];
+        $author_last_name = $row["author_last_name"];
     }
 }
 
@@ -110,7 +114,61 @@ if ($book_result->num_rows == 0) {
                                                 <input type="text" id="book_title" name="book_title"
                                                     class="form-control" value="<?php echo $book_title ?>">
                                             </div>
-                                            <!--AUTHOR MULTI SELECT FORM ELEMENT WITH CONNECTION TO DATABASE/ARRAY-->
+                                            <div class="col" id="author_col">
+                                                <label for="author_first_name" class="form-label">Author
+                                                    Name</label>
+
+                                                <!-- Modal Start-->
+                                                <button type="button" class="btn btn-sm btn-primary float-right"
+                                                    data-bs-toggle="modal" data-bs-target="#NewAuthor"
+                                                    style="padding: 0px 5px;">New
+                                                    Author</button>
+                                                <div class="modal fade" id="NewAuthor" tabindex="-1"
+                                                    aria-labelledby="NewAuthorLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="NewAuthorLabel">New
+                                                                    Author</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Your form field here -->
+                                                                <form id="newAuthorForm">
+                                                                    <div class="mb-3">
+                                                                        <label for="author_first_name"
+                                                                            class="form-label">Author First
+                                                                            Name</label>
+                                                                        <input type="text" id="author_first_name"
+                                                                            name="author_first_name"
+                                                                            class="form-control">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="author_last_name"
+                                                                            class="form-label">Author Last
+                                                                            Name</label>
+                                                                        <input type="text" id="author_last_name"
+                                                                            name="author_last_name"
+                                                                            class="form-control">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <div id="processingMessage" style="display: none;">
+                                                                    Processing...</div>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" id="submitAuthor"
+                                                                    class="btn btn-primary">Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal End-->
+                                                <select id="author_name" name="author_name" class="form-control">
+                                                </select>
+                                            </div>
                                             <div class="col">
                                                 <label for="edition" class="form-label">Edition</label>
                                                 <input type="text" id="edition" name="edition" class="form-control"
@@ -265,25 +323,21 @@ if ($book_result->num_rows == 0) {
     </div>
 
     <!-- jquery vendor -->
-    <script src="js/lib/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/lib/jquery.nanoscroller.min.js"></script>
     <!-- nano scroller -->
     <script src="js/lib/menubar/sidebar.js"></script>
     <script src="js/lib/preloader/pace.min.js"></script>
     <!-- sidebar -->
-    <script src="js/lib/bootstrap.min.js"></script>
+
     <script src="js/scripts.js"></script>
     <!-- bootstrap -->
 
-    <script src="js/lib/circle-progress/circle-progress.min.js"></script>
-    <script src="js/lib/circle-progress/circle-progress-init.js"></script>
-    <script src="js/lib/chartist/chartist.min.js"></script>
-    <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
-    <script src="js/lib/sparklinechart/sparkline.init.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
 
     <!-- scripit init-->
-    <script src="js/dashboard2.js"></script>
-
     <script src="js/lib/data-table/datatables.min.js"></script>
     <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
     <script src="js/lib/data-table/buttons.flash.min.js"></script>
@@ -294,6 +348,7 @@ if ($book_result->num_rows == 0) {
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="create_pub_genre_author.js"></script>
     <script>
         $(document).ready(function () {
             var table = $('#copies-table').DataTable({
@@ -317,7 +372,35 @@ if ($book_result->num_rows == 0) {
         });
 
     </script>
+    <style>
+        .select2-selection__rendered {
+            line-height: 42px !important;
+        }
 
+        .select2-container .select2-selection--single {
+            height: 42px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 42px !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            height: 34px;
+            width: 100%;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-clip: padding-box;
+            background-color: #fff;
+            background-image: none;
+            border-radius: 0;
+            border-color: #e7e7e7;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+    </style>
 
 </body>
 
