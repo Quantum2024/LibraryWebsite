@@ -248,12 +248,6 @@
             // Initialize Bootstrap modal
             var checkOutModal = new bootstrap.Modal(document.getElementById('checkOutModal'));
 
-            // Handle modal shown event
-            checkOutModal._element.addEventListener('shown.bs.modal', function () {
-                document.getElementById('loan_log_id').value = 'INSERT LOAN_LOG_ID';
-                document.getElementById('loaned_condition').value = 'INSERT LOANED_CONDITION';
-                document.getElementById('copy_id').value = 'INSERT COPY_ID';
-            });
         });
 
 
