@@ -1,7 +1,7 @@
 <?php
 include 'db_connection.php';
 
-$query = "SELECT author_first_name, author_last_name, author_id FROM `author`";
+$query = "SELECT author_first_name, author_last_name FROM `author`";
 $author = $mysqli->query($query);
 
 $data = array(); // Create an array to store the data
@@ -9,7 +9,7 @@ $data = array(); // Create an array to store the data
 while ($row = $author->fetch_assoc()) {
     // Create an associative array for each row
     $entry = array(
-        "id" => $row["author_id"],
+        "id" => $row["author_first_name"] . " " . $row["author_last_name"],
         "text" => $row["author_first_name"] . " " . $row["author_last_name"]
     );
 

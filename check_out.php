@@ -65,10 +65,10 @@
                                         <div class="row mb-3">
                                             <label for="loaned_condition" class="form-label">Loaned Condition</label>
 
-                                            <select class="form-control" id="loaned_condition">
-                                                <option value="new">New</option>
-                                                <option value="worn">Good</option>
-                                                <option value="damaged">Damaged</option>
+                                            <select class="form-control" id="loaned_condition" name="loaned_condition">
+                                                <option value="New">New</option>
+                                                <option value="Good">Good</option>
+                                                <option value="Damaged">Damaged</option>
                                             </select>
                                         </div>
                                         <div class="row mb-3">
@@ -81,16 +81,21 @@
                                         </div>
                                         <div class="row">
                                             <label for="due_date" class="form-label">Due Date</label>
-                                            <input type="date" class="form-control" id="selectedDate"
-                                                name="selectedDate"
+                                            <input type="date" class="form-control" id="due_date"
+                                                name="due_date"
                                                 value="<?php echo date('Y-m-d', strtotime('+2 weeks')) ?>">
                                         </div>
                                     </div>
-                                </form>
                             </div>
                             <div class="modal-footer">
+                                <div class="row" id="overdue_warning" hidden>
+                                    <p class="color-danger">This Member has an overdue book. They must return it before
+                                        checking out a new book.</p>
+                                </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Complete Check Out</button>
+                                <button type="submit" id="checkout_button" class="btn btn-primary">Complete Check
+                                    Out</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -295,6 +300,31 @@
         $("#checkOutModal").on("hidden.bs.modal", function () {
             $('body').css('padding-right', 0);
         });
+
+        //check to see if a member has an overdue book, if they do, disable check_out
+        $('#member_id').on('change', function () {
+            var member = $('#member_id').val();
+
+            fetch('get_overdue.php?member_id=' + member)
+                .then(response => response.json())
+                .then(data => {
+                    // Access the variable value from the response
+                    const overdue = data.overdue;
+                    if (overdue) {
+                        // Disable submit button
+                        document.getElementById("checkout_button").disabled = true;
+                        document.getElementById("overdue_warning").removeAttribute("hidden");
+                        // Show a red text stating that the member has an overdue book that they must return before renting another book
+                    } else {
+                        document.getElementById("checkout_button").disabled = false;
+                        document.getElementById("overdue_warning").setAttribute("hidden", true);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error: ' + error);
+                });
+        });
+
 
     </script>
     <style>

@@ -144,14 +144,6 @@
 
 
                                                     <select id="author_name" name="author_name" class="form-control">
-                                                        <?php
-                                                        // Include the database connection
-                                                        
-
-                                                       
-
-
-                                                        ?>
                                                     </select>
                                                 </div>
 

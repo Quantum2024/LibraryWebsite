@@ -67,19 +67,21 @@
                                         <div class="row">
                                             <label for="condition_returned" class="form-label">Condition
                                                 Returned</label>
-                                            <select class="form-control" id="condition_returned">
-                                                <option value="new">New</option>
-                                                <option value="worn">Good</option>
-                                                <option value="damaged">Damaged</option>
+                                            <select class="form-control" id="condition_returned"
+                                                name="condition_returned">
+                                                <option value="New">New</option>
+                                                <option value="Good">Good</option>
+                                                <option value="Damaged">Damaged</option>
                                             </select>
                                         </div>
                                     </div>
-                                </form>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Complete Check In</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -111,7 +113,8 @@
 
                                 <div class="table-responsive">
 
-                                    <table id="check_in-table" class="table table-bordered table-hover" style="margin-top: 10px">
+                                    <table id="check_in-table" class="table table-bordered table-hover"
+                                        style="margin-top: 10px">
                                         <thead>
                                             <tr>
                                                 <th>Loan ID</th>
@@ -160,7 +163,7 @@
                                                 echo "<td>" . $authors . "</td>";
                                                 echo "<td>" . $row['first_name'] . " " . $row["last_name"] . "</td>";
                                                 echo "<td>" . date("m/d/Y", strtotime(($row['due_date']))) . "</td>";
-                                                echo '<td><button type="button" class="btn btn-success btn-sm" id="check_out' . $i . '"
+                                                echo '<td><button type="button" class="btn btn-success btn-sm" id="check_in' . $i . '"
                                                     data-toggle="modal" loan_log_id="' . $row["loan_log_id"] . '" copy_id="' . $row["copy_id"] . '"
                                                     loaned_condition="' . $row["book_condition"] . '" data-target="#checkInModal">Check
                                                     In</button></td>';
@@ -255,6 +258,7 @@
                 $('#modalForm').find('[name="loan_log_id"]').val(loan_log_id);
                 $('#modalForm').find('[name="copy_id"]').val(copy_id);
                 $('#modalForm').find('[name="loaned_condition"]').val(loaned_condition);
+                $('#modalForm').find('[id="condition_returned"]').val(loaned_condition);
 
             });
 
