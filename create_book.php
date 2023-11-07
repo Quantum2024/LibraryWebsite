@@ -370,6 +370,9 @@
 
             $("#submitPublisher").click(function() {
                 var publisher_name = $("#new_publisher_name").val();
+                var publisher_country = $("#publisher_country").val();
+                var email_address = $("#email_address").val();
+                var phone_number = $("#phone_number").val()
                 var dataType = "Publisher"; // Define dataType for Publisher
 
                 // Show processing message
@@ -380,6 +383,9 @@
                     url: "insert_data_new_publisher.php",
                     data: {
                         publisher_name: publisher_name,
+                        publisher_country: publisher_country,
+                        email_address: email_address,
+                        phone_number: phone_number,
                         dataType: dataType // Pass dataType parameter
                     },
                     success: function(data) {
