@@ -124,6 +124,7 @@ $(document).ready(function () {
 
     updateAuthorOptions();
 
+        //Genre Options Update
     function updateGenreOptions() {
         console.log("Making AJAX request to get_genre_list.php");
         $.ajax({
@@ -136,10 +137,12 @@ $(document).ready(function () {
             }
         });
     }
+    $("#genre_name_primary").select2(); //initialises select2 for genre
+    updateGenreOptions(); //Populates genre upon loading completion
 
 
     //Publisher Options Update 
-
+   
     function updatePublisherOptions() {
         console.log("Making AJAX request to get_publisher_list.php");
         $.ajax({
@@ -152,6 +155,7 @@ $(document).ready(function () {
             }
         });
     }
-
+    $("#publisher_name").select2();  //initialises select2 for publisher
+    updatePublisherOptions(); //Populates publishers upon loading completion
 
 })
