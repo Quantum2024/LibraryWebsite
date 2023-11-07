@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $language = $_POST['language'];
     $edition = $_POST['edition'];
     $num_of_pages = $_POST['num_of_pages'];
-    $genre_name = $_POST['genre_name'];
+    $genre_name_primary = $_POST['genre_name_primary'];
     $publisher_name = $_POST['publisher_name'];
 
     // Perform data validation and sanitization as needed
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the genre_id based on the selected genre_name
     $selectGenreIdQuery = "SELECT genre_id FROM genre WHERE genre_name = ?";
     $stmtSelectGenreId = $mysqli->prepare($selectGenreIdQuery);
-    $stmtSelectGenreId->bind_param("s", $genre_name);
+    $stmtSelectGenreId->bind_param("s", $genre_name_primary);
     $stmtSelectGenreId->execute();
     $stmtSelectGenreId->bind_result($genre_id);
     $stmtSelectGenreId->fetch();

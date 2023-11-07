@@ -126,7 +126,7 @@
 
                                                     <!-- Modal End-->
 
-
+                                                    <div id="authorSuccessMessage"></div>
                                                     <select id="author_name" name="author_name" class="form-control">
                                                     </select>
                                                 </div>
@@ -179,7 +179,7 @@
                                                     </div>
 
                                                     <!-- Modal End -->
-
+                                                    <div id="publisherSuccessMessage"></div>
                                                     <select id="publisher_name" name="publisher_name" class="form-control">
                                                         
                                                     </select>
@@ -203,6 +203,7 @@
                                                                 <div class="modal-body">
                                                                     <!-- Your form field here -->
                                                                     <form id="modalForm">
+
                                                                         <div class="mb-3">
                                                                             <label for="genre_name" class="form-label">Genre
                                                                                 Name</label>
@@ -244,7 +245,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-1">
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                <button type="submit" id="bookSubmission" class="btn btn-primary">Save Changes</button>
                                             </div>
                                             <div class="col-1">
                                                 <a href="inventory.php"><button type="button" class="btn btn-secondary">Close</button></a>
@@ -301,7 +302,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="create_pub_genre_author.js"></script>
 
-
+<
 
 
 

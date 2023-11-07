@@ -25,6 +25,14 @@ $(document).ready(function () {
 
                 // Call the function to update the author options
                 updateAuthorOptions();
+                $("#authorSuccessMessage").html("New Author added successfully!");
+                 // Select the element
+                 var authorSuccessMessage = document.getElementById("authorSuccessMessage");
+
+                 // Hide the element after 5 seconds
+                 setTimeout(function () {
+                     authorSuccessMessage.style.display = "none";
+                 }, 5000); // 5000 milliseconds (5 seconds)
 
                 //reset the form
                 $("#newAuthorForm")[0].reset();
@@ -55,6 +63,15 @@ $(document).ready(function () {
                 displaySuccessModal(dataType);
                 updateGenreOptions();
                 $("#genreSuccessMessage").html("New Genre added successfully!");
+
+                // Select the element
+                var genreSuccessMessage = document.getElementById("genreSuccessMessage");
+
+                // Hide the element after 5 seconds
+                setTimeout(function () {
+                    genreSuccessMessage.style.display = "none";
+                }, 5000); // 5000 milliseconds (5 seconds)
+
             },
             error: function (xhr, status, error) {
                 console.log("Error: " + errorThrown);
@@ -89,6 +106,15 @@ $(document).ready(function () {
                 $("#NewPublisher").modal('hide');
                 displaySuccessModal(dataType);
                 updatePublisherOptions(); // Call the function to update the publisher options
+                $("#publisherSuccessMessage").html("New Publisher added successfully!");
+                // Select the element
+                var publisherSuccessMessage = document.getElementById("publisherSuccessMessage");
+
+                // Hide the element after 5 seconds
+                setTimeout(function () {
+                    publisherSuccessMessage.style.display = "none";
+                }, 5000); // 5000 milliseconds (5 seconds)
+
                 // Optionally, you can reset the form
                 $("#newPublisherForm")[0].reset();
             },
@@ -124,7 +150,7 @@ $(document).ready(function () {
 
     updateAuthorOptions();
 
-        //Genre Options Update
+    //Genre Options Update
     function updateGenreOptions() {
         console.log("Making AJAX request to get_genre_list.php");
         $.ajax({
@@ -142,7 +168,7 @@ $(document).ready(function () {
 
 
     //Publisher Options Update 
-   
+
     function updatePublisherOptions() {
         console.log("Making AJAX request to get_publisher_list.php");
         $.ajax({
