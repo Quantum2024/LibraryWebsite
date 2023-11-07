@@ -110,13 +110,19 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: "get_author_list.php", // PHP script to fetch the updated list of authors
+            dataType: 'json',
             success: function (data) {
                 console.log(data); // Log the response data to the console
                 // Replace the options in the select element with the updated data
-                $("#author_name").html(data);
+                $("#author_name").select2({
+                    placeholder: "Select an Author",
+                    data: data
+                })
             }
         });
     }
+
+    updateAuthorOptions();
 
     function updateGenreOptions() {
         console.log("Making AJAX request to get_genre_list.php");
@@ -146,4 +152,6 @@ $(document).ready(function () {
             }
         });
     }
+
+
 })

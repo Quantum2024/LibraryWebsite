@@ -1,23 +1,27 @@
 <?php
-// Include the database connection
 include 'db_connection.php';
 
-// SQL query to retrieve author names
-$query = "SELECT CONCAT(author_first_name, ' ', author_last_name) AS author_name FROM author";
+$query = "SELECT author_first_name, author_last_name, author_id FROM `author`";
+$author = $mysqli->query($query);
 
-// Perform the query
-$result = $mysqli->query($query);
+$data = array(); // Create an array to store the data
 
-// Check for errors
-if (!$result) {
-    echo "Error: " . $mysqli->error;
-} else {
-    $options = "";
-    // Fetch author names and create options
-    while ($row = $result->fetch_assoc()) {
-        $authorName = $row['author_name'];
-        $options .= "<option value='$authorName'>$authorName</option>";
-    }
-    echo $options;
+while ($row = $author->fetch_assoc()) {
+    // Create an associative array for each row
+    $entry = array(
+        "id" => $row["author_id"],
+        "text" => $row["author_first_name"] . " " . $row["author_last_name"]
+    );
+
+    // Add each entry to the data array
+    $data[] = $entry;
 }
+
+$mysqli->close();
+
+// Use json_encode to convert the data array to JSON format
+$jsonData = json_encode($data);
+
+// Print the JSON data
+echo $jsonData;
 ?>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php include 'db_connection.php'; ?>
 
 <head>
     <meta charset="utf-8">
@@ -29,6 +29,7 @@
     <link href="css/lib/menubar/sidebar.css" rel="stylesheet">
     <link href="css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="css/lib/helper.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -84,13 +85,14 @@
                                                     <input type="number" id="edition" name="edition"
                                                         class="form-control">
                                                 </div>
-                                                <div class="col">
+                                                <div class="col" id="author_col">
                                                     <label for="author_first_name" class="form-label">Author
                                                         Name</label>
 
                                                     <!-- Modal Start-->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal"
-                                                        data-bs-target="#NewAuthor" style="padding: 0px 5px;">New
+                                                    <button type="button" class="btn btn-sm btn-primary float-right"
+                                                        data-bs-toggle="modal" data-bs-target="#NewAuthor"
+                                                        style="padding: 0px 5px;">New
                                                         Author</button>
                                                     <div class="modal fade" id="NewAuthor" tabindex="-1"
                                                         aria-labelledby="NewAuthorLabel" aria-hidden="true">
@@ -144,24 +146,9 @@
                                                     <select id="author_name" name="author_name" class="form-control">
                                                         <?php
                                                         // Include the database connection
-                                                        include 'db_connection.php';
+                                                        
 
-                                                        // SQL query to retrieve author names
-                                                        $query = "SELECT CONCAT(author_first_name, ' ', author_last_name) AS author_name FROM author";
-
-                                                        // Perform the query
-                                                        $result = $mysqli->query($query);
-
-                                                        // Check for errors
-                                                        if (!$result) {
-                                                            echo "Error: " . $mysqli->error;
-                                                        } else {
-                                                            // Fetch author names and create options
-                                                            while ($row = $result->fetch_assoc()) {
-                                                                $authorName = $row['author_name'];
-                                                                echo "<option value='$authorName'>$authorName</option>";
-                                                            }
-                                                        }
+                                                       
 
 
                                                         ?>
@@ -172,8 +159,9 @@
                                                     <label for="publisher_name" class="form-label">Publisher</label>
 
                                                     <!-- Modal Start -->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal"
-                                                        data-bs-target="#NewPublisher" style="padding: 0px 5px;">New
+                                                    <button type="button" class="btn btn-sm btn-primary float-right"
+                                                        data-bs-toggle="modal" data-bs-target="#NewPublisher"
+                                                        style="padding: 0px 5px;">New
                                                         Publisher</button>
                                                     <div class="modal fade" id="NewPublisher" tabindex="-1"
                                                         aria-labelledby="NewPublisherLabel" aria-hidden="true">
@@ -286,7 +274,7 @@
                                                                     </form>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                <div id="processingMessage3" style="display: none;">
+                                                                    <div id="processingMessage3" style="display: none;">
                                                                         Processing...</div>
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Close</button>
@@ -303,7 +291,8 @@
 
                                                     <div id="genreSuccessMessage"></div>
 
-                                                    <select id="genre_name_primary" name="genre_name_primary" class="form-control">
+                                                    <select id="genre_name_primary" name="genre_name_primary"
+                                                        class="form-control">
                                                         <?php include 'db_connection.php';
                                                         // Fetch genres from the database
                                                         $genreQuery = "SELECT genre_name FROM genre";
@@ -390,6 +379,7 @@
     <script src="js/lib/data-table/buttons.html5.min.js"></script>
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="create_pub_genre_author.js"></script>
 
 
@@ -416,3 +406,32 @@
 </body>
 
 </html>
+<style>
+        .select2-selection__rendered {
+            line-height: 42px !important;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 42px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 42px !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            height: 34px;
+            width: 100%;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-clip: padding-box;
+            background-color: #fff;
+            background-image: none;
+            border-radius: 0;
+            border-color: #e7e7e7;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+    </style>
