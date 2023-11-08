@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
     <!-- Styles -->
     <link href="css/lib/chartist/chartist.min.css" rel="stylesheet">
-    <link href="css/lib/font-awesome.min.css" rel="stylesheet">
+    
     <link href="css/lib/themify-icons.css" rel="stylesheet">
     <link href="css/lib/owl.carousel.min.css" rel="stylesheet" />
     <link href="css/lib/owl.theme.default.min.css" rel="stylesheet" />
@@ -31,6 +31,13 @@
     <link href="css/lib/helper.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
+    
+
+    <link href="css/lib/font-awesome.min.css" rel="stylesheet">
+   
+  <!-- Include the Bootstrap 4 theme | sweetalert2 -->
+<link rel="stylesheet" href="@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
+
 </head>
 
 <body>
@@ -288,6 +295,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
+<!-- SweetAlert2 JS -->
+<script src="sweetalert2/dist/sweetalert2.min.js"></script>
 
     <!-- scripit init-->
     <script src="js/lib/data-table/datatables.min.js"></script>
@@ -301,8 +310,7 @@
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="create_pub_genre_author.js"></script>
-
-<
+ 
 
 
 
@@ -354,4 +362,5 @@
         border-color: #e7e7e7;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
+    
 </style>
