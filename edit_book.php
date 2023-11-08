@@ -467,12 +467,6 @@ if ($book_result->num_rows == 0) {
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <style>
-        .fade {
-            transition: transform 0.75s ease-in;
-            transform: rotate(75deg);
-        }
-    </style>
     <script>
         $(document).ready(function () {
             $("#submit-form").click(function () {
