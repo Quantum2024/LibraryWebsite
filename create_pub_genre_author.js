@@ -184,4 +184,7 @@ $(document).ready(function () {
     $("#publisher_name").select2();  //initialises select2 for publisher
     updatePublisherOptions(); //Populates publishers upon loading completion
 
+
+   
+     
 })
