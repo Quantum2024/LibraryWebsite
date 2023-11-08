@@ -223,12 +223,7 @@ if ($book_result->num_rows == 0) {
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
                                                 <!-- Modal End-->
-
-                                               
 
                                                 <select id="genre_name_primary" name="genre_name_primary"
                                                     class="form-control">
@@ -238,88 +233,115 @@ if ($book_result->num_rows == 0) {
                                             </div>
                                             <!--CREATE PUBLISHER SELECT FIELD-->
                                             <div class="col" id="publisher_col">
-                                                    <label for="publisher_name" class="form-label">Publisher</label>
+                                                <label for="publisher_name" class="form-label">Publisher</label>
 
-                                                    <!-- Modal Start -->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#NewPublisher" style="padding: 0px 5px;">New
-                                                        Publisher</button>
-                                                    <div class="modal fade" id="NewPublisher" tabindex="-1" aria-labelledby="NewPublisherLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="NewPublisherLabel">New
-                                                                        Publisher</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!-- Your form field here -->
-                                                                    <form id="newPublisherForm" method="post">
-                                                                        <div class="mb-3">
-                                                                            <label for="publisher_name" class="form-label">Publisher
-                                                                                Name</label>
-                                                                            <input type="text" id="new_publisher_name" name="publisher_name" class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="publisher_country" class="form-label">Publisher
-                                                                                Country</label>
-                                                                            <input type="text" id="publisher_country" name="publisher_country" class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="email_address" class="form-label">Email Address</label>
-                                                                            <input type="email" id="email_address" name="email_address" class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="phone_number" class="form-label">Phone Number</label>
-                                                                            <input type="text" id="phone_number" name="phone_number" class="form-control">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <div id="processingMessage2" style="display: none;">
-                                                                        Processing...</div>
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" id="submitPublisher" class="btn btn-primary">Save</button>
-                                                                </div>
+                                                <!-- Modal Start -->
+                                                <button type="button" class="btn btn-sm btn-primary float-right"
+                                                    data-bs-toggle="modal" data-bs-target="#NewPublisher"
+                                                    style="padding: 0px 5px;">New
+                                                    Publisher</button>
+                                                <div class="modal fade" id="NewPublisher" tabindex="-1"
+                                                    aria-labelledby="NewPublisherLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="NewPublisherLabel">New
+                                                                    Publisher</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Your form field here -->
+                                                                <form id="newPublisherForm" method="post">
+                                                                    <div class="mb-3">
+                                                                        <label for="publisher_name"
+                                                                            class="form-label">Publisher
+                                                                            Name</label>
+                                                                        <input type="text" id="new_publisher_name"
+                                                                            name="publisher_name" class="form-control">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="publisher_country"
+                                                                            class="form-label">Publisher
+                                                                            Country</label>
+                                                                        <input type="text" id="publisher_country"
+                                                                            name="publisher_country"
+                                                                            class="form-control">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="email_address"
+                                                                            class="form-label">Email Address</label>
+                                                                        <input type="email" id="email_address"
+                                                                            name="email_address" class="form-control">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="phone_number"
+                                                                            class="form-label">Phone Number</label>
+                                                                        <input type="text" id="phone_number"
+                                                                            name="phone_number" class="form-control">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <div id="processingMessage2" style="display: none;">
+                                                                    Processing...</div>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" id="submitPublisher"
+                                                                    class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                    <!-- Modal End -->
+                                                <!-- Modal End -->
 
-                                                    <select id="publisher_name" name="publisher_name" class="form-control">
-                                                        
-                                                    </select>
-                                                    <div id="publisherSuccessMessage"></div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col">
-                                                <label for="num_of_pages" class="form-label">Number of Pages</label>
-                                                <input type="number" id="num_of_pages" name="num_of_pages"
-                                                    class="form-control" value="<?php echo $num_of_pages ?>">
+                                                <select id="publisher_name" name="publisher_name" class="form-control">
+
+                                                </select>
+                                                <div id="publisherSuccessMessage"></div>
                                             </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label for="num_of_pages" class="form-label">Number of Pages</label>
+                                                    <input type="number" id="num_of_pages" name="num_of_pages"
+                                                        class="form-control" value="<?php echo $num_of_pages ?>">
+                                                </div>
 
-                                            <div class="col">
-                                                <?php //get stock quantity
-                                                $query = "SELECT COUNT(*) FROM `copy` WHERE book_isbn=" . $book_isbn;
-                                                $stock_result = $mysqli->query($query);
-                                                if ($stock_result) {
-                                                    $row_count = $stock_result->fetch_row();
-                                                    $stock_quantity = $row_count[0];
-                                                } else {
-                                                    echo "Error executing the query: " . $mysqli->error;
-                                                }
-                                                ?>
-                                                <label for="stock_quantity" class="form-label">Stock Quantity</label>
-                                                <input type="number" id="stock_quantity" name="stock_quantity"
-                                                    class="form-control" value="<?php echo $stock_quantity ?>" readonly>
+                                                <div class="col">
+                                                    <?php //get stock quantity
+                                                    $query = "SELECT COUNT(*) FROM `copy` WHERE book_isbn=" . $book_isbn;
+                                                    $stock_result = $mysqli->query($query);
+                                                    if ($stock_result) {
+                                                        $row_count = $stock_result->fetch_row();
+                                                        $stock_quantity = $row_count[0];
+                                                    } else {
+                                                        echo "Error executing the query: " . $mysqli->error;
+                                                    }
+                                                    ?>
+                                                    <label for="stock_quantity" class="form-label">Stock
+                                                        Quantity</label>
+                                                    <input type="number" id="stock_quantity" name="stock_quantity"
+                                                        class="form-control" value="<?php echo $stock_quantity ?>"
+                                                        readonly>
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </form>
+                                <div class="row" id="processingMessage0" style="display: none;">
+                                    <p class="color-warning">Processing Changes .........</p>
+                                </div>
+                                <div class="row" id="successMessage0" style="display: none;">
+                                    <p class="color-success">Changes were succesfully submitted</p>
+                                </div>
+                                <div class="row" id="failureMessage0" style="display: none;">
+                                    <p class="color-danger">Changes failed to save</p>
+                                </div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <button type="button" id="submit-form" class="btn btn-primary">Save
+                                            Changes</button>
                                     </div>
                                     <div class="col-1">
                                         <button type="button" class="btn btn-secondary">Cancel</button>
@@ -445,8 +467,54 @@ if ($book_result->num_rows == 0) {
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <style>
+        .fade {
+            transition: transform 0.75s ease-in;
+            transform: rotate(75deg);
+        }
+    </style>
     <script>
         $(document).ready(function () {
+            $("#submit-form").click(function () {
+                var book_isbn = $("#book_isbn").val();
+                var book_title = $("#book_title").val();
+                var author_id = $("#author_id").val();
+                var edition = $("#edition").val();
+                var language = $("#language").val();
+                var genre_name_primary = $("#genre_name_primary").val();
+                var publisher_name = $("#publisher_name").val();
+                var num_of_pages = $("#num_of_pages").val();
+                var dataType = "Book"; // Define dataType for Book
+
+                // Show processing message
+                $("#processingMessage0").show();
+                $("#successMessage0").hide();
+                $.ajax({
+                    type: "POST",
+                    url: "edit_book_processor.php",
+                    data: {
+                        book_isbn: book_isbn,
+                        book_title: book_title,
+                        author_id: author_id,
+                        edition: edition,
+                        language: language,
+                        genre_name_primary: genre_name_primary,
+                        publisher_name: publisher_name,
+                        num_of_pages: num_of_pages,
+
+                    },
+                    success: function (data) {
+                        //hide processing messag
+                        $("#processingMessage0").hide();
+                        $("#successMessage0").show();
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error: " + errorThrown);
+                        $("#processingMessage0").hide();
+                        $("#failureMessage0").show();
+                    }
+                });
+            });
             var table = $('#copies-table').DataTable({
                 "dom": 'frtip',
                 "buttons": [
@@ -592,6 +660,8 @@ if ($book_result->num_rows == 0) {
                 $("#successMessage").html(dataType + " Added Successfully"); // Set the success message
                 $("#successModal").modal("show");
             }
+
+
 
         });
 
