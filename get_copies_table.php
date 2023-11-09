@@ -1,7 +1,7 @@
 <?php
 include("db_connection.php");
 if ($_GET["book_isbn"]) {
-    $book_isbn=$_GET["book_isbn"];
+    $book_isbn = $_GET["book_isbn"];
     // Step 2: Query the database for copies of books
     $query = "SELECT c.copy_id, c.supplier_name, c.unit_price, c.published_date, c.book_condition, l.due_date, l.date_checked_in FROM  `copy` AS c
             LEFT JOIN (
@@ -30,13 +30,14 @@ if ($_GET["book_isbn"]) {
             $due_date = $row["due_date"];
             $date_checked_in = $row["date_checked_in"];
             echo "<tr>";
-            echo '<td><a href=# id="copy' . $i . '"data-bs-toggle="modal" 
-                                                                    copy_id="' . $copy_id . '"
-                                                                    condition="' . $row["book_condition"] . '"
-                                                                    supplier_name="' . $supplier_name . '"
-                                                                    unit_price="' . $unit_price . '" 
-                                                                    published_date="' . $published_date . '"
-                                                                    data-bs-target="#editCopyModal">' . $copy_id . '</a></td>';
+            echo '<td>' . $copy_id . '</br>' . '
+            <a href=# id="copy' . $i . '"data-bs-toggle="modal" 
+            copy_id="' . $copy_id . '"
+            condition="' . $row["book_condition"] . '"
+            supplier_name="' . $supplier_name . '"
+            unit_price="' . $unit_price . '" 
+            published_date="' . $published_date . '"
+            data-bs-target="#editCopyModal">' . '<i class="fa-solid fa-pencil"></i></a></td>';
             echo "<td>" . $supplier_name . "</td>";
             echo "<td>" . $unit_price . "</td>";
             echo "<td>" . date("m/d/Y", strtotime($published_date)) . "</td>";
