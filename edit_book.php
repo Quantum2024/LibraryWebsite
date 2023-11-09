@@ -98,7 +98,7 @@ if ($book_result->num_rows == 0) {
                         </div>
                     </div>
                     <!-- /# column -->
-
+                    
                     <!-- /# row -->
                     <section id="main-content">
                         <div class="row mb-3">
