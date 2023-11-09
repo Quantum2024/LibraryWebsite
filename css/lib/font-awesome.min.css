@@ -11,15 +11,6 @@
     font-style: normal
 }
  
-/* Override the default "btn-close" styling with the Font Awesome icon */
-button.btn-close::before {
-    font-family: 'FontAwesome'; 
-    content: '\f057';  /* Unicode for the "times-circle" icon */
-    font-size: 16px;
-    line-height: 1;
-    border: none !important;
-    padding: 0 !important;
-}
 
 
 

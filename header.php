@@ -17,7 +17,7 @@
                 <h3>Fortuna Library Management System</h3>
             </div>
             <div class="col-4">
-                <div class="float-right">
+                <div class="float-end">
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
                             <button class="navbar-toggler" type="button" data-toggle="dropdown"

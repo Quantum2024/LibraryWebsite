@@ -655,6 +655,7 @@ a.dt-button.active:not(.disabled) {
   background: #6EB4FF;
   border-color: #6EB4FF;
   color: #ffffff;
+
 }
 
 .btn-primary.active,
@@ -1062,7 +1063,7 @@ a.dt-button.active:not(.disabled) {
 .main .page-header .breadcrumb li a {
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
-  display: block;
+  
 }
 
 .dropdown-task .progress {
