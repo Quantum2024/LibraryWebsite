@@ -531,7 +531,7 @@ if ($book_result->num_rows == 0) {
                         $("#successMessage0").show();
                     },
                     error: function (xhr, status, error) {
-                        console.log("Error: " + errorThrown);
+                        console.log("Error: " + error);
                         $("#processingMessage0").hide();
                         $("#failureMessage0").show();
                     }
