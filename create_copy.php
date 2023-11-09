@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'db_connection.php'; 
-if($_GET["book_isbn"]){
-    $book_isbn=$_GET["book_isbn"];
-}else{
+<?php include 'db_connection.php';
+if ($_GET["book_isbn"]) {
+    $book_isbn = $_GET["book_isbn"];
+} else {
     die("ISBN is not set");
-}?>
+} ?>
 
 <head>
     <meta charset="utf-8">
@@ -72,22 +72,16 @@ if($_GET["book_isbn"]){
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form method="post" action="insert_data_new_copy.php">
-
+                                <form method="post" id="newCopyForm">
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <div class="col-4">
-                                                <label for="book_isbn" class="form-label">Book ISBN</label>
-                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" readonly value="<?php echo $book_isbn ?>">
-
+                                                <label for="book_isbn" class="form-label"></label>
+                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" readonly value="<?php echo $book_isbn ?>" hidden>
                                             </div>
-
                                         </div>
                                         <div class="mb-3">
                                             <div class="row mb-3">
-
-
-
                                                 <div class="col-4" id="supplier_col">
                                                     <label for="supplier_name" class="form-label">Supplier</label>
                                                     <input type="text" id="supplier_name" name="supplier_name" class="form-control">
@@ -95,19 +89,13 @@ if($_GET["book_isbn"]){
                                                 <div class="col-4">
                                                     <label for="published_date" class="form-label">Published Date</label>
                                                     <input type="date" id="published_date" name="published_date" class="form-control">
-
                                                 </div>
                                             </div>
-
-
-
-
                                         </div>
-
                                         <div class="row mb-3">
                                             <div class="col-4">
                                                 <label for="unit_price" class="form-label">Unit Price</label>
-                                                <input type="number" id="unit_price" name="unit_price" class="form-control">
+                                                <input type="number" id="unit_price" name="unit_price" step="0.01" class="form-control">
                                             </div>
                                             <div class="col-4">
                                                 <label for="book_condition" class="form-label">Book Condition</label>
@@ -117,9 +105,7 @@ if($_GET["book_isbn"]){
                                                     <option value="damage">Damaged</option>
                                                 </select>
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-1">
@@ -130,6 +116,7 @@ if($_GET["book_isbn"]){
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
 
                         </div>
@@ -169,7 +156,8 @@ if($_GET["book_isbn"]){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <!-- SweetAlert2 JS -->
-    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <!-- scripit init-->
 
