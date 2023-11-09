@@ -152,8 +152,8 @@
                                                     continue;
                                                 }
                                                 echo "<tr>";
-                                                echo "<td><a href=edit_copy.php?copy_id=" . $row['copy_id'] . ">" . $row['copy_id'] . "</td>";
-                                                echo "<td><a href=edit_book.php?book_isbn=" . $row['book_isbn'] . ">" . $row['book_title'] . "</td>";
+                                                echo "<td>" . $row['copy_id'] . "</td>";
+                                                echo "<td>" . $row['book_title'] . "</td>";
 
                                                 //query the wrote table for authors
                                                 $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
