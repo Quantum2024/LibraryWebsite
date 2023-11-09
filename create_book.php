@@ -35,9 +35,7 @@
 
     <link href="css/lib/font-awesome.min.css" rel="stylesheet">
    
-  <!-- Include the Bootstrap 4 theme | sweetalert2 -->
-<link rel="stylesheet" href="@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
-
+ 
 </head>
 
 <body>
