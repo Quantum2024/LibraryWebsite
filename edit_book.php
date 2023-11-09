@@ -347,9 +347,8 @@ if ($book_result->num_rows == 0) {
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary">Cancel</button>
-                                        <a href="inventory.php"><button type="button"
-                                                class="btn btn-secondary">Cancel</button><a href="inventory.php">
+                                        <button type="button" class="btn btn-secondary">Cancel
+                                        <a href="inventory.php"><a href="inventory.php">
                                     </div>
                                 </div>
                             </div>
