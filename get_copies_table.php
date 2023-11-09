@@ -30,7 +30,7 @@ if ($_GET["book_isbn"]) {
             $due_date = $row["due_date"];
             $date_checked_in = $row["date_checked_in"];
             echo "<tr>";
-            echo '<td>' . $copy_id . '</br>' . '
+            echo '<td>' . $copy_id . '
             <a href=# id="copy' . $i . '"data-bs-toggle="modal" 
             copy_id="' . $copy_id . '"
             condition="' . $row["book_condition"] . '"
