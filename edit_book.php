@@ -120,7 +120,7 @@ if ($book_result->num_rows == 0) {
                                                 </label>
 
                                                 <!-- Modal Start-->
-                                                <button type="button" class="btn btn-sm btn-primary float-end"
+                                                <button type="button" class="btn btn-sm btn-primary float-right"
                                                     data-bs-toggle="modal" data-bs-target="#NewAuthor"
                                                     style="padding: 0px 5px;">New
                                                     Author</button>
@@ -131,8 +131,9 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewAuthorLabel">New
                                                                     Author</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <a href="#" data-dismiss="modal">
+                                                                    <i class="fas fa-x" style="outline: none"></i>
+                                                                </a>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- Your form field here -->
@@ -187,7 +188,7 @@ if ($book_result->num_rows == 0) {
                                             <div class="col">
                                                 <label for="genre_name_primary" class="form-label">Genre</label>
                                                 <!-- Modal Start-->
-                                                <button type="button" class="btn btn-sm btn-primary float-end"
+                                                <button type="button" class="btn btn-sm btn-primary float-right"
                                                     data-bs-toggle="modal" data-bs-target="#NewGenre"
                                                     style="padding: 0px 5px;">New
                                                     Genre</button>
@@ -198,8 +199,9 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewGenreLabel">Add New
                                                                     Genre</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <a href="#" data-dismiss="modal">
+                                                                    <i class="fas fa-x" style="outline: none"></i>
+                                                                </a>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- Your form field here -->
@@ -236,7 +238,7 @@ if ($book_result->num_rows == 0) {
                                                 <label for="publisher_name" class="form-label">Publisher</label>
 
                                                 <!-- Modal Start -->
-                                                <button type="button" class="btn btn-sm btn-primary float-end"
+                                                <button type="button" class="btn btn-sm btn-primary float-right"
                                                     data-bs-toggle="modal" data-bs-target="#NewPublisher"
                                                     style="padding: 0px 5px;">New
                                                     Publisher</button>
@@ -247,8 +249,9 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewPublisherLabel">New
                                                                     Publisher</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <a href="#" data-dismiss="modal">
+                                                                    <i class="fas fa-x" style="outline: none"></i>
+                                                                </a>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- Your form field here -->
@@ -340,11 +343,12 @@ if ($book_result->num_rows == 0) {
                                 </div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" id="submit-form" class="btn btn-primary me-1 text-nowrap ">Save
+                                        <button type="button" id="submit-form" class="btn btn-primary text-nowrap mr-5">Save
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary ms- ">Cancel</button>
+                                        <a href="inventory.php"><button type="button"
+                                                class="btn btn-secondary">Cancel</button><a href="inventory.php">
                                     </div>
                                 </div>
                             </div>
