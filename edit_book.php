@@ -249,7 +249,7 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewPublisherLabel">New
                                                                     Publisher</h5>
-                                                                <a href="#" data-dismiss="modal">
+                                                                <a href="#" data-bs-dismiss="modal">
                                                                     <i class="fas fa-x" style="outline: none"></i>
                                                                 </a>
                                                             </div>
