@@ -344,7 +344,7 @@ if ($book_result->num_rows == 0) {
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary">Cancel</button>
+                                        <a href="inventory.php"><button type="button" class="btn btn-secondary">Cancel</button><a href="inventory.php">
                                     </div>
                                 </div>
                             </div>
@@ -502,8 +502,8 @@ if ($book_result->num_rows == 0) {
                         $("#processingMessage0").hide();
                         $("#successMessage0").show();
                     },
-                    error: function (xhr, status, error) {
-                        console.log("Error: " + errorThrown);
+                    error: function (data) {
+                        console.log("Error: " + data[0]);
                         $("#processingMessage0").hide();
                         $("#failureMessage0").show();
                     }
