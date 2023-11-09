@@ -49,8 +49,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="checkOutModalLabel">Check Out Book</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <a href="#" data-dismiss="modal">
+                                    <i class="fas fa-x" style="outline: none"></i>
+                                </a>
                             </div>
                             <div class="modal-body">
                                 <!-- Your form field here -->

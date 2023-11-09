@@ -131,8 +131,9 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewAuthorLabel">New
                                                                     Author</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <a href="#" data-dismiss="modal">
+                                                                    <i class="fas fa-x" style="outline: none"></i>
+                                                                </a>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- Your form field here -->
@@ -198,8 +199,9 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewGenreLabel">Add New
                                                                     Genre</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <a href="#" data-dismiss="modal">
+                                                                    <i class="fas fa-x" style="outline: none"></i>
+                                                                </a>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- Your form field here -->
@@ -247,8 +249,9 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewPublisherLabel">New
                                                                     Publisher</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <a href="#" data-dismiss="modal">
+                                                                    <i class="fas fa-x" style="outline: none"></i>
+                                                                </a>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- Your form field here -->
@@ -344,7 +347,8 @@ if ($book_result->num_rows == 0) {
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary ">Cancel</button>
+                                        <a href="inventory.php"><button type="button"
+                                                class="btn btn-secondary">Cancel</button><a href="inventory.php">
                                     </div>
                                 </div>
                             </div>
