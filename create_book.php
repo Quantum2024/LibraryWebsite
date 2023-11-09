@@ -150,7 +150,7 @@
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="NewPublisherLabel">New
                                                                         Publisher</h5>
-                                                                        <a href="#" data-bs-dismiss="modal">
+                                                                    <a href="#" data-bs-dismiss="modal">
                                                                         <i class="fas fa-x" style="outline: none"></i>
                                                                     </a>
                                                                 </div>
@@ -189,7 +189,8 @@
 
                                                     <!-- Modal End -->
                                                     <div id="publisherSuccessMessage"></div>
-                                                    <select id="publisher_name" name="publisher_name" class="form-control">
+                                                    <select id="publisher_name" name="publisher_name"
+                                                        class="form-control">
 
                                                     </select>
                                                 </div>
@@ -256,7 +257,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-1">
-                                                <button type="submit" id="bookSubmission" class="btn btn-primary">Save Changes</button>
+                                                <button type="submit" id="bookSubmission"
+                                                    class="btn btn-primary text-nowrap">Save Changes</button>
                                             </div>
                                             <div class="col-1">
                                                 <a href="inventory.php"><button type="button" class="btn btn-secondary">Close</button></a>
@@ -324,7 +326,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="successModalLabel">Success</h5>
-                    <a href="#" data-dismiss="modal">
+                    <a href="#" data-bs-dismiss="modal">
                         <i class="fas fa-x" style="outline: none"></i>
                     </a>
                 </div>

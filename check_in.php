@@ -47,7 +47,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="checkInModalLabel">Check In Book</h5>
-                                <a href="#" data-dismiss="modal">
+                                <a href="#" data-bs-dismiss="modal">
                                     <i class="fas fa-x" style="outline: none"></i>
                                 </a>
                             </div>
@@ -57,7 +57,7 @@
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <label for="copy_id" class="form-label">Copy Number</label>
-                                            <input type="text" id="copy_id" name="copy_id" class="form-control"
+                                            <input type="text" id="copy_id_form" name="copy_id" class="form-control"
                                                 readonly>
                                         </div>
                                         <input type="hidden" id="loan_log_id" name="loan_log_id">
@@ -79,7 +79,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Complete Check In</button>
                             </div>
                             </form>
@@ -165,8 +165,8 @@
                                                 echo "<td>" . $row['first_name'] . " " . $row["last_name"] . "</td>";
                                                 echo "<td>" . date("m/d/Y", strtotime(($row['due_date']))) . "</td>";
                                                 echo '<td><button type="button" class="btn btn-success btn-sm" id="check_in' . $i . '"
-                                                    data-toggle="modal" loan_log_id="' . $row["loan_log_id"] . '" copy_id="' . $row["copy_id"] . '"
-                                                    loaned_condition="' . $row["book_condition"] . '" data-target="#checkInModal">Check
+                                                    data-bs-toggle="modal" loan_log_id="' . $row["loan_log_id"] . '" copy_id="' . $row["copy_id"] . '"
+                                                    loaned_condition="' . $row["book_condition"] . '" data-bs-target="#checkInModal">Check
                                                     In</button></td>';
                                                 echo "</tr>";
                                             }

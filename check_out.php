@@ -49,7 +49,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="checkOutModalLabel">Check Out Book</h5>
-                                <a href="#" data-dismiss="modal">
+                                <a href="#" data-bs-dismiss="modal">
                                     <i class="fas fa-x" style="outline: none"></i>
                                 </a>
                             </div>
@@ -72,9 +72,10 @@
                                                 <option value="Damaged">Damaged</option>
                                             </select>
                                         </div>
-                                        <div class="row mb-3">
-                                            <label for="member_id" class="form-label"
-                                                style="display: block; width: 100%">Select Member</label>
+                                        <div class="mb-3"
+                                            style="padding: 0px; width: 100%; display: flex; flex-wrap: wrap; ">
+                                            <label for="member_id" class="form-label" style="width: 100%">Select
+                                                Member</label>
                                             <select class="form-control member_id_select" id="member_id"
                                                 name="member_id" style="width: 100%">
 
@@ -82,8 +83,7 @@
                                         </div>
                                         <div class="row">
                                             <label for="due_date" class="form-label">Due Date</label>
-                                            <input type="date" class="form-control" id="due_date"
-                                                name="due_date"
+                                            <input type="date" class="form-control" id="due_date" name="due_date"
                                                 value="<?php echo date('Y-m-d', strtotime('+2 weeks')) ?>">
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                     <p class="color-danger">This Member has an overdue book. They must return it before
                                         checking out a new book.</p>
                                 </div>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" id="checkout_button" class="btn btn-primary">Complete Check
                                     Out</button>
                                 </form>
@@ -172,8 +172,8 @@
                                                 }
                                                 echo '<td>' . $authors . '</td>';
                                                 echo '<td><button type="button" class="btn btn-danger btn-sm" 
-                                                    data-toggle="modal" copy_id="' . $row["copy_id"] . '"
-                                                    loaned_condition="' . $row["book_condition"] . '" data-target="#checkOutModal">Check
+                                                    data-bs-toggle="modal" copy_id="' . $row["copy_id"] . '"
+                                                    loaned_condition="' . $row["book_condition"] . '" data-bs-target="#checkOutModal">Check
                                                     Out</button></td>';
                                                 echo "</tr>";
                                             }
@@ -329,6 +329,10 @@
 
     </script>
     <style>
+        .select2 {
+            width: 100% !important;
+        }
+
         .select2-selection__rendered {
             line-height: 42px !important;
         }
