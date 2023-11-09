@@ -109,7 +109,7 @@ if ($_GET["book_isbn"]) {
                                     </div>
                                     <div class="row">
                                         <div class="col-1">
-                                            <button type="submit" id="bookSubmission" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" id="copySubmission" class="btn btn-primary">Save Changes</button>
                                         </div>
                                         <div class="col-1">
                                             <a href="inventory.php"><button type="button" class="btn btn-secondary">Close</button></a>

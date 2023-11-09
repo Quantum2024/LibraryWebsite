@@ -17,11 +17,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtCopy->bind_param("ssdss", $book_isbn, $supplier_name, $unit_price, $published_date, $book_condition);
 
     // Execute the prepared statement
+    try {
     if ($stmtCopy->execute()) {
         echo "Copy data inserted successfully.";
     } else {
         echo "Error: " . $mysqli->error;
     }
+} catch (Exception $e) {
+    $response = array('error' => 'Something went wrong!');
+    http_response_code(500); // Set HTTP status code to indicate an error
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
 
     // Close the prepared statement and the database connection
     $stmtCopy->close();

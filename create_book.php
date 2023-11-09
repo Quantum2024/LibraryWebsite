@@ -67,13 +67,13 @@
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form method="post" action="insert_data_new_book.php">
+                                <form method="post" id="newBookForm"> 
 
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <div class="col-4">
                                                 <label for="book_isbn" class="form-label">Book ISBN</label>
-                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control">
+                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" min="1000000000" max="9999999999999">
                                             </div>
                                             <div class="col-4">
                                                 <label for="book_title" class="form-label">Title</label>
@@ -301,8 +301,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
-    <!-- SweetAlert2 JS -->
-    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+   <!-- SweetAlert2 JS -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- scripit init-->
     <script src="js/lib/data-table/datatables.min.js"></script>
