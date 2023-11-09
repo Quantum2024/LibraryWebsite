@@ -343,10 +343,11 @@ if ($book_result->num_rows == 0) {
                                 </div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" id="submit-form" class="btn btn-primary text-nowrap mr-5">Save
+                                        <button type="button" id="submit-form" class="btn btn-primary">Save
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
+                                        <button type="button" class="btn btn-secondary">Cancel</button>
                                         <a href="inventory.php"><button type="button"
                                                 class="btn btn-secondary">Cancel</button><a href="inventory.php">
                                     </div>

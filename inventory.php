@@ -68,7 +68,7 @@
                     <section id="main-content">
                         <div class="row">
                             <div class="col">
-                            <a href="create_book.php"><button type="button" class="btn btn-sm btn-primary float-end">Create New
+                            <a href="create_book.php"><button type="button" class="btn btn-sm btn-primary float-right">Create New
                                     Book</button></a>
                             </div>
                         </div>
