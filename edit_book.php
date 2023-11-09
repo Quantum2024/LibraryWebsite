@@ -120,7 +120,7 @@ if ($book_result->num_rows == 0) {
                                                 </label>
 
                                                 <!-- Modal Start-->
-                                                <button type="button" class="btn btn-sm btn-primary float-end"
+                                                <button type="button" class="btn btn-sm btn-primary float-right"
                                                     data-bs-toggle="modal" data-bs-target="#NewAuthor"
                                                     style="padding: 0px 5px;">New
                                                     Author</button>
@@ -188,7 +188,7 @@ if ($book_result->num_rows == 0) {
                                             <div class="col">
                                                 <label for="genre_name_primary" class="form-label">Genre</label>
                                                 <!-- Modal Start-->
-                                                <button type="button" class="btn btn-sm btn-primary float-end"
+                                                <button type="button" class="btn btn-sm btn-primary float-right"
                                                     data-bs-toggle="modal" data-bs-target="#NewGenre"
                                                     style="padding: 0px 5px;">New
                                                     Genre</button>
@@ -238,7 +238,7 @@ if ($book_result->num_rows == 0) {
                                                 <label for="publisher_name" class="form-label">Publisher</label>
 
                                                 <!-- Modal Start -->
-                                                <button type="button" class="btn btn-sm btn-primary float-end"
+                                                <button type="button" class="btn btn-sm btn-primary float-right"
                                                     data-bs-toggle="modal" data-bs-target="#NewPublisher"
                                                     style="padding: 0px 5px;">New
                                                     Publisher</button>
