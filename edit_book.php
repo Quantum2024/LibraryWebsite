@@ -131,7 +131,7 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewAuthorLabel">New
                                                                     Author</h5>
-                                                                <a href="#" data-dismiss="modal">
+                                                                <a href="#" data-bs-dismiss="modal">
                                                                     <i class="fas fa-x" style="outline: none"></i>
                                                                 </a>
                                                             </div>
@@ -199,7 +199,7 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewGenreLabel">Add New
                                                                     Genre</h5>
-                                                                <a href="#" data-dismiss="modal">
+                                                                <a href="#" data-bs-dismiss="modal">
                                                                     <i class="fas fa-x" style="outline: none"></i>
                                                                 </a>
                                                             </div>
@@ -249,7 +249,7 @@ if ($book_result->num_rows == 0) {
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="NewPublisherLabel">New
                                                                     Publisher</h5>
-                                                                <a href="#" data-dismiss="modal">
+                                                                <a href="#" data-bs-dismiss="modal">
                                                                     <i class="fas fa-x" style="outline: none"></i>
                                                                 </a>
                                                             </div>
@@ -355,6 +355,58 @@ if ($book_result->num_rows == 0) {
                             </div>
                         </div>
                 </div>
+                <div class="modal fade" id="editCopyModal" tabindex="-1" aria-labelledby="editCopyModal"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editCopyModalLabel">Edit Copy</h5>
+                                <a href="#" data-bs-dismiss="modal">
+                                    <i class="fas fa-x" style="outline: none"></i>
+                                </a>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Your form field here -->
+                                <form id="copyModalForm" action="check_in_processor.php" method="post">
+                                    <div class="mb-3">
+                                        <div class="row mb-3">
+                                            <label for="copy_id" class="form-label">Copy Number</label>
+                                            <input type="text" id="copy_id" name="copy_id" class="form-control"
+                                                readonly>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="supplier" class="form-label">Supplier Name</label>
+                                            <input type="text" name="supplier" id="supplier" class="form-control">
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="unit_price" class="form-label">Unit Price</label>
+                                            <input type="number" name="unit_price" id="unit_price" class="form-control">
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="published_date" class="form-label">Date
+                                                Published</label>
+                                            <input type="date" name="published_date" id="published_date"
+                                                class="form-control">
+                                        </div>
+                                        <div class="row">
+                                            <label for="condition" class="form-label">Condition</label>
+                                            <select class="form-control" id="condition" name="condition">
+                                                <option value="New">New</option>
+                                                <option value="Good">Good</option>
+                                                <option value="Damaged">Damaged</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Complete Check In</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -368,6 +420,7 @@ if ($book_result->num_rows == 0) {
                                             Copy</button></a>
                                 </div>
                             </div>
+
                             <div class="table-responsive">
                                 <table id="copies-table" class="table table-bordered table-hover"
                                     style="margin-top: 10px">
@@ -404,6 +457,7 @@ if ($book_result->num_rows == 0) {
                                             echo "<td ></td></tr>";
                                         } else {
                                             while ($row = $copy_result->fetch_assoc()) {
+                                                $i = 0;
                                                 $copy_id = $row["copy_id"];
                                                 $supplier_name = $row["supplier_name"];
                                                 $unit_price = $row["unit_price"];
@@ -412,11 +466,18 @@ if ($book_result->num_rows == 0) {
                                                 $due_date = $row["due_date"];
                                                 $date_checked_in = $row["date_checked_in"];
                                                 echo "<tr>";
-                                                echo "<td>" . $copy_id . "</td>";
+                                                echo '<td><a href=# id="copy' . $i . '"data-bs-toggle="modal" 
+                                                                    copy_id="' . $copy_id . '"
+                                                                    condition="' . $row["book_condition"] . '"
+                                                                    supplier_name="' . $supplier_name . '"
+                                                                    unit_price="' . $unit_price . '" 
+                                                                    published_date="' . $published_date . '"
+                                                                    data-bs-target="#editCopyModal">' . $copy_id . '</a></td>';
                                                 echo "<td>" . $supplier_name . "</td>";
                                                 echo "<td>" . $unit_price . "</td>";
                                                 echo "<td>" . date("m/d/Y", strtotime($published_date)) . "</td>";
                                                 echo "<td>" . $book_condition . "</td>";
+                                                $i++;
                                                 if ($date_checked_in === null) {
                                                     $current_date = date("m/d/Y");
                                                     if (strtotime($due_date) >= strtotime($current_date)) {
@@ -669,7 +730,30 @@ if ($book_result->num_rows == 0) {
                 $("#successModal").modal("show");
             }
 
+            $('#editCopyModal').on('show.bs.modal', function (e) {
+                // get information to update quickly to modal view as loading begins
+                var opener = e.relatedTarget;//this holds the element who called the modal
 
+                //we get details from attributes
+                var copy_id = $(opener).attr('copy_id');
+                var supplier = $(opener).attr('supplier_name');
+                var unit_price = $(opener).attr('unit_price');
+                var published_date = $(opener).attr('published_date');
+                var condition = $(opener).attr('condition');
+                //set what we got to our form
+
+                $('#copyModalForm').find('[name="copy_id"]').val(copy_id);
+                $('#copyModalForm').find('[name="supplier"]').val(supplier);
+                $('#copyModalForm').find('[name="unit_price"]').val(unit_price);
+                $('#copyModalForm').find('[name="published_date"]').val(published_date);
+                $('#copyModalForm').find('[name="condition"]').val(condition);
+
+
+            });
+
+            $("#checkInModal").on("hidden.bs.modal", function () {
+                $('body').css('padding-right', 0);
+            });
 
         });
 
