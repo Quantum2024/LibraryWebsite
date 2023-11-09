@@ -95,9 +95,7 @@
                                                         Name</label>
 
                                                     <!-- Modal Start-->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right"
-                                                        data-bs-toggle="modal" data-bs-target="#NewAuthor"
-                                                        style="padding: 0px 5px;">New
+                                                    <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#NewAuthor" style="padding: 0px 5px;">New
                                                         Author</button>
                                                     <div class="modal fade" id="NewAuthor" tabindex="-1"
                                                         aria-labelledby="NewAuthorLabel" aria-hidden="true">
@@ -156,9 +154,7 @@
                                                     <label for="publisher_name" class="form-label">Publisher</label>
 
                                                     <!-- Modal Start -->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right"
-                                                        data-bs-toggle="modal" data-bs-target="#NewPublisher"
-                                                        style="padding: 0px 5px;">New
+                                                    <button type="button" class="btn btn-sm btn-primary float-end" data-bs-toggle="modal" data-bs-target="#NewPublisher" style="padding: 0px 5px;">New
                                                         Publisher</button>
                                                     <div class="modal fade" id="NewPublisher" tabindex="-1"
                                                         aria-labelledby="NewPublisherLabel" aria-hidden="true">
@@ -230,9 +226,7 @@
                                                 <div class="col">
                                                     <label for="genre_name_primary" class="form-label">Genre</label>
                                                     <!-- Modal Start-->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right"
-                                                        data-bs-toggle="modal" data-bs-target="#NewGenre"
-                                                        style="padding: 0px 5px;">New
+                                                    <button type="button" class="btn btn-sm btn-primary float-end" data-bs-toggle="modal" data-bs-target="#NewGenre" style="padding: 0px 5px;">New
                                                         Genre</button>
                                                     <div class="modal fade" id="NewGenre" tabindex="-1"
                                                         aria-labelledby="NewGenreLabel" aria-hidden="true">
@@ -297,7 +291,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-1">
-                                                <button type="submit" id="bookSubmission" class="btn btn-primary text-nowrap">Save Changes</button>
+                                                <button type="submit" id="bookSubmission" class="btn btn-primary">Save Changes</button>
                                             </div>
                                             <div class="col-1">
                                                 <a href="inventory.php"><button type="button"
