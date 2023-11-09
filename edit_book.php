@@ -343,7 +343,8 @@ if ($book_result->num_rows == 0) {
                                 </div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" id="submit-form" class="btn btn-primary text-nowrap mr-5">Save
+                                        <button type="button" id="submit-form"
+                                            class="btn btn-primary text-nowrap mr-5">Save
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
@@ -357,8 +358,17 @@ if ($book_result->num_rows == 0) {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="text-left mb-3">Copies</h3>
+                                </div>
+                                <div class="col">
+                                    <a href="create_copy.php" class="float-right"><button type="button"
+                                            class="btn btn-sm btn-primary float-end">Create New
+                                            Copy</button></a>
+                                </div>
+                            </div>
                             <div class="table-responsive">
-                                <h3 class="text-left mb-3">Copies</h3>
                                 <table id="copies-table" class="table table-bordered table-hover"
                                     style="margin-top: 10px">
                                     <thead>
