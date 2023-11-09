@@ -94,7 +94,7 @@
                                             $member_result = $mysqli->query($query);
                                             while ($row = $member_result->fetch_assoc()) {
                                                 echo "<tr>";
-                                                echo "<td><a href=edit_member.php?member_id=" . $row['member_id'] . ">" . $row['member_id'] . "</td>";
+                                                echo "<td><a href=edit_member.php?member_id=" . $row['member_id'] . ">" . $row['member_id'] . "<i class='fa-solid fa-pencil' style='margin-left: 10%'></i></td>";
                                                 echo "<td>" . $row['first_name'] . " " . $row['last_name'] . " " ."</td>";                                               
                                                 echo "<td>" . date("m/d/Y", strtotime(($row['DOB']))) . "</td>";
                                                 echo "<td>" . $row['email_address'] . "</td>";

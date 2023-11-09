@@ -99,7 +99,7 @@
                                             $book_result = $mysqli->query($query);
                                             while ($row = $book_result->fetch_assoc()) {
                                                 echo "<tr>";
-                                                echo "<td><a href=edit_book.php?book_isbn=" . $row['book_isbn'] . ">" . $row['book_isbn'] . "</td>";
+                                                echo "<td><a href=edit_book.php?book_isbn=" . $row['book_isbn'] . ">" . $row['book_isbn'] . "<i class='fa-solid fa-pencil' style='margin-left: 5%'></i></a></td>";
                                                 echo "<td>" . $row['book_title'] . "</td>";
 
                                                 //query the wrote table for authors
