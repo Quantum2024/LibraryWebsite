@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'db_connection.php'; ?>
+<?php include 'db_connection.php'; 
+if($_GET["book_isbn"]){
+    $book_isbn=$_GET["book_isbn"];
+}else{
+    die("ISBN is not set");
+}?>
 
 <head>
     <meta charset="utf-8">
@@ -73,7 +78,7 @@
                                         <div class="row mb-3">
                                             <div class="col-4">
                                                 <label for="book_isbn" class="form-label">Book ISBN</label>
-                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" readonly value="<?php echo $_GET['book_isbn']; ?>">
+                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" readonly value="<?php echo $book_isbn ?>">
 
                                             </div>
 

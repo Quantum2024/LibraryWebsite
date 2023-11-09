@@ -363,7 +363,7 @@ if ($book_result->num_rows == 0) {
                                     <h3 class="text-left mb-3">Copies</h3>
                                 </div>
                                 <div class="col">
-                                    <a href="create_copy.php" class="float-right"><button type="button"
+                                    <a href="create_copy.php?book_isbn=<?php echo $book_isbn?>" class="float-right"><button type="button"
                                             class="btn btn-sm btn-primary float-end">Create New
                                             Copy</button></a>
                                 </div>
