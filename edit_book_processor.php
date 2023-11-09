@@ -1,6 +1,13 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 0);
 //  Include the database connection
 include 'db_connection.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 0);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get data from the HTML form
@@ -28,11 +35,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //
 
-    // Execute the prepared statement
-    if ($stmtBook->execute() && $stmtWrote->execute()) {
-        echo "Book data updated successfully.";
-    } else {
-        echo "Error: " . $mysqli->error;
+    try {
+        if ($stmtBook->execute() && $stmtWrote->execute()) {
+            echo "Book data updated successfully.";
+        } else {
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode(array('success' => false, 'message' => $mysqli->error));
+        }
+    } catch (Exception $e) {
+        $response = array('error' => 'Something went wrong!');
+        http_response_code(500); // Set HTTP status code to indicate an error
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 
     // Close the prepared statement and the database connection

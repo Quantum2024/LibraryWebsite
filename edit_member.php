@@ -65,178 +65,191 @@
                         <div class="row mb-3">
                             <div class="col-lg-12">
                                 <form>
-                                <?php
-                                        include 'db_connection.php';
-                                        if (isset($_GET['member_id'])) {
-                                            $member_id = $_GET['member_id'];
-                                        } else {
-                                            die("No Member ID is set.");
+                                    <?php
+                                    include 'db_connection.php';
+                                    if (isset($_GET['member_id'])) {
+                                        $member_id = $_GET['member_id'];
+                                    } else {
+                                        die("No Member ID is set.");
+                                    }
+                                    // Step 2: Query the database for members loan history
+                                    $query = "SELECT m.first_name, m.last_name, m.DOB, m.phone_number, m.email_address FROM member AS m  WHERE m.member_id=" . $member_id;
+                                    $member_result = $mysqli->query($query);
+
+                                    if ($member_result->num_rows == 0) {
+                                        die("Member ID does not exist.");
+                                    } else {
+                                        while ($row = $member_result->fetch_assoc()) {
+                                            $first_name = $row["first_name"];
+                                            $last_name = $row["last_name"];
+                                            $DOB = $row["DOB"];
+                                            $phone_number = $row["phone_number"];
+                                            $email_address = $row["email_address"];
                                         }
-                                        // Step 2: Query the database for members loan history
-                                        $query = "SELECT m.first_name, m.last_name, m.DOB, m.phone_number, m.email_address FROM member AS m  WHERE m.member_id=" . $member_id;
-                                        $member_result = $mysqli->query($query);
-                                        
-                                        if ($member_result->num_rows == 0) {
-                                            die("Member ID does not exist.");
-                                        } else {
-                                            while ($row = $member_result->fetch_assoc()) {
-                                                $first_name= $row["first_name"];
-                                                $last_name= $row["last_name"];
-                                                $DOB= $row["DOB"];
-                                                $phone_number=$row["phone_number"];
-                                                $email_address=$row["email_address"];
-                                            }
-                                        }
-                                            
-                                        $mysqli->close();
-                                        ?>
+                                    }
+
+                                    $mysqli->close();
+                                    ?>
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <div class="col">
-                                                <input type="text" id="member_id" name="member_id" class="form-control" value="<?php echo $member_id?>" hidden>
+                                                <input type="text" id="member_id" name="member_id" class="form-control"
+                                                    value="<?php echo $member_id ?>" hidden>
 
                                                 <label for="first_name" class="form-label">First Name</label>
                                                 <input type="text" id="first_name" name="first_name"
-                                                    class="form-control" value="<?php echo $first_name?>">
+                                                    class="form-control" value="<?php echo $first_name ?>">
                                             </div>
                                             <div class="col">
                                                 <label for="last_name" class="form-label">Last Name</label>
-                                                <input type="text" id="last_name" name="last_name" class="form-control" value="<?php echo $last_name?>">
+                                                <input type="text" id="last_name" name="last_name" class="form-control"
+                                                    value="<?php echo $last_name ?>">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <label for="DOB" class="form-label">Date of Birth</label>
-                                                <input type="date" id="DOB" name="DOB" class="form-control" value="<?php echo $DOB?>">
+                                                <input type="date" id="DOB" name="DOB" class="form-control"
+                                                    value="<?php echo $DOB ?>">
                                             </div>
                                             <div class="col">
                                                 <label for="phone_number" class="form-label">Phone Number</label>
                                                 <input type="text" id="phone_number" name="phone_number"
-                                                    class="form-control" value="<?php echo $phone_number?>">
+                                                    class="form-control" value="<?php echo $phone_number ?>">
                                             </div>
                                             <div class="col">
                                                 <label for="email_address" class="form-label">Email Address</label>
                                                 <input type="email" id="email_address" name="email_address"
-                                                    class="form-control" value="<?php echo $email_address?>">
+                                                    class="form-control" value="<?php echo $email_address ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                <div class="row" id="processingMessage0" style="display: none;">
+                                    <p class="color-warning">Processing Changes .........</p>
+                                </div>
+                                <div class="row" id="successMessage0" style="display: none;">
+                                    <p class="color-success">Changes were succesfully submitted</p>
+                                </div>
+                                <div class="row" id="failureMessage0" style="display: none;">
+                                    <p class="color-danger">Changes failed to save</p>
+                                </div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-primary">Save Changes</button>
+                                        <button type="button" id="submit-form" class="btn btn-primary">Save
+                                            Changes</button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary">Close</button>
+                                        <a href="inventory.php"><button type="button"
+                                                class="btn btn-secondary">Cancel</button><a href="inventory.php">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="table-responsive">
-                                <h3 class="text-left mb-3">Loan History</h3>
-                                <table id="loan-table" class="table table-bordered table-hover"
-                                    style="margin-top: 10px">
-                                    <thead>
-                                        <tr>
-                                            <th>Transaction ID</th>
-                                            <th>Copy ID</th>
-                                            <th>Book Title</th>
-                                            <th>Author(s)</th>
-                                            <th>Date Checked Out</th>
-                                            <th>Due Date</th>
-                                            <th>Date Checked In</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include 'db_connection.php';
-                                        if (isset($_GET['member_id'])) {
-                                            $member_id = $_GET['member_id'];
-                                        } else {
-                                            die("No Member ID is set.");
-                                        }
-                                        // Step 2: Query the database for members loan history
-                                        $query = "SELECT c.copy_id, b.book_isbn, b.book_title, l.date_checked_out, l.due_date, l.date_checked_in, l.loan_log_id
+
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <h3 class="text-left mb-3">Loan History</h3>
+                                    <table id="loan-table" class="table table-bordered table-hover"
+                                        style="margin-top: 10px">
+                                        <thead>
+                                            <tr>
+                                                <th>Transaction ID</th>
+                                                <th>Copy ID</th>
+                                                <th>Book Title</th>
+                                                <th>Author(s)</th>
+                                                <th>Date Checked Out</th>
+                                                <th>Due Date</th>
+                                                <th>Date Checked In</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            include 'db_connection.php';
+                                            if (isset($_GET['member_id'])) {
+                                                $member_id = $_GET['member_id'];
+                                            } else {
+                                                die("No Member ID is set.");
+                                            }
+                                            // Step 2: Query the database for members loan history
+                                            $query = "SELECT c.copy_id, b.book_isbn, b.book_title, l.date_checked_out, l.due_date, l.date_checked_in, l.loan_log_id
                                                             FROM `loan_log` AS l
                                                             LEFT JOIN `copy` AS c ON l.copy_id=c.copy_id
                                                             LEFT JOIN `book` AS b ON b.book_isbn=c.book_isbn                                                            
                                                             LEFT JOIN member AS m ON m.member_id=l.member_id WHERE l.member_id=" . $member_id;
-                                        $loan_result = $mysqli->query($query);
-                                        if ($loan_result->num_rows == 0) {
-                                            echo "<tr><td >No Loan History</td>";
-                                            echo "<td ></td>";
-                                            echo "<td ></td>";
-                                            echo "<td ></td>";
-                                            echo "<td ></td>";
-                                            echo "<td ></td>";
-                                            echo "<td ></td>";
-                                            echo "<td ></td></tr>";
-                                        } else {
-                                            while ($row = $loan_result->fetch_assoc()) {
-                                                //check to see if book is checked out already
-                                        
-                                                echo "<tr>";
-                                                echo "<td><a href=edit_loan_log.php?loan_log_id=" . $row['loan_log_id'] . ">" . $row['loan_log_id'] . "</td>";
-                                                echo "<td><a href=edit_copy.php?copy_id=" . $row['copy_id'] . ">" . $row['copy_id'] . "</td>";
-                                                echo "<td><a href=edit_book.php?book_isbn=" . $row['book_isbn'] . ">" . $row['book_title'] . "</td>";
+                                            $loan_result = $mysqli->query($query);
+                                            if ($loan_result->num_rows == 0) {
+                                                echo "<tr><td >No Loan History</td>";
+                                                echo "<td ></td>";
+                                                echo "<td ></td>";
+                                                echo "<td ></td>";
+                                                echo "<td ></td>";
+                                                echo "<td ></td>";
+                                                echo "<td ></td>";
+                                                echo "<td ></td></tr>";
+                                            } else {
+                                                while ($row = $loan_result->fetch_assoc()) {
+                                                    //check to see if book is checked out already
+                                            
+                                                    echo "<tr>";
+                                                    echo "<td><a href=edit_loan_log.php?loan_log_id=" . $row['loan_log_id'] . ">" . $row['loan_log_id'] . "</td>";
+                                                    echo "<td><a href=edit_copy.php?copy_id=" . $row['copy_id'] . ">" . $row['copy_id'] . "</td>";
+                                                    echo "<td><a href=edit_book.php?book_isbn=" . $row['book_isbn'] . ">" . $row['book_title'] . "</td>";
 
-                                                //query the wrote table for authors
-                                                $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
+                                                    //query the wrote table for authors
+                                                    $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
                                                     FROM author AS a
                                                     JOIN wrote AS w ON a.author_id= w.author_id
                                                     JOIN book AS b ON b.book_isbn = w.book_isbn
                                                     WHERE b.book_isbn=" . $row['book_isbn'] . ";";
-                                                $author_result = $mysqli->query($query);
-                                                if (mysqli_num_rows($author_result) == 0) {
-                                                    $authors = "No Authors Found";
-                                                } else {
-                                                    $authors = "";
-                                                    while ($rowA = $author_result->fetch_assoc()) {
-                                                        $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
-                                                    }
-                                                }
-                                                echo '<td>' . $authors . '</td>';
-
-                                                $due_date = date("m/d/Y", strtotime(($row['due_date'])));
-                                                $date_checked_out = date("m/d/Y", strtotime(($row['date_checked_out'])));
-
-                                                //check to see if the book has been checked in, and if it hasnt checked to see if its overdue
-                                                if ($row['date_checked_in'] === null) {
-                                                    $date_checked_in = "N/A";
-                                                    $current_date = date("m/d/Y");
-                                                    if (strtotime($due_date) >= strtotime($current_date)) {
-                                                        $badge = '<td><span class="badge badge-warning">Borrowed</span></td>';
+                                                    $author_result = $mysqli->query($query);
+                                                    if (mysqli_num_rows($author_result) == 0) {
+                                                        $authors = "No Authors Found";
                                                     } else {
-                                                        $badge= '<td><span class="badge badge-danger">Overdue</span></td>';
+                                                        $authors = "";
+                                                        while ($rowA = $author_result->fetch_assoc()) {
+                                                            $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
+                                                        }
                                                     }
-                                                } else {
-                                                    $date_checked_in = date("m/d/Y", strtotime(($row['date_checked_in'])));
-                                                    $badge= '<td><span class="badge badge-success">Returned</span></td>';
+                                                    echo '<td>' . $authors . '</td>';
+
+                                                    $due_date = date("m/d/Y", strtotime(($row['due_date'])));
+                                                    $date_checked_out = date("m/d/Y", strtotime(($row['date_checked_out'])));
+
+                                                    //check to see if the book has been checked in, and if it hasnt checked to see if its overdue
+                                                    if ($row['date_checked_in'] === null) {
+                                                        $date_checked_in = "N/A";
+                                                        $current_date = date("m/d/Y");
+                                                        if (strtotime($due_date) >= strtotime($current_date)) {
+                                                            $badge = '<td><span class="badge badge-warning">Borrowed</span></td>';
+                                                        } else {
+                                                            $badge = '<td><span class="badge badge-danger">Overdue</span></td>';
+                                                        }
+                                                    } else {
+                                                        $date_checked_in = date("m/d/Y", strtotime(($row['date_checked_in'])));
+                                                        $badge = '<td><span class="badge badge-success">Returned</span></td>';
+                                                    }
+                                                    echo '<td>' . $date_checked_out . '</td>';
+                                                    echo '<td>' . $due_date . '</td>';
+                                                    echo '<td>' . $date_checked_in . '</td>';
+                                                    echo $badge;
+
+                                                    echo "</tr>";
                                                 }
-                                                echo '<td>'. $date_checked_out .'</td>';
-                                                echo '<td>' . $due_date . '</td>';
-                                                echo '<td>' . $date_checked_in . '</td>';
-                                                echo $badge;
-                
-                                                echo "</tr>";
                                             }
-                                        }
-                                        $mysqli->close();
-                                        ?>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="export-options" style="margin-top: 20px">
-                                <p>Export as: </p>
+                                            $mysqli->close();
+                                            ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="export-options" style="margin-top: 20px">
+                                    <p>Export as: </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -282,6 +295,41 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function () {
+            $("#submit-form").click(function () {
+                var first_name = $("#first_name").val();
+                var last_name = $("#last_name").val();
+                var dob = $("#DOB").val();
+                var phone_number = $("#phone_number").val();
+                var email_address = $("#email_address").val();
+                var member_id = $("#member_id").val();
+
+                // Show processing message
+                $("#processingMessage0").show();
+                $("#successMessage0").hide();
+                $.ajax({
+                    type: "POST",
+                    url: "edit_member_processor.php",
+                    data: {
+                        first_name: first_name,
+                        last_name: last_name,
+                        DOB: dob,
+                        phone_number: phone_number,
+                        email_address: email_address,
+                        member_id: member_id
+                    },
+                    success: function (data) {
+                        //hide processing messag
+                        console.log(data);
+                        $("#processingMessage0").hide();
+                        $("#successMessage0").show();
+                    },
+                    error: function (xhr, error) {
+                        console.log("Error: " + error.message);
+                        $("#processingMessage0").hide();
+                        $("#failureMessage0").show();
+                    }
+                });
+            });
             var table = $('#loan-table').DataTable({
                 "dom": 'frtip',
                 "buttons": [
