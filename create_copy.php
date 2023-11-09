@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'db_connection.php'; 
-if($_GET["book_isbn"]){
-    $book_isbn=$_GET["book_isbn"];
-}else{
+<?php include 'db_connection.php';
+if ($_GET["book_isbn"]) {
+    $book_isbn = $_GET["book_isbn"];
+} else {
     die("ISBN is not set");
-}?>
+} ?>
 
 <head>
     <meta charset="utf-8">
@@ -72,96 +72,30 @@ if($_GET["book_isbn"]){
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form method="post" action="insert_data_new_copy.php">
-
+                                <form method="post" id="newCopyForm">
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <div class="col-4">
-                                                <label for="book_isbn" class="form-label">Book ISBN</label>
-                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" readonly value="<?php echo $book_isbn ?>">
-
+                                                <label for="book_isbn" class="form-label"></label>
+                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" readonly value="<?php echo $book_isbn ?>" hidden>
                                             </div>
-
                                         </div>
                                         <div class="mb-3">
                                             <div class="row mb-3">
-
-
-
                                                 <div class="col-4" id="supplier_col">
                                                     <label for="supplier_name" class="form-label">Supplier</label>
-
-                                                    <!-- Modal Start -->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#newSupplier" style="padding: 0px 5px;">New
-                                                        Supplier</button>
-                                                    <div class="modal fade" id="newSupplier" tabindex="-1" aria-labelledby="newSupplierLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="newSupplierLabel">New
-                                                                        Supplier</h5>
-                                                                    <a href="#" data-bs-dismiss="modal">
-                                                                        <i class="fas fa-x" style="outline: none"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!-- Your form field here -->
-                                                                    <form id="newSupplierForm" method="post">
-                                                                        <div class="mb-3">
-                                                                            <label for="supplier_name" class="form-label">Supplier
-                                                                                Name</label>
-                                                                            <input type="text" id="new_supplier_name" name="supplier_name" class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="supplier_country" class="form-label">Supplier
-                                                                                Country</label>
-                                                                            <input type="text" id="supplier_country" name="supplier_country" class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="supplier_email_address" class="form-label">Email Address</label>
-                                                                            <input type="supplier_email_address" id="supplier_email_address" name="supplier_email_address" class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="supplier_phone_number" class="form-label">Phone Number</label>
-                                                                            <input type="number" id="supplier_phone_number" name="supplier_phone_number" class="form-control">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <div id="processingMessage2" style="display: none;">
-                                                                        Processing...</div>
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" id="submitSupplier" class="btn btn-primary">Save</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Modal End -->
-                                                    <div id="supplierSuccessMessage"></div>
-                                                    <select id="supplier_name" name="supplier_name" class="form-control">
-
-                                                    </select>
-
-
-
+                                                    <input type="text" id="supplier_name" name="supplier_name" class="form-control">
                                                 </div>
                                                 <div class="col-4">
                                                     <label for="published_date" class="form-label">Published Date</label>
                                                     <input type="date" id="published_date" name="published_date" class="form-control">
-
                                                 </div>
                                             </div>
-
-
-
-
                                         </div>
-
                                         <div class="row mb-3">
                                             <div class="col-4">
                                                 <label for="unit_price" class="form-label">Unit Price</label>
-                                                <input type="number" id="unit_price" name="unit_price" class="form-control">
+                                                <input type="number" id="unit_price" name="unit_price" step="0.01" class="form-control">
                                             </div>
                                             <div class="col-4">
                                                 <label for="book_condition" class="form-label">Book Condition</label>
@@ -171,19 +105,18 @@ if($_GET["book_isbn"]){
                                                     <option value="damage">Damaged</option>
                                                 </select>
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-1">
-                                            <button type="submit" id="bookSubmission" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" id="copySubmission" class="btn btn-primary">Save Changes</button>
                                         </div>
                                         <div class="col-1">
                                             <a href="inventory.php"><button type="button" class="btn btn-secondary">Close</button></a>
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
 
                         </div>
@@ -223,7 +156,8 @@ if($_GET["book_isbn"]){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <!-- SweetAlert2 JS -->
-    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <!-- scripit init-->
 
@@ -237,57 +171,9 @@ if($_GET["book_isbn"]){
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="create_copy_supplier.js"></script>
+    <script src="create_copy_processing.js"></script>
 
 
-    <!-- Success Modal  -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Success</h5>
-                    <a href="#" data-dismiss="modal">
-                        <i class="fas fa-x" style="outline: none"></i>
-                    </a>
-                </div>
-                <div class="modal-body">
-                    <span id="successMessage"></span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
-<style>
-    .select2-selection__rendered {
-        line-height: 42px !important;
-    }
-
-    .select2-container .select2-selection--single {
-        height: 42px !important;
-    }
-
-    .select2-selection__arrow {
-        height: 42px !important;
-    }
-
-    .select2-container--default .select2-selection--single {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        height: 34px;
-        width: 100%;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #495057;
-        background-clip: padding-box;
-        background-color: #fff;
-        background-image: none;
-        border-radius: 0;
-        border-color: #e7e7e7;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    }
-</style>

@@ -78,6 +78,20 @@
 /*  Opensans
 --------------- */
 
+/* Style the confirm button with the color #4490e2 */
+.swal2-confirm {
+  background-color: #4490e2 !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 0 10px #4490e2 !important; /* Blue box shadow */
+}
+
+/* Hover state for the confirm button */
+.swal2-confirm:hover {
+  background-color: #3472c0 !important; /* Darker shade of #4490e2 */
+  box-shadow: 0 0 10px #3472c0 !important;
+}
+
 
 
 .card-body {

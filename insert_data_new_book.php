@@ -83,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtWrote->bind_param("ii", $book_isbn, $author_id);
 
     // Execute the prepared statements
+    try {
     if ($stmtBook->execute() && $stmtWrote->execute()) {
         // Commit the transaction if all inserts are successful
         $mysqli->commit();
@@ -92,6 +93,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mysqli->rollback();
         echo "Error: " . $mysqli->error;
     }
+} catch (Exception $e) {
+    $response = array('error' => 'Something went wrong!');
+    http_response_code(500); // Set HTTP status code to indicate an error
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
 
     // Close the prepared statements and the database connection
     $stmtBook->close();
