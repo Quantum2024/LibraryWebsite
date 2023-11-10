@@ -3,7 +3,17 @@ $(document).ready(function() {
     $('#newCopyForm').submit(function(event) {
         event.preventDefault();
 
-        // Display a loading SweetAlert while processing
+        // Display a confirmation SweetAlert
+    Swal.fire({
+        title: "Do you want to save the changes?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            // Continue with the processing SweetAlert
         Swal.fire({
             title: 'Processing',
             html: 'Please wait...',
@@ -63,5 +73,11 @@ $(document).ready(function() {
             // Log the error to the console
             console.error(error);
         });
-    });
+        
+    } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+    }
 });
+});
+});
+    

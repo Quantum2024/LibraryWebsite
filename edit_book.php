@@ -108,24 +108,19 @@ if ($book_result->num_rows == 0) {
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <div class="col">
-                                                <input type="text" id="book_isbn" name="book_isbn" class="form-control"
-                                                    value="<?php echo $book_isbn ?>" hidden>
+                                                <input type="text" id="book_isbn" name="book_isbn" class="form-control" value="<?php echo $book_isbn ?>" hidden>
 
                                                 <label for="book_title" class="form-label">Title</label>
-                                                <input type="text" id="book_title" name="book_title"
-                                                    class="form-control" value="<?php echo $book_title ?>">
+                                                <input type="text" id="book_title" name="book_title" class="form-control" value="<?php echo $book_title ?>">
                                             </div>
                                             <div class="col" id="author_col">
                                                 <label for="author_id" class="form-label">Author
                                                 </label>
 
                                                 <!-- Modal Start-->
-                                                <button type="button" class="btn btn-sm btn-primary float-right"
-                                                    data-bs-toggle="modal" data-bs-target="#NewAuthor"
-                                                    style="padding: 0px 5px;">New
+                                                <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#NewAuthor" style="padding: 0px 5px;">New
                                                     Author</button>
-                                                <div class="modal fade" id="NewAuthor" tabindex="-1"
-                                                    aria-labelledby="NewAuthorLabel" aria-hidden="true">
+                                                <div class="modal fade" id="NewAuthor" tabindex="-1" aria-labelledby="NewAuthorLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -139,30 +134,22 @@ if ($book_result->num_rows == 0) {
                                                                 <!-- Your form field here -->
                                                                 <form id="newAuthorForm">
                                                                     <div class="mb-3">
-                                                                        <label for="author_first_name"
-                                                                            class="form-label">Author First
+                                                                        <label for="author_first_name" class="form-label">Author First
                                                                             Name</label>
-                                                                        <input type="text" id="author_first_name"
-                                                                            name="author_first_name"
-                                                                            class="form-control">
+                                                                        <input type="text" id="author_first_name" name="author_first_name" class="form-control">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="author_last_name"
-                                                                            class="form-label">Author Last
+                                                                        <label for="author_last_name" class="form-label">Author Last
                                                                             Name</label>
-                                                                        <input type="text" id="author_last_name"
-                                                                            name="author_last_name"
-                                                                            class="form-control">
+                                                                        <input type="text" id="author_last_name" name="author_last_name" class="form-control">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <div id="processingMessage" style="display: none;">
                                                                     Processing...</div>
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" id="submitAuthor"
-                                                                    class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" id="submitAuthor" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -175,25 +162,20 @@ if ($book_result->num_rows == 0) {
                                             </div>
                                             <div class="col">
                                                 <label for="edition" class="form-label">Edition</label>
-                                                <input type="text" id="edition" name="edition" class="form-control"
-                                                    value="<?php echo $edition ?>">
+                                                <input type="text" id="edition" name="edition" class="form-control" value="<?php echo $edition ?>">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <label for="language" class="form-label">Language</label>
-                                                <input type="text" id="language" name="language" class="form-control"
-                                                    value="<?php echo $language ?>">
+                                                <input type="text" id="language" name="language" class="form-control" value="<?php echo $language ?>">
                                             </div>
                                             <div class="col">
                                                 <label for="genre_name_primary" class="form-label">Genre</label>
                                                 <!-- Modal Start-->
-                                                <button type="button" class="btn btn-sm btn-primary float-right"
-                                                    data-bs-toggle="modal" data-bs-target="#NewGenre"
-                                                    style="padding: 0px 5px;">New
+                                                <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#NewGenre" style="padding: 0px 5px;">New
                                                     Genre</button>
-                                                <div class="modal fade" id="NewGenre" tabindex="-1"
-                                                    aria-labelledby="NewGenreLabel" aria-hidden="true">
+                                                <div class="modal fade" id="NewGenre" tabindex="-1" aria-labelledby="NewGenreLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -209,26 +191,22 @@ if ($book_result->num_rows == 0) {
                                                                     <div class="mb-3">
                                                                         <label for="genre_name" class="form-label">Genre
                                                                             Name</label>
-                                                                        <input type="text" id="genre_name"
-                                                                            name="genre_name" class="form-control">
+                                                                        <input type="text" id="genre_name" name="genre_name" class="form-control">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <div id="processingMessage3" style="display: none;">
                                                                     Processing...</div>
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" id="submitGenre"
-                                                                    class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" id="submitGenre" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!-- Modal End-->
 
-                                                <select id="genre_name_primary" name="genre_name_primary"
-                                                    class="form-control">
+                                                <select id="genre_name_primary" name="genre_name_primary" class="form-control">
 
                                                 </select>
                                                 <div id="genreSuccessMessage"></div>
@@ -238,12 +216,9 @@ if ($book_result->num_rows == 0) {
                                                 <label for="publisher_name" class="form-label">Publisher</label>
 
                                                 <!-- Modal Start -->
-                                                <button type="button" class="btn btn-sm btn-primary float-right"
-                                                    data-bs-toggle="modal" data-bs-target="#NewPublisher"
-                                                    style="padding: 0px 5px;">New
+                                                <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#NewPublisher" style="padding: 0px 5px;">New
                                                     Publisher</button>
-                                                <div class="modal fade" id="NewPublisher" tabindex="-1"
-                                                    aria-labelledby="NewPublisherLabel" aria-hidden="true">
+                                                <div class="modal fade" id="NewPublisher" tabindex="-1" aria-labelledby="NewPublisherLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -257,41 +232,30 @@ if ($book_result->num_rows == 0) {
                                                                 <!-- Your form field here -->
                                                                 <form id="newPublisherForm" method="post">
                                                                     <div class="mb-3">
-                                                                        <label for="publisher_name"
-                                                                            class="form-label">Publisher
+                                                                        <label for="publisher_name" class="form-label">Publisher
                                                                             Name</label>
-                                                                        <input type="text" id="new_publisher_name"
-                                                                            name="publisher_name" class="form-control">
+                                                                        <input type="text" id="new_publisher_name" name="publisher_name" class="form-control">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="publisher_country"
-                                                                            class="form-label">Publisher
+                                                                        <label for="publisher_country" class="form-label">Publisher
                                                                             Country</label>
-                                                                        <input type="text" id="publisher_country"
-                                                                            name="publisher_country"
-                                                                            class="form-control">
+                                                                        <input type="text" id="publisher_country" name="publisher_country" class="form-control">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="email_address"
-                                                                            class="form-label">Email Address</label>
-                                                                        <input type="email" id="email_address"
-                                                                            name="email_address" class="form-control">
+                                                                        <label for="email_address" class="form-label">Email Address</label>
+                                                                        <input type="email" id="email_address" name="email_address" class="form-control">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="phone_number"
-                                                                            class="form-label">Phone Number</label>
-                                                                        <input type="text" id="phone_number"
-                                                                            name="phone_number" class="form-control">
+                                                                        <label for="phone_number" class="form-label">Phone Number</label>
+                                                                        <input type="text" id="phone_number" name="phone_number" class="form-control">
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <div id="processingMessage2" style="display: none;">
                                                                     Processing...</div>
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" id="submitPublisher"
-                                                                    class="btn btn-primary">Save</button>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" id="submitPublisher" class="btn btn-primary">Save</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -307,8 +271,7 @@ if ($book_result->num_rows == 0) {
                                             <div class="row mb-3">
                                                 <div class="col">
                                                     <label for="num_of_pages" class="form-label">Number of Pages</label>
-                                                    <input type="number" id="num_of_pages" name="num_of_pages"
-                                                        class="form-control" value="<?php echo $num_of_pages ?>">
+                                                    <input type="number" id="num_of_pages" name="num_of_pages" class="form-control" value="<?php echo $num_of_pages ?>">
                                                 </div>
 
                                                 <div class="col">
@@ -324,39 +287,26 @@ if ($book_result->num_rows == 0) {
                                                     ?>
                                                     <label for="stock_quantity" class="form-label">Stock
                                                         Quantity</label>
-                                                    <input type="number" id="stock_quantity" name="stock_quantity"
-                                                        class="form-control" value="<?php echo $stock_quantity ?>"
-                                                        readonly>
+                                                    <input type="number" id="stock_quantity" name="stock_quantity" class="form-control" value="<?php echo $stock_quantity ?>" readonly>
 
                                                 </div>
                                             </div>
                                         </div>
                                 </form>
-                                <div class="row" id="processingMessage0" style="display: none;">
-                                    <p class="color-warning">Processing Changes .........</p>
-                                </div>
-                                <div class="row" id="successMessage0" style="display: none;">
-                                    <p class="color-success">Changes were succesfully submitted</p>
-                                </div>
-                                <div class="row" id="failureMessage0" style="display: none;">
-                                    <p class="color-danger">Changes failed to save</p>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" id="submit-form"
-                                            class="btn btn-primary text-nowrap mr-5">Save
+                                        <button type="button" id="submit-form" class="btn btn-primary text-nowrap mr-5">Save
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
-                                        <a href="inventory.php"><button type="button"
-                                                class="btn btn-secondary">Cancel</button><a href="inventory.php">
+                                        <a href="inventory.php"><button type="button" class="btn btn-secondary">Cancel</button><a href="inventory.php">
                                     </div>
                                 </div>
                             </div>
                         </div>
                 </div>
-                <div class="modal fade" id="editCopyModal" tabindex="-1" aria-labelledby="editCopyModal"
-                    aria-hidden="true">
+                <div class="modal fade" id="editCopyModal" tabindex="-1" aria-labelledby="editCopyModal" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -371,8 +321,7 @@ if ($book_result->num_rows == 0) {
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <label for="copy_id" class="form-label">Copy Number</label>
-                                            <input type="text" id="copy_id" name="copy_id" class="form-control"
-                                                readonly>
+                                            <input type="text" id="copy_id" name="copy_id" class="form-control" readonly>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="supplier" class="form-label">Supplier Name</label>
@@ -385,8 +334,7 @@ if ($book_result->num_rows == 0) {
                                         <div class="row mb-3">
                                             <label for="published_date" class="form-label">Date
                                                 Published</label>
-                                            <input type="date" name="published_date" id="published_date"
-                                                class="form-control">
+                                            <input type="date" name="published_date" id="published_date" class="form-control">
                                         </div>
                                         <div class="row">
                                             <label for="condition" class="form-label">Condition</label>
@@ -425,16 +373,13 @@ if ($book_result->num_rows == 0) {
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <a href="create_copy.php?book_isbn=<?php echo $book_isbn ?>"
-                                        class="float-right"><button type="button"
-                                            class="btn btn-sm btn-primary float-end">Create New
+                                    <a href="create_copy.php?book_isbn=<?php echo $book_isbn ?>" class="float-right"><button type="button" class="btn btn-sm btn-primary float-end">Create New
                                             Copy</button></a>
                                 </div>
                             </div>
 
                             <div class="table-responsive">
-                                <table id="copies-table" class="table table-bordered table-hover"
-                                    style="margin-top: 10px">
+                                <table id="copies-table" class="table table-bordered table-hover" style="margin-top: 10px">
                                     <thead>
                                         <tr>
                                             <th>Copy ID</th>
@@ -483,6 +428,8 @@ if ($book_result->num_rows == 0) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- scripit init-->
     <script src="js/lib/data-table/datatables.min.js"></script>
@@ -496,8 +443,8 @@ if ($book_result->num_rows == 0) {
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $("#submit-form").click(function () {
+        $(document).ready(function() {
+            $("#submit-form").click(function() {
                 var book_isbn = $("#book_isbn").val();
                 var book_title = $("#book_title").val();
                 var author_id = $("#author_id").val();
@@ -508,262 +455,347 @@ if ($book_result->num_rows == 0) {
                 var num_of_pages = $("#num_of_pages").val();
                 var dataType = "Book"; // Define dataType for Book
 
-                // Show processing message
-                $("#processingMessage0").show();
-                $("#successMessage0").hide();
-                $.ajax({
-                    type: "POST",
-                    url: "edit_book_processor.php",
-                    data: {
-                        book_isbn: book_isbn,
-                        book_title: book_title,
-                        author_id: author_id,
-                        edition: edition,
-                        language: language,
-                        genre_name_primary: genre_name_primary,
-                        publisher_name: publisher_name,
-                        num_of_pages: num_of_pages,
 
-                    },
-                    success: function (data) {
-                        //hide processing messag
-                        $("#processingMessage0").hide();
-                        $("#successMessage0").show();
-                    },
-                    error: function (xhr, status, error) {
-                        console.log("Error: " + error);
-                        $("#processingMessage0").hide();
-                        $("#failureMessage0").show();
+                // Display a confirmation SweetAlert
+                Swal.fire({
+                    title: "Do you want to save the changes?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        // Continue with the processing SweetAlert
+
+                        Swal.fire({
+                            title: 'Processing',
+                            html: 'Please wait...',
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            willOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+                        $.ajax({
+                            type: "POST",
+                            url: "edit_book_processor.php",
+                            data: {
+                                book_isbn: book_isbn,
+                                book_title: book_title,
+                                author_id: author_id,
+                                edition: edition,
+                                language: language,
+                                genre_name_primary: genre_name_primary,
+                                publisher_name: publisher_name,
+                                num_of_pages: num_of_pages,
+
+                            },
+                            success: function(response) {
+                                // Close the loading SweetAlert
+                                Swal.close();
+
+                                // Check if the response indicates success
+                                if (response.includes('successfully')) {
+                                    // Display a success SweetAlert with the blue button
+                                    Swal.fire({
+                                        title: 'Success',
+                                        text: 'Data submitted successfully',
+                                        icon: 'success',
+                                        confirmButtonClass: 'swal2-confirm'
+                                    });
+                                    // Reset the form
+                                    $('#newCopyForm')[0].reset();
+                                } else {
+                                    // Display an error SweetAlert with the blue button
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Data submission failed',
+                                        icon: 'error',
+                                        confirmButtonClass: 'swal2-confirm'
+                                    });
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                // Close the loading SweetAlert
+                                Swal.close();
+
+                                // Log the error to the console
+                                console.log("Error: " + errorThrown);
+
+                                // Display an error SweetAlert with the blue button
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Data submission failed',
+                                    icon: 'error',
+                                    confirmButtonClass: 'swal2-confirm'
+                                });
+                            }
+                        }).fail(function(error) {
+                            // Log the error to the console
+                            console.error(error);
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
                     }
                 });
             });
-            var table = $('#copies-table').DataTable({
-                "dom": 'frtip',
-                "buttons": [
-                    'excel',
-                    'pdf',
-                    'print'
-                ],
-                "paging": false,
-                "info": false,
-            });
-
-            var buttons = new $.fn.dataTable.Buttons(table, {
-                buttons: [
-                    'excel',
-                    'pdf',
-                    'print'
-                ]
-            }).container().appendTo($('.export-options'));
-
-
-
-            function updateAuthorSelect() {
-                $("#author_id").load("get_basic_select_options.php?author_id=<?php echo $author_id ?>");
-            }
-
-            updateAuthorSelect();
-
-            function updateGenreSelect() {
-                $("#genre_name_primary").load("get_basic_select_options.php?genre_id=<?php echo $genre_id ?>");
-            }
-
-            updateGenreSelect();
-
-            function updatePublisherSelect() {
-                $("#publisher_name").load("get_basic_select_options.php?publisher_id=<?php echo $publisher_id ?>");
-            }
-
-            updateCopiesTable();
-
-            function updateCopiesTable() {
-                $("#copies-table-body").load("get_copies_table.php?book_isbn=<?php echo $book_isbn ?>");
-            }
-
-            updatePublisherSelect();
-
-            $("#submitAuthor").click(function () {
-                var author_first_name = $("#author_first_name").val();
-                var author_last_name = $("#author_last_name").val();
-                var dataType = "Author"; // Define dataType for Author
-
-                // Show processing message
-                $("#processingMessage").show();
-
-
-                $.ajax({
-                    type: "POST",
-                    url: "insert_data_new_author.php",
-                    data: {
-                        author_first_name: author_first_name,
-                        author_last_name: author_last_name,
-                        dataType: dataType // Pass dataType parameter
-                    },
-                    success: function (data) {
-                        // Hide processing message
-                        $("#processingMessage").hide();
-                        // Hide the current modal
-                        $("#NewAuthor").modal('hide');
-                        displaySuccessModal(dataType);
-
-                        // Call the function to update the author options
-                        updateAuthorSelect();
-                        $("#authorSuccessMessage").html("New Genre added successfully!");
-
-                        //reset the form
-                        $("#newAuthorForm")[0].reset();
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log("Error: " + errorThrown);
-                    }
-                });
-            });
-
-            $("#submitGenre").click(function () {
-                var genre_name = $("#genre_name").val();
-                var dataType = "Genre"; // Define dataType for Genre
-
-                // Show processing message
-                $("#processingMessage3").show();
-                $.ajax({
-                    type: "POST",
-                    url: "insert_data_new_genre.php",
-                    data: {
-                        genre_name: genre_name
-                    },
-                    success: function (data) {
-                        //hide processing message
-                        $("#processingMessage3").hide();
-                        // Update the modal or display a success message
-                        $("#NewGenre").modal('hide'); // Close the modal
-                        displaySuccessModal(dataType);
-                        updateGenreSelect();
-                        $("#genreSuccessMessage").html("New Genre added successfully!");
-                    },
-                    error: function (xhr, status, error) {
-                        console.log("Error: " + errorThrown);
-                    }
-                });
-            });
-
-            $("#submitPublisher").click(function () {
-                var publisher_name = $("#new_publisher_name").val();
-                var publisher_country = $("#publisher_country").val();
-                var email_address = $("#email_address").val();
-                var phone_number = $("#phone_number").val()
-                var dataType = "Publisher"; // Define dataType for Publisher
-
-                // Show processing message
-                $("#processingMessage2").show();
-
-                $.ajax({
-                    type: "POST",
-                    url: "insert_data_new_publisher.php",
-                    data: {
-                        publisher_name: publisher_name,
-                        publisher_country: publisher_country,
-                        email_address: email_address,
-                        phone_number: phone_number,
-                        dataType: dataType // Pass dataType parameter
-                    },
-                    success: function (data) {
-                        // Hide processing message
-                        $("#processingMessage2").hide();
-                        // Hide the current modal
-                        $("#NewPublisher").modal('hide');
-                        displaySuccessModal(dataType);
-                        updatePublisherSelect(); // Call the function to update the publisher options
-                        // Optionally, you can reset the form
-                        $("#newPublisherForm")[0].reset();
-                        $("#publisherSuccessMessage").html("New Genre added successfully!");
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log("Error: " + errorThrown);
-                    }
-                });
-            });
-
-            // Function to display the success modal
-            function displaySuccessModal(dataType) {
-                $("#successMessage").html(dataType + " Added Successfully"); // Set the success message
-                $("#successModal").modal("show");
-            }
-
-            $('#editCopyModal').on('show.bs.modal', function (e) {
-                // get information to update quickly to modal view as loading begins
-                var opener = e.relatedTarget;//this holds the element who called the modal
-
-                //we get details from attributes
-                var copy_id = $(opener).attr('copy_id');
-                var supplier = $(opener).attr('supplier_name');
-                var unit_price = $(opener).attr('unit_price');
-                var published_date = $(opener).attr('published_date');
-                var condition = $(opener).attr('condition');
-                //set what we got to our form
-
-                $('#copyModalForm').find('[name="copy_id"]').val(copy_id);
-                $('#copyModalForm').find('[name="supplier"]').val(supplier);
-                $('#copyModalForm').find('[name="unit_price"]').val(unit_price);
-                $('#copyModalForm').find('[name="published_date"]').val(published_date);
-                $('#copyModalForm').find('[name="condition"]').val(condition);
-
-
-            });
-
-            $("#checkInModal").on("hidden.bs.modal", function () {
-                $('body').css('padding-right', 0);
-            });
-
-            $("#updateCopyButton").click(function () {
-                var copy_id = $('#copyModalForm').find('[name="copy_id"]').val();
-                var supplier = $('#copyModalForm').find('[name="supplier"]').val();
-                var unit_price = $('#copyModalForm').find('[name="unit_price"]').val();
-                var published_date = $('#copyModalForm').find('[name="published_date"]').val();
-                var condition = $('#copyModalForm').find('[name="condition"]').val();
-                var dataType = "Copy"; // Define dataType for Copy
-
-                // Show processing message
-                $("#processingMessage5").show();
-
-
-                $.ajax({
-                    type: "POST",
-                    url: "edit_copy_processor.php",
-                    data: {
-                        copy_id: copy_id,
-                        supplier: supplier,
-                        unit_price: unit_price,
-                        published_date: published_date,
-                        condition: condition,
-                        dataType: dataType // Pass dataType parameter
-                    },
-                    success: function (data) {
-                        // Hide processing message
-                        $("#processingMessage5").hide();
-                        // Hide the current modal
-                        $("#editCopyModal").modal('hide');
-                        displaySuccessModal(dataType);
-
-                        // Call the function to update the author options
-                        updateCopiesTable();
-                        $("#successMessage5").show();
-
-                        //reset the form
-                        $("#copyModalForm")[0].reset();
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log("Error: " + errorThrown);
-                    }
-                });
-            });
-
         });
 
 
+        var table = $('#copies-table').DataTable({
+            "dom": 'frtip',
+            "buttons": [
+                'excel',
+                'pdf',
+                'print'
+            ],
+            "paging": false,
+            "info": false,
+        });
+
+        var buttons = new $.fn.dataTable.Buttons(table, {
+            buttons: [
+                'excel',
+                'pdf',
+                'print'
+            ]
+        }).container().appendTo($('.export-options'));
 
 
+
+        function updateAuthorSelect() {
+            $("#author_id").load("get_basic_select_options.php?author_id=<?php echo $author_id ?>");
+        }
+        $("#author_id").select2();
+        updateAuthorSelect();
+
+        function updateGenreSelect() {
+            $("#genre_name_primary").load("get_basic_select_options.php?genre_id=<?php echo $genre_id ?>");
+        }
+
+        updateGenreSelect();
+        $("#genre_name_primary").select2();
+
+        function updatePublisherSelect() {
+            $("#publisher_name").load("get_basic_select_options.php?publisher_id=<?php echo $publisher_id ?>");
+        }
+        $("#publisher_name").select2();
+        updateCopiesTable();
+
+        function updateCopiesTable() {
+            $("#copies-table-body").load("get_copies_table.php?book_isbn=<?php echo $book_isbn ?>");
+        }
+
+        updatePublisherSelect();
+
+        $("#submitAuthor").click(function() {
+            var author_first_name = $("#author_first_name").val();
+            var author_last_name = $("#author_last_name").val();
+            var dataType = "Author"; // Define dataType for Author
+
+            // Show processing message
+            $("#processingMessage").show();
+
+
+            $.ajax({
+                type: "POST",
+                url: "insert_data_new_author.php",
+                data: {
+                    author_first_name: author_first_name,
+                    author_last_name: author_last_name,
+                    dataType: dataType // Pass dataType parameter
+                },
+                success: function(data) {
+                    // Hide processing message
+                    $("#processingMessage").hide();
+                    // Hide the current modal
+                    $("#NewAuthor").modal('hide');
+                    displaySuccessModal(dataType);
+
+                    // Call the function to update the author options
+                    updateAuthorSelect();
+                    $("#authorSuccessMessage").html("New Author added successfully!");
+
+                    //reset the form
+                    $("#newAuthorForm")[0].reset();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("Error: " + errorThrown);
+                }
+            });
+        });
+
+        $("#submitGenre").click(function() {
+            var genre_name = $("#genre_name").val();
+            var dataType = "Genre"; // Define dataType for Genre
+
+            // Show processing message
+            $("#processingMessage3").show();
+            $.ajax({
+                type: "POST",
+                url: "insert_data_new_genre.php",
+                data: {
+                    genre_name: genre_name
+                },
+                success: function(data) {
+                    //hide processing message
+                    $("#processingMessage3").hide();
+                    // Update the modal or display a success message
+                    $("#NewGenre").modal('hide'); // Close the modal
+                    displaySuccessModal(dataType);
+                    updateGenreSelect();
+                    // Optionally, you can reset the form
+                    $("#modalForm")[0].reset();
+                    $("#genreSuccessMessage").html("New Genre added successfully!");
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error: " + errorThrown);
+                }
+            });
+        });
+
+        $("#submitPublisher").click(function() {
+            var publisher_name = $("#new_publisher_name").val();
+            var publisher_country = $("#publisher_country").val();
+            var email_address = $("#email_address").val();
+            var phone_number = $("#phone_number").val()
+            var dataType = "Publisher"; // Define dataType for Publisher
+
+            // Show processing message
+            $("#processingMessage2").show();
+
+            $.ajax({
+                type: "POST",
+                url: "insert_data_new_publisher.php",
+                data: {
+                    publisher_name: publisher_name,
+                    publisher_country: publisher_country,
+                    email_address: email_address,
+                    phone_number: phone_number,
+                    dataType: dataType // Pass dataType parameter
+                },
+                success: function(data) {
+                    // Hide processing message
+                    $("#processingMessage2").hide();
+                    // Hide the current modal
+                    $("#NewPublisher").modal('hide');
+                    displaySuccessModal(dataType);
+                    updatePublisherSelect(); // Call the function to update the publisher options
+                    // Optionally, you can reset the form
+                    $("#newPublisherForm")[0].reset();
+                    $("#publisherSuccessMessage").html("New Publisher added successfully!");
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("Error: " + errorThrown);
+                }
+            });
+        });
+
+        // Function to display the success modal
+        function displaySuccessModal(dataType) {
+            $("#successMessage").html(dataType + " Added Successfully"); // Set the success message
+            $("#successModal").modal("show");
+        }
+
+        $('#editCopyModal').on('show.bs.modal', function(e) {
+            // get information to update quickly to modal view as loading begins
+            var opener = e.relatedTarget; //this holds the element who called the modal
+
+            //we get details from attributes
+            var copy_id = $(opener).attr('copy_id');
+            var supplier = $(opener).attr('supplier_name');
+            var unit_price = $(opener).attr('unit_price');
+            var published_date = $(opener).attr('published_date');
+            var condition = $(opener).attr('condition');
+            //set what we got to our form
+
+            $('#copyModalForm').find('[name="copy_id"]').val(copy_id);
+            $('#copyModalForm').find('[name="supplier"]').val(supplier);
+            $('#copyModalForm').find('[name="unit_price"]').val(unit_price);
+            $('#copyModalForm').find('[name="published_date"]').val(published_date);
+            $('#copyModalForm').find('[name="condition"]').val(condition);
+
+
+        });
+
+        $("#checkInModal").on("hidden.bs.modal", function() {
+            $('body').css('padding-right', 0);
+        });
+
+        $("#updateCopyButton").click(function() {
+            var copy_id = $('#copyModalForm').find('[name="copy_id"]').val();
+            var supplier = $('#copyModalForm').find('[name="supplier"]').val();
+            var unit_price = $('#copyModalForm').find('[name="unit_price"]').val();
+            var published_date = $('#copyModalForm').find('[name="published_date"]').val();
+            var condition = $('#copyModalForm').find('[name="condition"]').val();
+            var dataType = "Copy"; // Define dataType for Copy
+
+            // Show processing message
+            $("#processingMessage5").show();
+
+
+            $.ajax({
+                type: "POST",
+                url: "edit_copy_processor.php",
+                data: {
+                    copy_id: copy_id,
+                    supplier: supplier,
+                    unit_price: unit_price,
+                    published_date: published_date,
+                    condition: condition,
+                    dataType: dataType // Pass dataType parameter
+                },
+                success: function(data) {
+                    // Hide processing message
+                    $("#processingMessage5").hide();
+                    // Hide the current modal
+                    $("#editCopyModal").modal('hide');
+                    displaySuccessModal(dataType);
+
+                    // Call the function to update the author options
+                    updateCopiesTable();
+                    $("#successMessage5").show();
+
+                    //reset the form
+                    $("#copyModalForm")[0].reset();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("Error: " + errorThrown);
+                }
+            });
+        });
     </script>
 
 </body>
+<style>
+    .select2-selection__rendered {
+        line-height: 42px !important;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 42px !important;
+    }
+
+    .select2-selection__arrow {
+        height: 42px !important;
+    }
+
+    .select2-container--default .select2-selection--single {
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        height: 34px;
+        width: 100%;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-clip: padding-box;
+        background-color: #fff;
+        background-image: none;
+        border-radius: 0;
+        border-color: #e7e7e7;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
 
 </html>
