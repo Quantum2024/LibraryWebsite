@@ -57,19 +57,20 @@
                     <div class="text-center">
                         <img src="images/Caribbean_PLL_Logo.png" style="width: 70%;" alt="logo">
                         <h4 class="mb-3 pb-1">Fortuna Library Management System</h4>
+                        <?php if(isset($_GET["error"])) echo '<p class="color-danger">'.urldecode($_GET["error"]).'</p>'; ?>
                     </div>
 
                     <form action="login.php" method="post">
                         <p>Please login to your account</p>
 
                         <div class="form-outline mb-4">
-                            <input type="email" id="email" class="form-control" placeholder="Email Address" />
-                            <label class="form-label" for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" />
+                            <label class="form-label" for="email" name="email">Email</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input type="password" id="password" class="form-control" />
-                            <label class="form-label" for="password">Password</label>
+                            <input type="password" name = "password" id="password" class="form-control" />
+                            <label class="form-label" for="password" name="password">Password</label>
                         </div>
 
                         <div class="text-center pt-1 mb-5 pb-1">
@@ -91,58 +92,3 @@
 
 </html>
 
-<!--<div class="container d-flex justify-content-center">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-xl-10">
-                        <div class="card rounded-3 text-black">
-                            <div class="row g-0">
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                                        <h1 class="mb-4">Welcome!</h1>
-                                        <p class="medium mb-0">Caribbean Public Library Ltd (CPL)
-                                            has been a
-                                            cherished institution in our community for over five decades.
-                                            Founded in 1970 by a group of passionate educators and advocates for
-                                            literacy, CPL aimed to provide access to knowledge and educational
-                                            resources for all, regardless of their socio-economic background.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="card-body p-md-5 mx-md-4">
-
-                                        <div class="text-center">
-                                            <img src="images/Caribbean_PLL_Logo.png" style="width: 100%;" alt="logo">
-                                            <h4 class="mb-3 pb-1">Fortuna Library Management System</h4>
-                                        </div>
-
-                                        <form>
-                                            <p>Please login to your account</p>
-
-                                            <div class="form-outline mb-4">
-                                                <input type="email" id="email" class="form-control"
-                                                    placeholder="Email Address" />
-                                                <label class="form-label" for="email">Email</label>
-                                            </div>
-
-                                            <div class="form-outline mb-4">
-                                                <input type="password" id="password" class="form-control" />
-                                                <label class="form-label" for="password">Password</label>
-                                            </div>
-
-                                            <div class="text-center pt-1 mb-5 pb-1">
-                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                    type="button">Log
-                                                    in</button>
-                                                <a class="text-muted" href="#!">Forgot password?</a>
-                                            </div>
-                                        </form>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->

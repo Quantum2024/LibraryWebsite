@@ -216,7 +216,7 @@
     <script src="js/lib/chartist/chartist.min.js"></script>
     <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
     <script src="js/lib/sparklinechart/sparkline.init.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <!-- scripit init-->
     <script src="js/dashboard2.js"></script>
 

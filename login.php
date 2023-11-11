@@ -37,9 +37,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     } else {
 
-        $sql = "SELECT * FROM users WHERE email='$email';";
+        $sql = "SELECT * FROM user WHERE email='$email';";
 
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($mysqli, $sql);
 
         if (mysqli_num_rows($result) === 1) {
 
@@ -79,8 +79,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 
 } else {
-
-    header("Location: index.php?error=" . urlencode("Email and password cannot be empty"));
+    echo "nothing set";
+    //header("Location: index.php?error=" . urlencode("Email and password cannot be empty"));
     $mysqli->close();
     exit();
 
