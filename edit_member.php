@@ -306,6 +306,7 @@
                 // Show processing message
                 $("#processingMessage0").show();
                 $("#successMessage0").hide();
+                $("#failureMessage0").hide();
                 $.ajax({
                     type: "POST",
                     url: "edit_member_processor.php",

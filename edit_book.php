@@ -88,7 +88,7 @@ if ($book_result->num_rows == 0) {
                                 <div class="page-title">
 
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                         <li class="breadcrumb-item"><a href="Inventory.php">Inventory</a></li>
                                         <li class="breadcrumb-item active">Edit Book</li>
                                     </ol>

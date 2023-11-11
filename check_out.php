@@ -111,7 +111,7 @@
                             <div class="page-header">
                                 <div class="page-title">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                         <li class="breadcrumb-item active">Check-Out Book</li>
                                     </ol>
                                 </div>

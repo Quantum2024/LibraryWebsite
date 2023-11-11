@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $response = array('message' => "Member data updated successfully.");
             header('Content-Type: application/json');
             echo json_encode($response);
-            echo "Member data updated successfully.";
         } else {
             http_response_code(500);
             header('Content-Type: application/json');

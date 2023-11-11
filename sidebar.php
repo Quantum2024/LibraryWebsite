@@ -19,11 +19,11 @@
             <div class="logo" style="background: rgba(255, 255, 255, 0.5);"><a href="index.html">
                     <img src="images/Caribbean_PLL_Logo.png" height="150px" alt="" /> </a></div>
             <div class="text-center">
-                <span class="badge rounded-pill bg-secondary text-white badge-bigger m-3"><i class="fas fa-user"></i> Eddie Ciraco</span>
+                <span class="badge sidebar-badge rounded-pill bg-secondary text-white badge-bigger m-3"><i class="fas fa-user"></i> Eddie Ciraco</span>
             </div>
             <ul>
 
-                <li><a href="index.php"><i class="ti-home"></i> Dashboard </a></li>
+                <li><a href="dashboard.php"><i class="ti-home"></i> Dashboard </a></li>
                 <li><a href="inventory.php"><i class="ti-book"></i> Inventory </a></li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-info-alt"></i> Book Status <span
                             class="sidebar-collapse-icon ti-angle-down"></span></a>

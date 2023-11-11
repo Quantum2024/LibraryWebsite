@@ -4,7 +4,7 @@ session_start();
 
 include "db_conn.php";
 
-if (isset($_POST['uname']) && isset($_POST['password'])) {
+if (isset($_POST['email']) && isset($_POST['password'])) {
 
     function validate($data)
     {
@@ -19,13 +19,13 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
     }
 
-    $uname = validate($_POST['uname']);
+    $email = validate($_POST['email']);
 
     $pass = validate($_POST['password']);
 
-    if (empty($uname)) {
+    if (empty($email)) {
 
-        header("Location: index.php?error=User Name is required");
+        header("Location: index.php?error=Email is required");
 
         exit();
 
@@ -37,7 +37,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
     } else {
 
-        $sql = "SELECT * FROM users WHERE user_name='$uname' AND password='$pass'";
+        $sql = "SELECT * FROM users WHERE email='$email' AND password='$pass'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -45,23 +45,24 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
             $row = mysqli_fetch_assoc($result);
 
-            if ($row['user_name'] === $uname && $row['password'] === $pass) {
+            if ($row['email'] === $email && $row['password'] === $pass) {
 
                 echo "Logged in!";
 
-                $_SESSION['user_name'] = $row['user_name'];
+                $_SESSION['email'] = $row['email'];
 
-                $_SESSION['name'] = $row['name'];
+                $_SESSION['name'] = $row['first_name'] . " " . $row["last_name"];
 
-                $_SESSION['id'] = $row['id'];
+                $_SESSION['user_id'] = $row['user_id'];
+                $_SESSION['user_type'] = $row['user_type'];
 
-                header("Location: home.php");
+                header("Location: dashboard.php");
 
                 exit();
 
             } else {
 
-                header("Location: index.php?error=Incorect User name or password");
+                header("Location: index.php?error=Incorect Email or password");
 
                 exit();
 
@@ -69,7 +70,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
         } else {
 
-            header("Location: index.php?error=Incorect User name or password");
+            header("Location: index.php?error=Incorect Email or password");
 
             exit();
 
