@@ -59,7 +59,7 @@
                         <h4 class="mb-3 pb-1">Fortuna Library Management System</h4>
                     </div>
 
-                    <form>
+                    <form action="login.php" method="post">
                         <p>Please login to your account</p>
 
                         <div class="form-outline mb-4">
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="text-center pt-1 mb-5 pb-1">
-                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
+                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
                                 in</button>
                         </div>
                     </form>
