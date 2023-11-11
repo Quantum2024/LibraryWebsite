@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'db_connection.php';
-if ($_GET["book_isbn"]) {
-    $book_isbn = $_GET["book_isbn"];
-} else {
-    die("ISBN is not set");
-} ?>
 
 <head>
     <meta charset="utf-8">
@@ -54,15 +48,15 @@ if ($_GET["book_isbn"]) {
 
                     <div class="row mt-3">
                         <div class="col-lg-6">
-                            <h1>Copy Information</h1>
+                            <h1>Member Information</h1>
                         </div>
                         <!-- /# column -->
                         <div class="col-lg-6">
                             <div class="page-header">
                                 <div class="page-title">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="inventory.php">Inventory</a></li>
-                                        <li class="breadcrumb-item active">Create Book</li>
+                                        <li class="breadcrumb-item"><a href="edit_member.php">Inventory</a></li>
+                                        <li class="breadcrumb-item active">Create Member</li>
                                     </ol>
                                 </div>
                             </div>
@@ -72,47 +66,43 @@ if ($_GET["book_isbn"]) {
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form method="post" id="newCopyForm">
+                                <form method="post" id="newMemberForm">
                                     <div class="mb-3">
-                                        <div class="row mb-3">
-                                            <div class="col-4">
-                                                <label for="book_isbn" class="form-label"></label>
-                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" readonly value="<?php echo $book_isbn ?>" hidden>
-                                            </div>
-                                        </div>
+
                                         <div class="mb-3">
                                             <div class="row mb-3">
-                                                <div class="col-4" id="supplier_col">
-                                                    <label for="supplier_name" class="form-label">Supplier</label>
-                                                    <input type="text" id="supplier_name" name="supplier_name" class="form-control">
-                                                </div>
                                                 <div class="col-4">
-                                                    <label for="published_date" class="form-label">Published Date</label>
-                                                    <input type="date" id="published_date" name="published_date" class="form-control">
+                                                    <label for="first_name" class="form-label">First Name</label>
+                                                    <input type="text" id="first_name" name="first_name" class="form-control">
                                                 </div>
+                                                <div class="col-4" id="supplier_col">
+                                                    <label for="last_name" class="form-label">Last Name</label>
+                                                    <input type="text" id="last_name" name="last_name" class="form-control">
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-4">
-                                                <label for="unit_price" class="form-label">Unit Price</label>
-                                                <input type="number" id="unit_price" name="unit_price" step="0.01" class="form-control">
+                                                <label for="phone_number" class="form-label">Phone Number</label>
+                                                <input type="text" id="phone_number" name="phone_number" class="form-control">
                                             </div>
                                             <div class="col-4">
-                                                <label for="book_condition" class="form-label">Book Condition</label>
-                                                <select id="book_condition" name="book_condition" class="form-control">
-                                                    <option value="new">New</option>
-                                                    <option value="good">Good</option>
-                                                    <option value="damage">Damaged</option>
-                                                </select>
+                                                <label for="email_address" class="form-label">Email Address</label>
+                                                <input type="email_address" id="email_address" name="email_address" class="form-control">
                                             </div>
+                                            <div class="col-4">
+                                                    <label for="date_of_birth" class="form-label">Date Of Birth</label>
+                                                    <input type="date" id="date_of_birth" name="date_of_birth" class="form-control">
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-">
-                                            <button type="submit" id="copySubmission" class="btn btn-primary">Submit New Copy</button>
+                                        <div class="col-1">
+                                            <button type="submit" id="memberSubmission" class="btn btn-primary">Save Changes</button>
                                         </div>
-                                        <div class="col-">
-                                            <a href="edit_book.php"><button type="button" class="btn btn-secondary">Close</button></a>
+                                        <div class="col-1">
+                                            <a href="members.php"><button type="button" class="btn btn-secondary">Close</button></a>
                                         </div>
                                     </div>
                                 </form>
@@ -171,7 +161,8 @@ if ($_GET["book_isbn"]) {
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="create_copy_processing.js"></script>
+    <script src="create_member_processing.js"></script>
+
 
 
 </body>

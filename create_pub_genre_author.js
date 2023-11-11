@@ -26,13 +26,13 @@ $(document).ready(function () {
                 // Call the function to update the author options
                 updateAuthorOptions();
                 $("#authorSuccessMessage").html("New Author added successfully!");
-                 // Select the element
-                 var authorSuccessMessage = document.getElementById("authorSuccessMessage");
+                // Select the element
+                var authorSuccessMessage = document.getElementById("authorSuccessMessage");
 
-                 // Hide the element after 5 seconds
-                 setTimeout(function () {
-                     authorSuccessMessage.style.display = "none";
-                 }, 5000); // 5000 milliseconds (5 seconds)
+                // Hide the element after 5 seconds
+                setTimeout(function () {
+                    authorSuccessMessage.style.display = "none";
+                }, 5000); // 5000 milliseconds (5 seconds)
 
                 //reset the form
                 $("#newAuthorForm")[0].reset();
@@ -187,70 +187,85 @@ $(document).ready(function () {
 
 
 
-     // Handle form submission
-     $('#newBookForm').submit(function(event) {
+    // Handle form submission
+    $('#newBookForm').submit(function (event) {
         event.preventDefault();
 
 
-        // Display a loading SweetAlert while processing
+        // Display a confirmation SweetAlert
         Swal.fire({
-            title: 'Processing',
-            html: 'Please wait...',
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            willOpen: () => {
-                Swal.showLoading();
-            }
-        });
-
-        // Use AJAX to submit the form
-        $.ajax({
-            type: 'POST',
-            url: 'insert_data_new_book.php',
-            data: $('#newBookForm').serialize(),
-            success: function(response) {
-                // Close the loading SweetAlert
-                Swal.close();
-
-                // Check if the response indicates success
-                if (response.includes('successfully')) {
-                    // Display a success SweetAlert with the blue button
-                    Swal.fire({
-                        title: 'Success',
-                        text: 'Data submitted successfully',
-                        icon: 'success',
-                        confirmButtonClass: 'swal2-confirm'
-                    });
-                    // Reset the form
-                    $('#newBookForm')[0].reset();
-                } else {
-                    // Display an error SweetAlert with the blue button
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Data submission failed',
-                        icon: 'error',
-                        confirmButtonClass: 'swal2-confirm'
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                // Close the loading SweetAlert
-                Swal.close();
-
-                // Log the error to the console
-                console.log("Error: " + errorThrown);
-
-                // Display an error SweetAlert with the blue button
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                // Continue with the processing SweetAlert
                 Swal.fire({
-                    title: 'Error',
-                    text: 'Data submission failed',
-                    icon: 'error',
-                    confirmButtonClass: 'swal2-confirm'
+                    title: 'Processing',
+                    html: 'Please wait...',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    willOpen: () => {
+                        Swal.showLoading();
+                    }
                 });
+
+                // Use AJAX to submit the form
+                $.ajax({
+                    type: 'POST',
+                    url: 'insert_data_new_book.php',
+                    data: $('#newBookForm').serialize(),
+                    success: function (response) {
+                        // Close the loading SweetAlert
+                        Swal.close();
+
+                        // Check if the response indicates success
+                        if (response.includes('successfully')) {
+                            // Display a success SweetAlert with the blue button
+                            Swal.fire({
+                                title: 'Success',
+                                text: 'Data submitted successfully',
+                                icon: 'success',
+                                confirmButtonClass: 'swal2-confirm'
+                            });
+                            // Reset the form
+                            $('#newBookForm')[0].reset();
+                        } else {
+                            // Display an error SweetAlert with the blue button
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Data submission failed',
+                                icon: 'error',
+                                confirmButtonClass: 'swal2-confirm'
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // Close the loading SweetAlert
+                        Swal.close();
+
+                        // Log the error to the console
+                        console.log("Error: " + errorThrown);
+
+                        // Display an error SweetAlert with the blue button
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Data submission failed',
+                            icon: 'error',
+                            confirmButtonClass: 'swal2-confirm'
+                        });
+                    }
+                }).fail(function (error) {
+                    // Log the error to the console
+                    console.error(error);
+                });
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
             }
-        }).fail(function(error) {
-            // Log the error to the console
-            console.error(error);
         });
     });
 });
+
