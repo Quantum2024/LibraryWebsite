@@ -64,7 +64,7 @@
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form>
+                                <form method="post" id='editMemberForm'>
                                     <?php
                                     include 'db_connection.php';
                                     if (isset($_GET['member_id'])) {
@@ -93,40 +93,55 @@
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <div class="col">
-                                                <input type="text" id="member_id" name="member_id" class="form-control" value="<?php echo $member_id ?>" hidden>
+                                                <input type="text" id="member_id" name="member_id" class="form-control"
+                                                    value="<?php echo $member_id ?>" hidden>
 
                                                 <label for="first_name" class="form-label">First Name</label>
-                                                <input type="text" id="first_name" name="first_name" class="form-control" value="<?php echo $first_name ?>">
+                                                <input type="text" id="first_name" name="first_name"
+                                                    class="form-control" value="<?php echo $first_name ?>">
                                             </div>
                                             <div class="col">
                                                 <label for="last_name" class="form-label">Last Name</label>
-                                                <input type="text" id="last_name" name="last_name" class="form-control" value="<?php echo $last_name ?>">
+                                                <input type="text" id="last_name" name="last_name" class="form-control"
+                                                    value="<?php echo $last_name ?>">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <label for="DOB" class="form-label">Date of Birth</label>
-                                                <input type="date" id="DOB" name="DOB" class="form-control" value="<?php echo $DOB ?>">
+                                                <input type="date" id="DOB" name="DOB" class="form-control"
+                                                    value="<?php echo $DOB ?>">
                                             </div>
                                             <div class="col">
                                                 <label for="phone_number" class="form-label">Phone Number</label>
-                                                <input type="text" id="phone_number" name="phone_number" class="form-control" value="<?php echo $phone_number ?>">
+                                                <input type="text" id="phone_number" name="phone_number"
+                                                    class="form-control" value="<?php echo $phone_number ?>">
                                             </div>
                                             <div class="col">
                                                 <label for="email_address" class="form-label">Email Address</label>
-                                                <input type="email" id="email_address" name="email_address" class="form-control" value="<?php echo $email_address ?>">
+                                                <input type="email" id="email_address" name="email_address"
+                                                    class="form-control" value="<?php echo $email_address ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-
+                                <div class="row" id="processingMessage0" style="display: none;">
+                                    <p class="color-warning">Processing Changes .........</p>
+                                </div>
+                                <div class="row" id="successMessage0" style="display: none;">
+                                    <p class="color-success">Changes were succesfully submitted</p>
+                                </div>
+                                <div class="row" id="failureMessage0" style="display: none;">
+                                    <p class="color-danger">Changes failed to save</p>
+                                </div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" id="submit-form" class="btn btn-primary">Save
+                                        <button type="button" id="submit_form" class="btn btn-primary">Save
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
-                                        <a href="inventory.php"><button type="button" class="btn btn-secondary">Cancel</button><a href="inventory.php">
+                                        <a href="inventory.php"><button type="button"
+                                                class="btn btn-secondary">Cancel</button><a href="inventory.php">
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +151,8 @@
                             <div class="card">
                                 <div class="table-responsive">
                                     <h3 class="text-left mb-3">Loan History</h3>
-                                    <table id="loan-table" class="table table-bordered table-hover" style="margin-top: 10px">
+                                    <table id="loan-table" class="table table-bordered table-hover"
+                                        style="margin-top: 10px">
                                         <thead>
                                             <tr>
                                                 <th>Transaction ID</th>
@@ -176,7 +192,7 @@
                                             } else {
                                                 while ($row = $loan_result->fetch_assoc()) {
                                                     //check to see if book is checked out already
-
+                                            
                                                     echo "<tr>";
                                                     echo "<td><a href=edit_loan_log.php?loan_log_id=" . $row['loan_log_id'] . ">" . $row['loan_log_id'] . "</td>";
                                                     echo "<td><a href=edit_copy.php?copy_id=" . $row['copy_id'] . ">" . $row['copy_id'] . "</td>";
@@ -248,7 +264,7 @@
     </div>
 
     <!-- jquery vendor -->
-    <script src="js/lib/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/lib/jquery.nanoscroller.min.js"></script>
     <!-- nano scroller -->
     <script src="js/lib/menubar/sidebar.js"></script>
@@ -257,19 +273,20 @@
     <script src="js/lib/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="js/lib/circle-progress/circle-progress.min.js"></script>
     <script src="js/lib/circle-progress/circle-progress-init.js"></script>
     <script src="js/lib/chartist/chartist.min.js"></script>
     <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
     <script src="js/lib/sparklinechart/sparkline.init.js"></script>
 
-     <!-- SweetAlert2 JS -->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- scripit init-->
     <script src="js/dashboard2.js"></script>
-
+    <script src="edit_member.js"></script>
     <script src="js/lib/data-table/datatables.min.js"></script>
     <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
     <script src="js/lib/data-table/buttons.flash.min.js"></script>
@@ -280,113 +297,10 @@
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#submit-form').click(function() {
-                var first_name = $("#first_name").val();
-                var last_name = $("#last_name").val();
-                var dob = $("#DOB").val();
-                var phone_number = $("#phone_number").val();
-                var email_address = $("#email_address").val();
-                var member_id = $("#member_id").val();
-
-                // Display a confirmation SweetAlert
-                Swal.fire({
-                    title: "Do you want to save the changes?",
-                    showDenyButton: true,
-                    showCancelButton: true,
-                    confirmButtonText: "Save",
-                    denyButtonText: `Don't save`
-                }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        // Continue with the processing SweetAlert
-                        Swal.fire({
-                            title: 'Processing',
-                            html: 'Please wait...',
-                            allowOutsideClick: false,
-                            showConfirmButton: false,
-                            willOpen: () => {
-                                Swal.showLoading();
-                            }
-                        });
-                        $.ajax({
-                            type: "POST",
-                            url: "edit_member_processor.php",
-                            data: $('#submit-form').serialize(),
-                                
-                            
-                            success: function(response) {
-                                // Close the loading SweetAlert
-                                Swal.close();
-
-                                // Check if the response indicates success
-                                if (response.includes('successfully')) {
-                                    // Display a success SweetAlert with the blue button
-                                    Swal.fire({
-                                        title: 'Success',
-                                        text: 'Data submitted successfully',
-                                        icon: 'success',
-                                        confirmButtonClass: 'swal2-confirm'
-                                    });
-                                    // Reset the form
-                                   
-                                } else {
-                                    // Display an error SweetAlert with the blue button
-                                    Swal.fire({
-                                        title: 'Error',
-                                        text: 'Data submission failed',
-                                        icon: 'error',
-                                        confirmButtonClass: 'swal2-confirm'
-                                    });
-                                }
-                            },
-                            error: function(xhr, error, errorThrown) {
-                                // Close the loading SweetAlert
-                                Swal.close();
-
-                                
-
-                                // Display an error SweetAlert with the blue button
-                                Swal.fire({
-                                    title: 'Error',
-                                    text: 'Data submission failed',
-                                    icon: 'error',
-                                    confirmButtonClass: 'swal2-confirm'
-                                });
-                            }
-                        }).fail(function(error) {
-                            // Log the error to the console
-                            
-                        });
-
-                    } else if (result.isDenied) {
-                        Swal.fire("Changes are not saved", "", "info");
-                    }
-                });
-            });
-            var table = $('#loan-table').DataTable({
-                "dom": 'frtip',
-                "buttons": [
-                    'excel',
-                    'pdf',
-                    'print'
-                ],
-                "paging": false,
-                "info": false,
-            });
-
-            var buttons = new $.fn.dataTable.Buttons(table, {
-                buttons: [
-                    'excel',
-                    'pdf',
-                    'print'
-                ]
-            }).container().appendTo($('.export-options'));
-        });
-    </script>
-
+    
+    
 
 </body>
+
 
 </html>
