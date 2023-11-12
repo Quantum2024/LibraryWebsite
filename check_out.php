@@ -201,7 +201,7 @@
     </div>
 
     <!-- jquery vendor -->
-    <script src="js/lib/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/lib/jquery.nanoscroller.min.js"></script>
     <!-- nano scroller -->
     <script src="js/lib/menubar/sidebar.js"></script>
@@ -217,6 +217,9 @@
     <script src="js/lib/chartist/chartist.min.js"></script>
     <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
     <script src="js/lib/sparklinechart/sparkline.init.js"></script>
+
+     <!-- sweet alert 2-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- scripit init-->
     <script src="js/dashboard2.js"></script>
@@ -306,25 +309,43 @@
         //check to see if a member has an overdue book, if they do, disable check_out
         $('#member_id').on('change', function () {
             var member = $('#member_id').val();
-
+            //checking eligibility
             fetch('get_overdue.php?member_id=' + member)
-                .then(response => response.json())
-                .then(data => {
-                    // Access the variable value from the response
-                    const overdue = data.overdue;
-                    if (overdue) {
-                        // Disable submit button
-                        document.getElementById("checkout_button").disabled = true;
-                        document.getElementById("overdue_warning").removeAttribute("hidden");
-                        // Show a red text stating that the member has an overdue book that they must return before renting another book
-                    } else {
-                        document.getElementById("checkout_button").disabled = false;
-                        document.getElementById("overdue_warning").setAttribute("hidden", true);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error: ' + error);
-                });
+    .then(response => response.json())
+    .then(data => {
+        // Access the variable value from the response
+        const overdue = data.overdue;
+
+        if (overdue) {
+            // Show SweetAlert for overdue books
+            Swal.fire({
+                icon: 'warning',
+                title: 'Overdue Books',
+                text: 'This member has an overdue book. Please return it before renting another book.',
+                confirmButtonText: 'OK',
+            });
+
+            // Disable submit button
+            document.getElementById("checkout_button").disabled = true;
+            
+        } else {
+            // Enable submit button
+            document.getElementById("checkout_button").disabled = false;
+            document.getElementById("overdue_warning").setAttribute("hidden", true);
+        }
+    })
+    .catch(error => {
+        console.error('Error: ' + error);
+
+        // Show SweetAlert for error
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while checking for overdue books.',
+            confirmButtonText: 'OK',
+        });
+    });
+    
         });
 
 
