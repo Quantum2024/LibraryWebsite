@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+function isUserLoggedIn()
+{
+    return isset($_SESSION['user_id']);
+}
+
+// Check if the user is not logged in and redirect to the login page
+function checkAuthentication()
+{
+    if (!isUserLoggedIn()) {
+        header('Location: index.php');
+        exit();
+    }
+}
+
+checkAuthentication();
+?>
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 </head>
@@ -46,7 +67,7 @@
                                         */
                                         ?>
                                         <li>
-                                            <a href="#">
+                                            <a href="logout.php">
                                                 <i class="ti-power-off"></i>
                                                 <span>Logout</span>
                                             </a>
