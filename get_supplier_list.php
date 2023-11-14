@@ -1,4 +1,5 @@
 <?php include 'db_connection.php';
+include 'session_check.php';
 // Fetch suppliers from the database
 $supplierQuery = "SELECT supplier_name FROM supplier";
 $supplierResult = mysqli_query($mysqli, $supplierQuery);

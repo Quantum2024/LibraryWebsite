@@ -1,5 +1,6 @@
 <?php
 include 'db_connection.php';
+include 'session_check.php';
 
 if (isset($_GET['member_id'])) {
     $member_id = $_GET['member_id'];

@@ -1,5 +1,6 @@
 <?php
 include 'db_connection.php';
+include 'session_check.php';
 
 $query = "SELECT author_first_name, author_last_name FROM `author`";
 $author = $mysqli->query($query);

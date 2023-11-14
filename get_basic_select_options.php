@@ -1,5 +1,6 @@
 <?php
-include("db_connection.php");
+include 'db_connection.php';
+include 'session_check.php';
 
 if ($_GET["author_id"]) {
     $author_id = $_GET["author_id"];

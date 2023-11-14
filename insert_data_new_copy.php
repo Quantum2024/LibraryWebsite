@@ -1,6 +1,7 @@
 <?php
 // Include the database connection
 include 'db_connection.php';
+include 'session_check.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get data from the HTML form

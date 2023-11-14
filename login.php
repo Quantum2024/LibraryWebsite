@@ -61,7 +61,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
             } else {
 
-                header("Location: index.php?error=" . urlencode("DB Email: ".$row["email"]."</br>Entered Email: ".$email."</br>Entered Password_hash: ".password_hash($pass . $row['salt'], PASSWORD_DEFAULT)."</br>DB Password_hash: ".$row['password_hash']."</br>DB Salt: ".$row['salt']."</br>Entered Password: ".$pass));
+                header("Location: index.php?error=" . urlencode("Incorrect Email or Password"));
                 $mysqli->close();
                 exit();
 

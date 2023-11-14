@@ -28,7 +28,6 @@
     <link href="css/lib/menubar/sidebar.css" rel="stylesheet">
     <link href="css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="css/lib/helper.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
     <style>
         .error {
@@ -67,12 +66,13 @@
 
                     <!-- /# row -->
                     <section id="main-content">
+                        <!--Create User Modal-->
                         <div class="modal fade" id="createUserModal" tabindex="-1"
                             aria-labelledby="createUserModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="resetPasswordLabel">Create New User</h5>
+                                        <h5 class="modal-title">Create New User</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -111,10 +111,10 @@
                                                                 echo '<option selected>Error</option>';
                                                             } else {
                                                                 while ($row = $result->fetch_assoc()) {
-                                                                    if($row["user_type_name"]=="User") {
+                                                                    if ($row["user_type_name"] == "User") {
                                                                         echo "<option value=" . $row["user_type_id"] . " selected>" . $row["user_type_name"] . "</option>";
-                                                                    }else{
-                                                                    echo "<option value=" . $row["user_type_id"] . ">" . $row["user_type_name"] . "</option>";
+                                                                    } else {
+                                                                        echo "<option value=" . $row["user_type_id"] . ">" . $row["user_type_name"] . "</option>";
                                                                     }
                                                                 }
                                                             }
@@ -139,13 +139,62 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
                                         <button type="submit" id="submit_new_user" class="btn btn-primary">Create
                                             User</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Change User Type Modal -->
+                        <div class="modal fade" id="changeUserTypeModal" tabindex="-1"
+                            aria-labelledby="changeUserTypeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Change User Type</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Your form field here -->
+                                        <form id="update_user_type_form">
+                                            <div class="col mb-3">
+                                                <input type="text" name="user_id" class="form-control" hidden></input>
+                                                <div class="row mb-3">
+                                                    <label for="name" class="form-label">User Name</label>
+                                                    <input type="text" name="name" id="name" class="form-control"
+                                                        readonly></input>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="user_type" class="form-label">User Type</label>
+                                                    <select id="user_type" name="user_type" class="form-control">
+                                                        <?php
+                                                        $query = 'SELECT * FROM user_type';
+                                                        $result = $mysqli->query($query);
+                                                        if ($result->num_rows == 0) {
+                                                            echo '<option selected>Error</option>';
+                                                        } else {
+                                                            while ($row = $result->fetch_assoc()) {
+                                                                echo "<option value=" . $row["user_type_id"] . ">" . $row["user_type_name"] . "</option>";
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" id="submit_type_update" class="btn btn-primary">Update
+                                            Type</button>
                                     </div>
                                     </form>
                                 </div>
@@ -179,9 +228,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="export-options" style="margin-top: 20px">
-                                <p>Export as: </p>
-                            </div>
+                            
                         </div>
 
                     </section>
@@ -213,7 +260,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <!-- scripit init-->
-
     <script src="js/lib/data-table/datatables.min.js"></script>
     <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
     <script src="js/lib/data-table/buttons.flash.min.js"></script>
@@ -225,14 +271,10 @@
     <script src="js/lib/data-table/datatables-init.js"></script>
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="create_user_processing.js"></script>
     <!-- Form Validation -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="user_validation.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    <script src="create_user_processing.js"></script>
 </body>
 
 </html>

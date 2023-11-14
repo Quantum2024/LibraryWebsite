@@ -1,5 +1,6 @@
 <?php
-include("db_connection.php");
+include 'db_connection.php';
+include 'session_check.php';
 if ($_GET["book_isbn"]) {
     $book_isbn = $_GET["book_isbn"];
     // Step 2: Query the database for copies of books

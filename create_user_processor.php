@@ -1,6 +1,7 @@
 <?php
 // Include the database connection
 include 'db_connection.php';
+include 'session_check.php';
 include 'salt.php';
 
 

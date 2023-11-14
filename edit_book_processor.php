@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 ini_set('log_errors', 0);
 //  Include the database connection
 include 'db_connection.php';
+include 'session_check.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

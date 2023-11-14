@@ -1,14 +1,7 @@
-
-
 $(document).ready(function () {
-    
-    function updateUsersTable() {
-        $("#users-table-body").load("get_users_table.php");
-    }
 
-    updateUsersTable();
     // Handle form submission
-    $('#create_user_form').submit(function (event) {
+    $('#update_user_type_form').submit(function (event) {
         event.preventDefault();
 
         // Display a confirmation SweetAlert
@@ -35,8 +28,8 @@ $(document).ready(function () {
                 // Use AJAX to submit the form
                 $.ajax({
                     type: 'POST',
-                    url: 'create_user_processor.php',
-                    data: $('#create_user_form').serialize(),
+                    url: 'update_type_processor.php',
+                    data: $('#update_user_type_form').serialize(),
                     success: function (response) {
                         // Close the loading SweetAlert
                         Swal.close();
@@ -51,8 +44,8 @@ $(document).ready(function () {
                                 confirmButtonClass: 'swal2-confirm'
                             });
                             // Reset the form
-                            $('#create_user_form')[0].reset();
-                            $('#createUserModal').modal('hide');
+                            $('#update_user_type_form')[0].reset();
+                            $('#changeUserTypeModal').modal('hide');
                             updateUsersTable();
                         } else {
                             // Display an error SweetAlert with the blue button

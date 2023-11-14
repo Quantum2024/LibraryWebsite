@@ -1,4 +1,5 @@
 <?php include 'db_connection.php';
+include 'session_check.php';
 // Fetch genres from the database
 $genreQuery = "SELECT genre_name FROM genre";
 $genreResult = mysqli_query($mysqli, $genreQuery);
