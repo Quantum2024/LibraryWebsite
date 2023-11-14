@@ -37,9 +37,6 @@
     <?php include 'sidebar.php';
     include 'header.php'; ?>
 
-
-
-
     <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
