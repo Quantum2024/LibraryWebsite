@@ -44,7 +44,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
             $row = mysqli_fetch_assoc($result);
 
-            if ($row['email'] == $email && password_verify($pass . $row['salt'], $row['password_hash'])) {
+            if (strtolower($row['email']) == strtolower($email) && password_verify($pass . $row['salt'], $row['password_hash'])) {
 
                 echo "Logged in!";
 
