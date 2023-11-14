@@ -19,12 +19,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     }
 
-    $email = validate($_POST['email']);
+    $email = ($_POST['email']);
 
-    $pass = validate($_POST['password']);
+    $pass = ($_POST['password']);
 
     if (empty($email)) {
-
         header("Location: index.php?error=" . urlencode("Email is required"));
         $mysqli->close();
         exit();
@@ -45,7 +44,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
             $row = mysqli_fetch_assoc($result);
 
-            if ($row['email'] === $email && $row['password_hash'] === password_hash($pass . $row['salt'], PASSWORD_DEFAULT)) {
+            if ($row['email'] == $email && password_verify($pass . $row['salt'], $row['password_hash'])) {
 
                 echo "Logged in!";
 
@@ -62,7 +61,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
             } else {
 
-                header("Location: index.php?error=" . urlencode("Incorect Email or password"));
+                header("Location: index.php?error=" . urlencode("DB Email: ".$row["email"]."</br>Entered Email: ".$email."</br>Entered Password_hash: ".password_hash($pass . $row['salt'], PASSWORD_DEFAULT)."</br>DB Password_hash: ".$row['password_hash']."</br>DB Salt: ".$row['salt']."</br>Entered Password: ".$pass));
                 $mysqli->close();
                 exit();
 
@@ -70,7 +69,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
         } else {
 
-            header("Location: index.php?error=" . urlencode("Incorect Email or password"));
+            header("Location: index.php?error=" . urlencode("Incorect Email or password NOTHING IN DATATABLE"));
             $mysqli->close();
             exit();
 

@@ -62,6 +62,7 @@ $(document).ready(function () {
                             });
                             // Reset the form
                             $('#create_user_form')[0].reset();
+                            $('#createUserModal').modal('hide');
                             updateUsersTable();
                         } else {
                             // Display an error SweetAlert with the blue button

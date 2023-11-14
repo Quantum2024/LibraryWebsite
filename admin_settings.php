@@ -30,7 +30,11 @@
     <link href="css/lib/helper.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
-
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -81,11 +85,13 @@
                                                         <label for="first_name" class="form-label">First Name</label>
                                                         <input type="text" id="first_name" name="first_name"
                                                             class="form-control">
+                                                        <span id="first_name_error" class="error"></span>
                                                     </div>
                                                     <div class="col">
                                                         <label for="last_name" class="form-label">Last Name</label>
                                                         <input type="text" id="last_name" name="last_name"
                                                             class="form-control">
+                                                        <span id="last_name_error" class="error"></span>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
@@ -93,6 +99,7 @@
                                                         <label for="email" class="form-label">Email</label>
                                                         <input type="email" id="email" name="email"
                                                             class="form-control">
+                                                        <span id="email_error" class="error"></span>
                                                     </div>
                                                     <div class="col">
                                                         <label for="user_type" class="form-label">User Type</label>
@@ -103,13 +110,17 @@
                                                             if ($result->num_rows == 0) {
                                                                 echo '<option selected>Error</option>';
                                                             } else {
-                                                                echo '<option selected>Select a User Type</option>';
                                                                 while ($row = $result->fetch_assoc()) {
+                                                                    if($row["user_type_name"]=="User") {
+                                                                        echo "<option value=" . $row["user_type_id"] . " selected>" . $row["user_type_name"] . "</option>";
+                                                                    }else{
                                                                     echo "<option value=" . $row["user_type_id"] . ">" . $row["user_type_name"] . "</option>";
+                                                                    }
                                                                 }
                                                             }
                                                             ?>
                                                         </select>
+                                                        <span id="user_type_error" class="error"></span>
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -117,16 +128,18 @@
                                                         <label for="new_password" class="form-label">Password</label>
                                                         <input type="password" id="new_password" name="new_password"
                                                             class="form-control">
+                                                        <span id="new_password_error" class="error"></span>
                                                     </div>
                                                     <div class="row mb-3">
                                                         <label for="retype_password" class="form-label">Confirm
                                                             Password</label>
                                                         <input type="password" id="retype_password"
                                                             name="retype_password" class="form-control">
+                                                        <span id="retype_password_error" class="error"></span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -212,7 +225,12 @@
     <script src="js/lib/data-table/datatables-init.js"></script>
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="create_user_processing.js"></script>
+    <!-- Form Validation -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="user_validation.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </body>
