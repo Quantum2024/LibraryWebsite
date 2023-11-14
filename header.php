@@ -34,6 +34,16 @@
                                                 <span>My Account</span>
                                             </a>
                                         </li>
+                                        <?php
+                                        /*if(user_session_user_type=librarian){
+                                            echo "<li>
+                                            <a href="#">
+                                                <i class="ti-user"></i>
+                                                <span>Admin Settings</span>
+                                            </a>
+                                        </li>"}
+                                        */
+                                        ?>
                                         <li>
                                             <a href="#">
                                                 <i class="ti-settings"></i>
