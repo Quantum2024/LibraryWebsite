@@ -31,25 +31,20 @@
                                         <li>
                                             <a href="#">
                                                 <i class="ti-user"></i>
-                                                <span>My Account</span>
+                                                <span>My Account Settings</span>
                                             </a>
                                         </li>
                                         <?php
-                                        /*if(user_session_user_type=librarian){
+                                        /*  if(user_session_user_type=librarian){
                                             echo "<li>
-                                            <a href="#">
+                                            <a href="admin_settings.php">
                                                 <i class="ti-user"></i>
                                                 <span>Admin Settings</span>
                                             </a>
-                                        </li>"}
+                                            </li>"
+                                        }
                                         */
                                         ?>
-                                        <li>
-                                            <a href="#">
-                                                <i class="ti-settings"></i>
-                                                <span>Setting</span>
-                                            </a>
-                                        </li>
                                         <li>
                                             <a href="#">
                                                 <i class="ti-power-off"></i>

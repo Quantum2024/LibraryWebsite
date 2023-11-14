@@ -35,7 +35,8 @@
 
 <body>
     <?php include 'sidebar.php';
-    include 'header.php'; ?>
+    include 'header.php';
+    include 'db_connection.php'; ?>
 
     <div class="content-wrap">
         <div class="main">
@@ -73,7 +74,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- Your form field here -->
-                                        <form>
+                                        <form id="create_user_form">
                                             <div class="col mb-3">
                                                 <div class="row mb-3">
                                                     <div class="col">
@@ -96,6 +97,18 @@
                                                     <div class="col">
                                                         <label for="user_type" class="form-label">User Type</label>
                                                         <select id="user_type" name="user_type" class="form-control">
+                                                            <?php
+                                                            $query = 'SELECT * FROM user_type';
+                                                            $result = $mysqli->query($query);
+                                                            if ($result->num_rows == 0) {
+                                                                echo '<option selected>Error</option>';
+                                                            } else {
+                                                                echo '<option selected>Select a User Type</option>';
+                                                                while ($row = $result->fetch_assoc()) {
+                                                                    echo "<option value=" . $row["user_type_id"] . ">" . $row["user_type_name"] . "</option>";
+                                                                }
+                                                            }
+                                                            ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -106,20 +119,22 @@
                                                             class="form-control">
                                                     </div>
                                                     <div class="row mb-3">
-                                                        <label for="retype_password" class="form-label">Retype New
+                                                        <label for="retype_password" class="form-label">Confirm
                                                             Password</label>
                                                         <input type="password" id="retype_password"
                                                             name="retype_password" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
+                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Create User</button>
+                                        <button type="submit" id="submit_new_user" class="btn btn-primary">Create
+                                            User</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -145,31 +160,8 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <?php
-                                            include 'db_connection.php';
-                                            $query = "SELECT user_id, first_name, last_name, email, user_type FROM `user`";
-                                            $user_result = $mysqli->query($query);
-                                            //if the query returns any values, the copy is checked out, so it should be skipped
-                                            if ($user_result->num_rows > 0) {
-                                                while ($row = $user_result->fetch_assoc()) {
-                                                    echo "<tr>";
-                                                    echo "<td>" . $row['first_name'] . " " . $row["last_name"] . "</td>";
-                                                    echo "<td>" . $row['email'] . "</td>";
-                                                    echo "<td>" . "<a href= '#' id='change_user' class='badge badge-sm color-primary' user_id='" . $row["user_id"] . "' user_type='" . $row["user_type"] . "' first_name='" . $row["first_name"] . "' last_name='" . $row["last_name"] . "' data-bs-toggle='modal' data-bs-target='#changeUserTypeModal'>Change User Type</a></br>
-                                                                    <a href= '#' id='change_password' class='badge badge-sm color-warning' user_id='" . $row["user_id"] . "' first_name='" . $row["first_name"] . "' last_name='" . $row["last_name"] . "' data-bs-toggle='modal' data-bs-target='#changePasswordModal'>Change Password</a></br>
-                                                                    <a href= '#' id='delete_user' class='badge badge-sm color-danger' user_id='" . $row["user_id"] . "' first_name='" . $row["first_name"] . "' last_name='" . $row["last_name"] . "' data-bs-toggle='modal' data-bs-target='#deleteUser'>Delete User</a>" .
-                                                        "</td>";
-                                                    echo "</tr>";
-                                                }
-                                            } else {
-                                                echo "<tr>";
-                                                echo "<td>No Users</td>";
-                                                echo "<td></td>";
-                                                echo "<td></td>";
-                                                echo "</tr>";
-                                            }
-                                            ?>
+                                        <tbody id="users-table-body">
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -218,80 +210,10 @@
     <script src="js/lib/data-table/buttons.html5.min.js"></script>
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="create_user_processing.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var table = $('#user-table').DataTable({
-                "dom": 'frtip',
-                "buttons": [
-                    'excel',
-                    'pdf',
-                    'print'
-                ],
-                "paging": false,
-                "info": false,
-            });
-
-            $('#checkInModal').on('show.bs.modal', function (e) {
-                // get information to update quickly to modal view as loading begins
-                var opener = e.relatedTarget;//this holds the element who called the modal
-
-                //we get details from attributes
-                var loan_log_id = $(opener).attr('loan_log_id');
-                var copy_id = $(opener).attr('copy_id');
-                var loaned_condition = $(opener).attr('loaned_condition');
-
-                //set what we got to our form
-                $('#modalForm').find('[name="loan_log_id"]').val(loan_log_id);
-                $('#modalForm').find('[name="copy_id"]').val(copy_id);
-                $('#modalForm').find('[name="loaned_condition"]').val(loaned_condition);
-                $('#modalForm').find('[id="condition_returned"]').val(loaned_condition);
-
-            });
-            $('#checkInModal').on('show.bs.modal', function (e) {
-                // get information to update quickly to modal view as loading begins
-                var opener = e.relatedTarget;//this holds the element who called the modal
-
-                //we get details from attributes
-                var loan_log_id = $(opener).attr('loan_log_id');
-                var copy_id = $(opener).attr('copy_id');
-                var loaned_condition = $(opener).attr('loaned_condition');
-
-                //set what we got to our form
-                $('#modalForm').find('[name="loan_log_id"]').val(loan_log_id);
-                $('#modalForm').find('[name="copy_id"]').val(copy_id);
-                $('#modalForm').find('[name="loaned_condition"]').val(loaned_condition);
-                $('#modalForm').find('[id="condition_returned"]').val(loaned_condition);
-
-            });
-            $('#checkInModal').on('show.bs.modal', function (e) {
-                // get information to update quickly to modal view as loading begins
-                var opener = e.relatedTarget;//this holds the element who called the modal
-
-                //we get details from attributes
-                var loan_log_id = $(opener).attr('loan_log_id');
-                var copy_id = $(opener).attr('copy_id');
-                var loaned_condition = $(opener).attr('loaned_condition');
-
-                //set what we got to our form
-                $('#modalForm').find('[name="loan_log_id"]').val(loan_log_id);
-                $('#modalForm').find('[name="copy_id"]').val(copy_id);
-                $('#modalForm').find('[name="loaned_condition"]').val(loaned_condition);
-                $('#modalForm').find('[id="condition_returned"]').val(loaned_condition);
-
-            });
-
-            // Initialize Bootstrap modal
-            var resetPasswordModal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
-
-            // Handle modal shown event
-            resetPasswordModal._element.addEventListener('shown.bs.modal', function () {
-                document.getElementById('user_id').value = 'INSERT USER_ID';
-
-            });
-        });
-    </script>
-
 
 </body>
 
