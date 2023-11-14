@@ -207,6 +207,7 @@
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <script src="js/lib/circle-progress/circle-progress.min.js"></script>
     <script src="js/lib/circle-progress/circle-progress-init.js"></script>

@@ -44,7 +44,7 @@
 
                     <div class="row mt-3">
                         <div class="col-lg-6">
-                            <h1>Member 11234545's Information</h2>
+                            <h1>Member Information</h2>
                         </div>
                         <!-- /# column -->
                         <div class="col-lg-6">
@@ -64,7 +64,7 @@
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form>
+                                <form method="post" id='editMemberForm'>
                                     <?php
                                     include 'db_connection.php';
                                     if (isset($_GET['member_id'])) {
@@ -136,7 +136,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" id="submit-form" class="btn btn-primary">Save
+                                        <button type="button" id="submit_form" class="btn btn-primary">Save
                                             Changes</button>
                                     </div>
                                     <div class="col-1">
@@ -264,7 +264,7 @@
     </div>
 
     <!-- jquery vendor -->
-    <script src="js/lib/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/lib/jquery.nanoscroller.min.js"></script>
     <!-- nano scroller -->
     <script src="js/lib/menubar/sidebar.js"></script>
@@ -274,15 +274,19 @@
     <script src="js/scripts.js"></script>
     <!-- bootstrap -->
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="js/lib/circle-progress/circle-progress.min.js"></script>
     <script src="js/lib/circle-progress/circle-progress-init.js"></script>
     <script src="js/lib/chartist/chartist.min.js"></script>
     <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
     <script src="js/lib/sparklinechart/sparkline.init.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- scripit init-->
     <script src="js/dashboard2.js"></script>
-
+    <script src="edit_member.js"></script>
     <script src="js/lib/data-table/datatables.min.js"></script>
     <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
     <script src="js/lib/data-table/buttons.flash.min.js"></script>
@@ -293,67 +297,10 @@
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#submit-form").click(function () {
-                var first_name = $("#first_name").val();
-                var last_name = $("#last_name").val();
-                var dob = $("#DOB").val();
-                var phone_number = $("#phone_number").val();
-                var email_address = $("#email_address").val();
-                var member_id = $("#member_id").val();
-
-                // Show processing message
-                $("#processingMessage0").show();
-                $("#successMessage0").hide();
-                $("#failureMessage0").hide();
-                $.ajax({
-                    type: "POST",
-                    url: "edit_member_processor.php",
-                    data: {
-                        first_name: first_name,
-                        last_name: last_name,
-                        DOB: dob,
-                        phone_number: phone_number,
-                        email_address: email_address,
-                        member_id: member_id
-                    },
-                    success: function (data) {
-                        //hide processing messag
-                        console.log(data);
-                        $("#processingMessage0").hide();
-                        $("#successMessage0").show();
-                    },
-                    error: function (xhr, error) {
-                        console.log("Error: " + error.message);
-                        $("#processingMessage0").hide();
-                        $("#failureMessage0").show();
-                    }
-                });
-            });
-            var table = $('#loan-table').DataTable({
-                "dom": 'frtip',
-                "buttons": [
-                    'excel',
-                    'pdf',
-                    'print'
-                ],
-                "paging": false,
-                "info": false,
-            });
-
-            var buttons = new $.fn.dataTable.Buttons(table, {
-                buttons: [
-                    'excel',
-                    'pdf',
-                    'print'
-                ]
-            }).container().appendTo($('.export-options'));
-        });
-
-    </script>
-
+    
+    
 
 </body>
+
 
 </html>
