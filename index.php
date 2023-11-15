@@ -61,16 +61,18 @@
                     </div>
 
                     <form action="login.php" method="post">
-                        <p>Please login to your account</p>
+                    <p style="text-align: center; margin-bottom: 25px;">Please login to your account</p>
 
                         <div class="form-outline mb-4">
+                        <label class="form-label" for="email" name="email">Email</label>
                             <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" />
-                            <label class="form-label" for="email" name="email">Email</label>
+                            
                         </div>
 
                         <div class="form-outline mb-4">
+                        <label class="form-label" for="password" name="password">Password</label>
                             <input type="password" name = "password" id="password" class="form-control" />
-                            <label class="form-label" for="password" name="password">Password</label>
+                            
                         </div>
 
                         <div class="text-center pt-1 mb-5 pb-1">
