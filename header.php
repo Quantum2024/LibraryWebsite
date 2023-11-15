@@ -1,6 +1,6 @@
 <?php
 include "session_check.php"
-    ?>
+?>
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
@@ -44,12 +44,12 @@ include "session_check.php"
                 <div class="float-right">
                     <div class="dropdown dib">
                         <div class="header-icon">
-                                <i id="dropdownButton" class="fas fa-bars f-s-20"></i>
-                            <ul id="dropdownList">
-                                <li>
-                                    <a href="#">
+                            <i id="dropdownButton" class="fas fa-bars f-s-20"></i>
+                            <ul id="dropdownList" style="width: 200px;"> <!-- Adjust the width as needed -->
+                                <li style="white-space: nowrap;">
+                                    <a href="settings.php">
                                         <i class="ti-user"></i>
-                                        <span>My Account Settings</span>
+                                        <span>Account Settings</span>
                                     </a>
                                 </li>
                                 <?php
@@ -76,16 +76,16 @@ include "session_check.php"
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var dropdownButton = document.getElementById("dropdownButton");
             var dropdownList = document.getElementById("dropdownList");
 
-            dropdownButton.addEventListener("click", function (event) {
+            dropdownButton.addEventListener("click", function(event) {
                 event.stopPropagation();
                 dropdownList.style.display = (dropdownList.style.display === "none" || dropdownList.style.display === "") ? "block" : "none";
             });
 
-            document.addEventListener("click", function (event) {
+            document.addEventListener("click", function(event) {
                 var isClickInside = dropdownButton.contains(event.target) || dropdownList.contains(event.target);
                 if (!isClickInside) {
                     dropdownList.style.display = "none";
