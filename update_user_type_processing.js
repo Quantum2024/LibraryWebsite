@@ -1,5 +1,19 @@
 $(document).ready(function () {
+    $('#changeUserTypeModal').on('show.bs.modal', function (e) {
+        // get information to update quickly to modal view as loading begins
+        var opener = e.relatedTarget; //this holds the element who called the modal
 
+        //we get details from attributes
+        var user_id = $(opener).attr('user_id');
+        var user_name = $(opener).attr('user_name');
+        var user_type = $(opener).attr('user_type');
+        //set what we got to our form
+
+        $('#update_user_type_form').find('[name="user_id"]').val(user_id);
+        $('#update_user_type_form').find('[name="name"]').val(user_name);
+        $('#update_user_type_form').find('[name="user_type_select"]').val(user_type);
+
+    });
     // Handle form submission
     $('#update_user_type_form').submit(function (event) {
         event.preventDefault();
@@ -36,6 +50,7 @@ $(document).ready(function () {
 
                         // Check if the response indicates success
                         if (response.includes('successfully')) {
+                            console.log("Success");
                             // Display a success SweetAlert with the blue button
                             Swal.fire({
                                 title: 'Success',

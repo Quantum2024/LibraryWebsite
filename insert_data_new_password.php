@@ -1,9 +1,37 @@
 <?php
 session_start();
 include "db_connection.php";
+include "session_check.php";
+include 'salt.php';
 
-//  valid user_id in the session
-if (isset($_SESSION['user_id'])) {
+if (($_SESSION['user_type'] == 2) && isset($_POST['user_id'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $userId = $_POST['user_id'];
+        // Check if all required fields are set
+        $newPassword = $_POST['reset_new_password'];
+        $retypePassword = $_POST['reset_retype_password'];
+
+        if ($newPassword === $retypePassword) {
+            // Generate a new salt and hash for the new password
+            $newSalt = generateSecureSalt();
+            $newHashedPassword = password_hash($newPassword . $newSalt, PASSWORD_BCRYPT);
+            // Update the user's password in the database
+            $updateSql = "UPDATE user SET password_hash = '$newHashedPassword', salt = '$newSalt' WHERE user_id = $userId";
+            $updateResult = mysqli_query($mysqli, $updateSql);
+
+            if ($updateResult) {
+                // Return a success message
+                echo 'Password updated successfully';
+            } else {
+                // Return an error message
+                echo 'Error updating password: ' . mysqli_error($mysqli);
+            }
+        } else {
+            // Return an error message
+            echo 'New password and retype password do not match.';
+        }
+    }
+} else if (!(isset($_POST['user_id']))) {
     $userId = $_SESSION['user_id'];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,7 +53,7 @@ if (isset($_SESSION['user_id'])) {
                     // Current password is correct, proceed to update the password
                     if ($newPassword === $retypePassword) {
                         // Generate a new salt and hash for the new password
-                        $newSalt = bin2hex(random_bytes(16));
+                        $newSalt = generateSecureSalt();
                         $newHashedPassword = password_hash($newPassword . $newSalt, PASSWORD_BCRYPT);
 
                         // Update the user's password in the database
@@ -58,7 +86,7 @@ if (isset($_SESSION['user_id'])) {
     }
 } else {
     // Return an error message
-    echo 'User not logged in.';
+    echo 'ERROR: UNKNOWN.';
 }
 
 mysqli_close($mysqli);

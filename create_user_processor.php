@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $salt= generateSecureSalt();
-    $password_hash = password_hash($_POST['new_password'] . $salt, PASSWORD_DEFAULT);
+    $password_hash = password_hash($_POST['new_password'] . $salt, PASSWORD_BCRYPT);
     $email = $_POST['email'];
     $user_type = $_POST['user_type'];
 

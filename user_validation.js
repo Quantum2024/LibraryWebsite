@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //create user validate
     $("#create_user_form").validate({
         rules: {
             first_name: "required",
@@ -46,6 +47,44 @@ $(document).ready(function () {
             $('#submit_new_user').prop('disabled', false);
         } else {
             $('#submit_new_user').prop('disabled', 'disabled');
+        }
+    });
+
+    //change password validate
+    $("#resetPasswordForm").validate({
+        rules: {
+            reset_new_password: {
+                required: true,
+                minlength: 8
+            },
+            reset_retype_password: {
+                required: true,
+                minlength: 8,
+                equalTo: "#reset_new_password"
+            }
+        },
+        messages: {
+            reset_new_password: {
+                required: "Please enter a password",
+                minlength: "Password must be at least 8 characters long"
+            },
+            reset_retype_password: {
+                required: "Please re-enter password",
+                equalTo: "Passwords must match."
+            }
+        },
+    });
+
+    $('#resetPasswordModal').on('shown.bs.modal', function() {
+        // Trigger form validation when the modal is shown
+        $("#resetPasswordForm").valid();
+    });
+
+    $('input').on('blur keyup', function () {
+        if ($("#resetPasswordForm").valid()) {
+            $('#changePasswordButton').prop('disabled', false);
+        } else {
+            $('#changePasswordButton').prop('disabled', 'disabled');
         }
     });
 });

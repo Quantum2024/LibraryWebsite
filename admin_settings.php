@@ -143,7 +143,8 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" id="submit_new_user" class="btn btn-primary">Create
+                                        <button type="submit" id="submit_new_user" class="btn btn-primary"
+                                            disabled>Create
                                             User</button>
                                     </div>
                                     </form>
@@ -166,13 +167,14 @@
                                             <div class="col mb-3">
                                                 <input type="text" name="user_id" class="form-control" hidden></input>
                                                 <div class="row mb-3">
-                                                    <label for="name" class="form-label">User Name</label>
+                                                    <label for="name" class="form-label">User's Full Name</label>
                                                     <input type="text" name="name" id="name" class="form-control"
                                                         readonly></input>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="user_type" class="form-label">User Type</label>
-                                                    <select id="user_type" name="user_type" class="form-control">
+                                                    <select id="user_type_select" name="user_type_select"
+                                                        class="form-control">
                                                         <?php
                                                         $query = 'SELECT * FROM user_type';
                                                         $result = $mysqli->query($query);
@@ -197,6 +199,39 @@
                                             Type</button>
                                     </div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Change User Password Modal -->
+                        <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="resetPasswordLabel">Reset your Password</h5>
+                                        <a href="#" data-bs-dismiss="modal">
+                                            <i class="fas fa-x" style="outline: none"></i>
+                                        </a>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Your form field here -->
+                                        <form  id="resetPasswordForm" >
+                                            <div class="mb-3">
+                                                <input type="hidden" id="user_id" name="user_id">
+                                                <div class="row mb-3">
+                                                    <label for="reset_new_password" class="form-label">New Password</label>
+                                                    <input type="password" id="reset_new_password" name="reset_new_password" class="form-control">
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="reset_retype_password" class="form-label">Retype New Password</label>
+                                                    <input type="password" id="reset_retype_password" name="reset_retype_password" class="form-control">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" id="changePasswordButton" class="btn btn-primary" disabled>Change Password</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -228,7 +263,7 @@
                                     </table>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                     </section>
@@ -275,6 +310,10 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="user_validation.js"></script>
     <script src="create_user_processing.js"></script>
+    <script src="update_user_type_processing.js"></script>
+    <script src="change_other_user_pass_processing.js"></script>
+    <script src="delete_user_processing.js"></script>
+    
 </body>
 
 </html>

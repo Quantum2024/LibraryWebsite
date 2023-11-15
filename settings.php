@@ -88,7 +88,6 @@
                                                     <label for="current_password" class="form-label">Current Password</label>
                                                     <input type="password" id="current_password" name="current_password" class="form-control">
                                                 </div>
-                                                <input type="hidden" id="user_id" name="user_id" value="<?php echo $userId; ?>">
                                                 <div class="row mb-3">
                                                     <label for="new_password" class="form-label">New Password</label>
                                                     <input type="password" id="new_password" name="new_password" class="form-control">
