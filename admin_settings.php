@@ -207,7 +207,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="resetPasswordLabel">Reset your Password</h5>
+                                        <h5 class="modal-title" id="resetPasswordLabel">Reset Password for <span id="insert_name"></span></h5>
                                         <a href="#" data-bs-dismiss="modal">
                                             <i class="fas fa-x" style="outline: none"></i>
                                         </a>

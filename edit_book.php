@@ -773,9 +773,15 @@ if ($book_result->num_rows == 0) {
         line-height: 42px !important;
     }
 
+    .select2-container{
+        width: 100% !important; 
+    }
+
     .select2-container .select2-selection--single {
         height: 42px !important;
     }
+
+
 
     .select2-selection__arrow {
         height: 42px !important;

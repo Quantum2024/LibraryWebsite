@@ -2,10 +2,6 @@
 
 $(document).ready(function () {
     
-    function updateUsersTable() {
-        $("#users-table-body").load("get_users_table.php");
-    }
-
     updateUsersTable();
     // Handle form submission
     $('#create_user_form').submit(function (event) {

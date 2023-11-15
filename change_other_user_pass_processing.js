@@ -5,9 +5,11 @@ $(document).ready(function () {
 
         //we get details from attributes
         var user_id = $(opener).attr('user_id');
-
+        var full_name = $(opener).attr('first_name') + " " +$(opener).attr('last_name');
+        console.log("Full name: "+full_name)
         //set what we got to our form
         $('#resetPasswordForm').find('[name="user_id"]').val(user_id);
+        $('#insert_name').text(full_name);
 
     });
     $('#changePasswordButton').click(function () {
