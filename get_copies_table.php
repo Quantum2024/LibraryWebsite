@@ -4,7 +4,7 @@ include 'session_check.php';
 if ($_GET["book_isbn"]) {
     $book_isbn = $_GET["book_isbn"];
     // Step 2: Query the database for copies of books
-    $query = "SELECT c.copy_id, c.supplier_name, c.unit_price, c.published_date, c.book_condition, l.due_date, l.date_checked_in FROM  `copy` AS c
+    $query = "SELECT c.copy_id, c.supplier_name, c.unit_price, c.published_date, c.book_condition, l.due_date, l.date_checked_in, l.date_checked_out FROM  `copy` AS c
             LEFT JOIN (
                         SELECT copy_id, MAX(date_checked_out) AS recent_date_checked_out
                         FROM loan_log GROUP BY copy_id) most_recent ON c.copy_id = most_recent.copy_id
@@ -30,6 +30,7 @@ if ($_GET["book_isbn"]) {
             $book_condition = $row["book_condition"];
             $due_date = $row["due_date"];
             $date_checked_in = $row["date_checked_in"];
+            $date_checked_out = $row["date_checked_out"];
             echo "<tr>";
             echo '<td>' . $copy_id . '
             <a href=# id="copy' . $i . '"data-bs-toggle="modal" 
@@ -44,7 +45,7 @@ if ($_GET["book_isbn"]) {
             echo "<td>" . date("m/d/Y", strtotime($published_date)) . "</td>";
             echo "<td>" . $book_condition . "</td>";
             $i++;
-            if ($date_checked_in === null) {
+            if ($date_checked_in === null  && $date_checked_out != null) {
                 $current_date = date("m/d/Y");
                 if (strtotime($due_date) >= strtotime($current_date)) {
                     $badge = '<td><span class="badge badge-warning">Borrowed</span></td>';
@@ -52,7 +53,7 @@ if ($_GET["book_isbn"]) {
                     $badge = '<td><span class="badge badge-danger">Overdue</span></td>';
                 }
             } else {
-                $badge = '<td><span class="badge badge-success">Returned</span></td>';
+                $badge = '<td><span class="badge badge-success">In Stock</span></td>';
             }
             echo $badge;
             echo "</tr>";

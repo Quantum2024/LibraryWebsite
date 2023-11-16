@@ -135,13 +135,12 @@
                                     <p class="color-danger">Changes failed to save</p>
                                 </div>
                                 <div class="row">
-                                    <div class="col-1">
-                                        <button type="button" id="submit_form" class="btn btn-primary">Save
+                                    <div class="col">
+                                        <button type="button" id="submit_form" class="btn btn-primary text-nowrap mr-2 float-left">Save
                                             Changes</button>
-                                    </div>
-                                    <div class="col-1">
+                                    
                                         <a href="inventory.php"><button type="button"
-                                                class="btn btn-secondary">Cancel</button><a href="inventory.php">
+                                                class="btn btn-secondary">Cancel</button><a href="inventory.php"></a>
                                     </div>
                                 </div>
                             </div>

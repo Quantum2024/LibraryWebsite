@@ -100,9 +100,9 @@ if ($_GET["book_isbn"]) {
                                             <div class="col-4">
                                                 <label for="book_condition" class="form-label">Book Condition</label>
                                                 <select id="book_condition" name="book_condition" class="form-control">
-                                                    <option value="new">New</option>
-                                                    <option value="good">Good</option>
-                                                    <option value="damage">Damaged</option>
+                                                    <option value="New">New</option>
+                                                    <option value="Good">Good</option>
+                                                    <option value="Damaged">Damaged</option>
                                                 </select>
                                             </div>
                                         </div>
