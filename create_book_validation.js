@@ -18,7 +18,8 @@ $(document).ready(function () {
                 required: true,
                 min: 0,
                 digits: true
-            }
+            },
+            language: "required",
         },
         messages: {
             book_isbn:{
@@ -38,8 +39,11 @@ $(document).ready(function () {
                 required: "Required",
                 min: "Number of Pages cannot be less than 0",
                 number: "Number of Pages must be a whole number"
-            }
-        },
+            },
+            language:"Required",
+                
+            
+        }
     });
 
     $("#newBookForm").valid();
@@ -77,7 +81,7 @@ $(document).ready(function () {
         },
     });
 
-     
+     //Author Modal Validation
     $("#newAuthorForm").validate({
         rules: {
             author_first_name: "required",
@@ -98,5 +102,82 @@ $(document).ready(function () {
             $('#submitAuthor').prop('disabled', true);
         }
     });
+
+
+   // Validate newPublisherForm
+   $("#newPublisherForm").validate({
+    rules: {
+        publisher_name: {
+            required: true,
+            minlength: 2,
+        },
+        publisher_country: {
+            required: true,
+            minlength: 2,
+        },
+        email_address: {
+            required: true,
+            email: true,
+        },
+        phone_number: {
+            required: true,
+            minlength: 10,
+        },
+    },
+    messages: {
+        publisher_name: {
+            required: "Please enter the publisher's name",
+            minlength: "Publisher's name must be at least 2 characters",
+        },
+        publisher_country: {
+            required: "Please enter the publisher's country",
+            minlength: "Publisher's country must be at least 2 characters",
+        },
+        email_address: {
+            required: "Please enter a valid email address",
+            email: "Please enter a valid email address",
+        },
+        phone_number: {
+            required: "Please enter a valid phone number",
+            minlength: "Phone number must be at least 10 characters",
+        },
+    },
+   
+});
+
+
+$('#NewPublisher').on('shown.bs.modal', function () {
+    if ($("#newPublisherForm").valid()) {
+        $('#submitPublisher').prop('disabled', false);
+    } else {
+        $('#submitPublisher').prop('disabled', 'disabled');
+    }
+});
+
+//Validate Genre Modal
+$("#modalForm").validate({
+    rules: {
+        genre_name: {
+            required: true,
+            minlength: 2,
+        },
+    },
+    messages: {
+        genre_name: {
+            required: "Please enter the genre name",
+            minlength: "Genre name must be at least 2 characters",
+        },
+    },
+    
+});
+
+
+$('#NewGenre').on('shown.bs.modal', function () {
+    if ($("#modalForm").valid()) {
+        $('#submitGenre').prop('disabled', false);
+    } else {
+        $('#submitGenre').prop('disabled', 'disabled');
+    }
+});
 
 });

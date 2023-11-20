@@ -77,5 +77,45 @@ $(document).ready(function () {
             }
         });
     });
+
+                                        ////Validation///////
+                                        $("#newMemberForm").validate({
+                                            rules: {
+                                                first_name: "required",
+                                                last_name: "required",
+                                                phone_number: "required",
+                                                email_address: {
+                                                    required: true,
+                                                    email: true
+                                                },
+                                                date_of_birth: "required"
+                                            },
+                                            messages: {
+                                                first_name: "Please enter your first name",
+                                                last_name: "Please enter your last name",
+                                                phone_number: "Please enter your phone number",
+                                                email_address: {
+                                                    required: "Please enter your email address",
+                                                    email: "Please enter a valid email address"
+                                                },
+                                                date_of_birth: "Please enter your date of birth"
+                                            },
+                                        });
+
+                                        // Handle blur and keyup events for specific input elements
+                                        $('#newMemberForm input, #newMemberForm select').on('blur keyup change', function () {
+                                            if ($("#newMemberForm").valid()) {
+                                                $('#memberSubmission').prop('disabled', false);
+                                            } else {
+                                                $('#memberSubmission').prop('disabled', 'disabled');
+                                            }
+                                        });
+                                        
+                                        // Handle the submit button state when the page loads
+                                        if ($("#newMemberForm").valid()) {
+                                            $('#memberSubmission').prop('disabled', false);
+                                        } else {
+                                            $('#memberSubmission').prop('disabled', 'disabled');
+                                        }
 });
 
