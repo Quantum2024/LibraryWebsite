@@ -108,11 +108,9 @@ if ($_GET["book_isbn"]) {
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-">
-                                            <button type="submit" id="copySubmission" class="btn btn-primary">Submit New Copy</button>
-                                        </div>
-                                        <div class="col-">
-                                            <a href="edit_book.php"><button type="button" class="btn btn-secondary">Close</button></a>
+                                        <div class="col">
+                                            <button type="submit" id="copySubmission" class="btn btn-primary">Create New Copy</button>
+                                            <a href="edit_book.php?book_isbn=<?php echo $book_isbn?>"><button type="button" class="btn btn-secondary">Close</button></a>
                                         </div>
                                     </div>
                                 </form>
