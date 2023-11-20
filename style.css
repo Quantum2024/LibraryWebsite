@@ -86,3 +86,9 @@ a:hover {
 .select2-container {
     width: 100% !important;
 }
+
+form .error{
+    color: red !important;
+}
+
+

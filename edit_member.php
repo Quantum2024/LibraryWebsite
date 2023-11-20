@@ -139,7 +139,7 @@
                                         <button type="button" id="submit_form" class="btn btn-primary text-nowrap mr-2 float-left">Save
                                             Changes</button>
                                     
-                                        <a href="inventory.php"><button type="button"
+                                        <a href="members.php"><button type="button"
                                                 class="btn btn-secondary">Cancel</button><a href="inventory.php"></a>
                                     </div>
                                 </div>

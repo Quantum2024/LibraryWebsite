@@ -44,6 +44,7 @@ $(document).ready(function () {
                             });
                             // Reset the form
                             $('#newMemberForm')[0].reset();
+                            
                         } else {
                             // Display an error SweetAlert with the blue button
                             Swal.fire({

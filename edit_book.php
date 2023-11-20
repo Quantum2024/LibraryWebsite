@@ -64,7 +64,13 @@ if ($book_result->num_rows == 0) {
     <link href="css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="css/lib/helper.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        form .error {
+            color: red !important;
+        }
+    </style>
 
 </head>
 
@@ -102,7 +108,7 @@ if ($book_result->num_rows == 0) {
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form>
+                                <form id="edit_book_form">
 
                                     <div class="mb-3">
                                         <div class="row mb-3">
@@ -334,22 +340,22 @@ if ($book_result->num_rows == 0) {
 
                                 <div class="row">
                                     <div class="col">
-                                        <button type="button" id="submit-form"
+                                        <button type="button" id="submit-form" disabled
                                             class="btn btn-primary text-nowrap mr-2 float-left">Save
                                             Changes</button>
 
                                         <a href="inventory.php"><button type="button"
                                                 class="btn btn-secondary">Cancel</button><a href="inventory.php"><a>
                                     </div>
-                                    <?php if($_SESSION["user_type"]==2){
+                                    <?php if ($_SESSION["user_type"] == 2) {
 
-                                    
-                                    echo '<div class="col">
+
+                                        echo '<div class="col">
                                         <button type="button" id="delete_book" class="btn btn-sm btn-danger float-right"
-                                            book_isbn="'. $book_isbn .'" onclick="deleteBook(this)">Delete
+                                            book_isbn="' . $book_isbn . '" onclick="deleteBook(this)">Delete
                                             Book</button>
                                     </div>';
-                                    }?>
+                                    } ?>
                                 </div>
                             </div>
                         </div>
@@ -497,6 +503,8 @@ if ($book_result->num_rows == 0) {
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="delete_book_processing.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="edit_book_validation.js"></script>
 
     <script>
         $(document).ready(function () {
