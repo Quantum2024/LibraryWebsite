@@ -94,29 +94,7 @@ $(document).ready(function () {
         }
     });
 
-    // New author form validation
-    $("#newAuthorForm").validate({
-        rules: {
-            author_first_name: {
-                required: true,
-                minlength: 2,
-            },
-            author_last_name: {
-                required: true,
-                minlength: 2,
-            },
-        },
-        messages: {
-            author_first_name: {
-                required: "Please enter Author's first name",
-                minlength: "Author's first name must be at least 2 characters",
-            },
-            author_last_name: {
-                required: "Please enter Author's last name",
-                minlength: "Author's last name must be at least 2 characters",
-            },
-        },
-    });
+    
 
      //Author Modal Validation
     $("#newAuthorForm").validate({

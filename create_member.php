@@ -106,7 +106,7 @@
                                         <div class="col">
                                         <button type="submit" id="memberSubmission" 
                                                 class="btn btn-primary text-nowrap mr-2 float-left">Save
-                                                Changes</button>
+                                                Member</button>
 
                                             <a href="members.php"><button type="button"
                                                     class="btn btn-secondary">Cancel</button><a

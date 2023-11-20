@@ -180,4 +180,11 @@ $('#NewGenre').on('shown.bs.modal', function () {
     }
 });
 
+// Handle the submit button state when the page loads
+if ($("#newBookForm").valid()) {
+    $('#bookSubmission').prop('disabled', false);
+} else {
+    $('#bookSubmission').prop('disabled', 'disabled');
+}
+
 });

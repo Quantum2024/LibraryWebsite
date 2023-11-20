@@ -164,8 +164,9 @@ $(document).ready(function () {
         });
     }
     $("#genre_name_primary").select2(); //initialises select2 for genre
+    $("#genre_name_primary").val('Adventure').trigger('change'); //default value
     updateGenreOptions(); //Populates genre upon loading completion
-
+    
 
     //Publisher Options Update 
 
