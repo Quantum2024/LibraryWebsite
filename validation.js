@@ -77,18 +77,34 @@ $(document).ready(function () {
         },
     });
 
+     
+    $("#newAuthorForm").validate({
+        rules: {
+            author_first_name: "required",
+            author_last_name: "required",
+        },
+        messages: {
+            author_first_name: "Please enter Author's first name",
+            author_last_name: "Please enter Author's last name",
+        },
+    });
+
+    // Trigger form validation when the modal is shown
     $('#NewAuthor').on('shown.bs.modal', function () {
-        // Trigger form validation when the modal is shown
-        $("#newAuthorForm").valid();
-    
         // Enable the Save button if the form is valid
         if ($("#newAuthorForm").valid()) {
             $('#submitAuthor').prop('disabled', false);
         } else {
             $('#submitAuthor').prop('disabled', true);
         }
+    });
 
+    // Handle blur and keyup events for specific input elements
+    $('#newAuthorForm input').on('blur keyup', function () {
+        if ($("#newAuthorForm").valid()) {
+            $('#submitAuthor').prop('disabled', false);
+        } else {
+            $('#submitAuthor').prop('disabled', true);
+        }
 });
-    
-     
 });
