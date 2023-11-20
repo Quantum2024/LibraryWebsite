@@ -223,6 +223,10 @@ body {
     display: none;
 }
 
+.sidebar-hide .social-media-container {
+    display: none;
+}
+
 .sidebar-hide .sidebar-badge {
     display: none;
 }
