@@ -1,7 +1,7 @@
 <html>
 <?php
 include "session_check.php"
-?>
+    ?>
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
@@ -24,6 +24,11 @@ include "session_check.php"
             padding: 8px 12px;
             cursor: pointer;
         }
+
+        #sidebar-icon:hover {
+            cursor: pointer;
+            /* or any other cursor value you prefer */
+        }
     </style>
 </head>
 <div class="header">
@@ -32,7 +37,7 @@ include "session_check.php"
             <div class="col-4">
                 <div class="float-left">
                     <div class="sidebar-toggle m-t-20">
-                        <i class="ti-angle-right f-s-20"></i>
+                        <i class="ti-angle-right f-s-20" id='sidebar-icon'></i>
 
                     </div>
 
@@ -77,16 +82,16 @@ include "session_check.php"
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var dropdownButton = document.getElementById("dropdownButton");
             var dropdownList = document.getElementById("dropdownList");
 
-            dropdownButton.addEventListener("click", function(event) {
+            dropdownButton.addEventListener("click", function (event) {
                 event.stopPropagation();
                 dropdownList.style.display = (dropdownList.style.display === "none" || dropdownList.style.display === "") ? "block" : "none";
             });
 
-            document.addEventListener("click", function(event) {
+            document.addEventListener("click", function (event) {
                 var isClickInside = dropdownButton.contains(event.target) || dropdownList.contains(event.target);
                 if (!isClickInside) {
                     dropdownList.style.display = "none";
