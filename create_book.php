@@ -393,7 +393,7 @@
         border: 1px solid #ced4da;
         border-radius: 4px;
         height: 34px;
-        width: 100%;
+        width: 100% !important;
         font-size: 1rem;
         line-height: 1.5;
         color: #495057;
@@ -407,5 +407,10 @@
 
     .error {
         color: red;
+    }
+
+    .select2-container--default {
+        width: 100% !important;
+        /* Adjust the width as needed */
     }
 </style>
