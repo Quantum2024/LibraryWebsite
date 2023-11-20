@@ -359,6 +359,7 @@
     <script src="create_pub_genre_author.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="validation.js"></script>
+    <script src="author_modal.js"></script>
 
 
 
