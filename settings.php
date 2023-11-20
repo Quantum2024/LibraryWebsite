@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" id="changePasswordButton" class="btn btn-primary">Change Password</button>
+                                        <button type="button" id="changePasswordButton" class="btn btn-primary" disabled>Change Password</button>
                                     </div>
                                 </div>
                             </div>
@@ -228,6 +228,8 @@
         <script src="js/lib/data-table/buttons.print.min.js"></script>
         <script src="js/lib/data-table/datatables-init.js"></script>
         <script src="reset_password.js"></script>
+        <script src="reset_password_validator.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script>
             $(document).ready(function() {

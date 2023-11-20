@@ -1,3 +1,31 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the phone number input element
+    const phoneNumberInput = document.getElementById("phone_number");
+
+    // Add an event listener to the input element
+    phoneNumberInput.addEventListener("input", function () {
+        // Get the input value
+        let inputValue = phoneNumberInput.value;
+
+        // Remove any non-digit characters
+        inputValue = inputValue.replace(/\D/g, "");
+
+        // Check if the input value is empty
+        if (inputValue.length === 0) {
+            phoneNumberInput.value = "";
+        } else {
+            // Format the phone number
+            phoneNumberInput.value = formatPhoneNumber(inputValue);
+        }
+    });
+
+    // Function to format the phone number
+    function formatPhoneNumber(value) {
+        const formattedValue = value.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+        return formattedValue;
+    }
+});
+
 $(document).ready(function () {
     // Handle form submission
     $('#submit_form').on('click', function () {

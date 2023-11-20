@@ -5446,3 +5446,7 @@ h6.h1 {
   background-color: #fff;
   background-image: none;
 }
+
+.error {
+  color: red;
+}
