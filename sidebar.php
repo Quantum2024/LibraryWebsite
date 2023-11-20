@@ -4,9 +4,6 @@ session_start();
 // Perform the database query to retrieve first_name and last_name based on user_id
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
-    echo '<script>';
-    echo 'console.log("User ID: ' . $_SESSION['user_id'] . '");';
-    echo '</script>';
     // Add your database connection code here
     include "db_connection.php";
 

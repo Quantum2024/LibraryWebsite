@@ -36,12 +36,6 @@
 <body>
     <?php include 'sidebar.php';
     include 'header.php';
-    //Just checking user id
-    if (isset($_SESSION['user_id'])) {
-        echo '<script>';
-        echo 'console.log("User ID: ' . $_SESSION['user_id'] . '");';
-        echo '</script>';
-    }
     ?>
 
 
@@ -50,7 +44,6 @@
         <div class="main">
             <div class="container-fluid">
                 <div class="card">
-
                     <div class="row mt-3">
                         <div class="col-lg-8">
                             <h1>User Settings</h2>
@@ -71,7 +64,8 @@
 
                     <!-- /# row -->
                     <section id="main-content">
-                        <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="resetPasswordModal" tabindex="-1"
+                            aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -82,26 +76,33 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- Your form field here -->
-                                        <form method="post" id="resetPasswordForm" >
+                                        <form method="post" id="resetPasswordForm">
                                             <div class="mb-3">
                                                 <div class="row mb-3">
-                                                    <label for="current_password" class="form-label">Current Password</label>
-                                                    <input type="password" id="current_password" name="current_password" class="form-control">
+                                                    <label for="current_password" class="form-label">Current
+                                                        Password</label>
+                                                    <input type="password" id="current_password" name="current_password"
+                                                        class="form-control">
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="new_password" class="form-label">New Password</label>
-                                                    <input type="password" id="new_password" name="new_password" class="form-control">
+                                                    <input type="password" id="new_password" name="new_password"
+                                                        class="form-control">
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="retype_password" class="form-label">Retype New Password</label>
-                                                    <input type="password" id="retype_password" name="retype_password" class="form-control">
+                                                    <label for="retype_password" class="form-label">Retype New
+                                                        Password</label>
+                                                    <input type="password" id="retype_password" name="retype_password"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" id="changePasswordButton" class="btn btn-primary">Change Password</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="changePasswordButton" class="btn btn-primary">Change
+                                            Password</button>
                                     </div>
                                 </div>
                             </div>
@@ -169,18 +170,13 @@
                                 }
                                 ?>
 
-                                <div class="row mb-4">
-                                    <div class="col-1 mr-2">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-user_id="" data-target="#resetPasswordModal">Reset
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="button" data-toggle="modal"
+                                            data-user_id="" data-target="#resetPasswordModal"
+                                            class="btn btn-primary text-nowrap mr-2 float-left">Reset
                                             Password</button>
                                     </div>
-
-
-
-                                    <div class="col-1 ml-2">
-                                        <button type="button" class="btn btn-secondary">Close</button>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -199,7 +195,7 @@
 
         <!-- jquery vendor  and sweet alert2-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="js/lib/jquery.nanoscroller.min.js"></script>
         <!-- nano scroller -->
         <script src="js/lib/menubar/sidebar.js"></script>
@@ -230,12 +226,12 @@
         <script src="reset_password.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 // Initialize Bootstrap modal
                 var resetPasswordModal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
 
                 // Handle modal shown event
-                resetPasswordModal._element.addEventListener('shown.bs.modal', function() {
+                resetPasswordModal._element.addEventListener('shown.bs.modal', function () {
 
 
                 });
