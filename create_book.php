@@ -65,6 +65,128 @@
                     </div>
 
                     <section id="main-content">
+                        <!-- New Author Modal-->
+                        <div class="modal fade" id="NewAuthor" tabindex="-1" aria-labelledby="NewAuthorLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="NewAuthorLabel">New
+                                            Author</h5>
+                                        <a href="#" data-bs-dismiss="modal">
+                                            <i class="fas fa-x" style="outline: none"></i>
+                                        </a>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Your form field here -->
+                                        <form id="newAuthorForm">
+                                            <div class="mb-3">
+                                                <label for="author_first_name" class="form-label">Author First
+                                                    Name</label>
+                                                <input type="text" id="author_first_name" name="author_first_name"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="author_last_name" class="form-label">Author Last
+                                                    Name</label>
+                                                <input type="text" id="author_last_name" name="author_last_name"
+                                                    class="form-control">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div id="processingMessage" style="display: none;">
+                                            Processing...</div>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" id="submitAuthor" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- New Genre Modal-->
+                        <div class="modal fade" id="NewGenre" tabindex="-1" aria-labelledby="NewGenreLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="NewGenreLabel">Add New
+                                            Genre</h5>
+                                        <a href="#" data-bs-dismiss="modal">
+                                            <i class="fas fa-x" style="outline: none"></i>
+                                        </a>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Your form field here -->
+                                        <form id="modalForm">
+
+                                            <div class="mb-3">
+                                                <label for="genre_name" class="form-label">Genre
+                                                    Name</label>
+                                                <input type="text" id="genre_name" name="genre_name"
+                                                    class="form-control">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div id="processingMessage3" style="display: none;">
+                                            Processing...</div>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" id="submitGenre" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- New Publisher Modal-->
+                        <div class="modal fade" id="NewPublisher" tabindex="-1" aria-labelledby="NewPublisherLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="NewPublisherLabel">New
+                                            Publisher</h5>
+                                        <a href="#" data-bs-dismiss="modal">
+                                            <i class="fas fa-x" style="outline: none"></i>
+                                        </a>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Your form field here -->
+                                        <form id="newPublisherForm" method="post">
+                                            <div class="mb-3">
+                                                <label for="publisher_name" class="form-label">Publisher
+                                                    Name</label>
+                                                <input type="text" id="new_publisher_name" name="publisher_name"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="publisher_country" class="form-label">Publisher
+                                                    Country</label>
+                                                <input type="text" id="publisher_country" name="publisher_country"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email_address" class="form-label">Email Address</label>
+                                                <input type="email" id="email_address" name="email_address"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="phone_number" class="form-label">Phone Number</label>
+                                                <input type="text" id="phone_number" name="phone_number"
+                                                    class="form-control">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div id="processingMessage2" style="display: none;">
+                                            Processing...</div>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" id="submitPublisher" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mb-3">
                             <div class="col-lg-12">
                                 <form method="post" id="newBookForm">
@@ -99,49 +221,7 @@
                                                         data-bs-toggle="modal" data-bs-target="#NewAuthor"
                                                         style="padding: 0px 5px;">New
                                                         Author</button>
-                                                    <div class="modal fade" id="NewAuthor" tabindex="-1"
-                                                        aria-labelledby="NewAuthorLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="NewAuthorLabel">New
-                                                                        Author</h5>
-                                                                    <a href="#" data-bs-dismiss="modal">
-                                                                        <i class="fas fa-x" style="outline: none"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!-- Your form field here -->
-                                                                    <form id="newAuthorForm">
-                                                                        <div class="mb-3">
-                                                                            <label for="author_first_name"
-                                                                                class="form-label">Author First
-                                                                                Name</label>
-                                                                            <input type="text" id="author_first_name"
-                                                                                name="author_first_name"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="author_last_name"
-                                                                                class="form-label">Author Last
-                                                                                Name</label>
-                                                                            <input type="text" id="author_last_name"
-                                                                                name="author_last_name"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <div id="processingMessage" style="display: none;">
-                                                                        Processing...</div>
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" id="submitAuthor"
-                                                                        class="btn btn-primary">Save</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
 
 
 
@@ -160,63 +240,7 @@
                                                         data-bs-toggle="modal" data-bs-target="#NewPublisher"
                                                         style="padding: 0px 5px;">New
                                                         Publisher</button>
-                                                    <div class="modal fade" id="NewPublisher" tabindex="-1"
-                                                        aria-labelledby="NewPublisherLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="NewPublisherLabel">New
-                                                                        Publisher</h5>
-                                                                    <a href="#" data-bs-dismiss="modal">
-                                                                        <i class="fas fa-x" style="outline: none"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!-- Your form field here -->
-                                                                    <form id="newPublisherForm" method="post">
-                                                                        <div class="mb-3">
-                                                                            <label for="publisher_name"
-                                                                                class="form-label">Publisher
-                                                                                Name</label>
-                                                                            <input type="text" id="new_publisher_name"
-                                                                                name="publisher_name"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="publisher_country"
-                                                                                class="form-label">Publisher
-                                                                                Country</label>
-                                                                            <input type="text" id="publisher_country"
-                                                                                name="publisher_country"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="email_address"
-                                                                                class="form-label">Email Address</label>
-                                                                            <input type="email" id="email_address"
-                                                                                name="email_address"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="phone_number"
-                                                                                class="form-label">Phone Number</label>
-                                                                            <input type="text" id="phone_number"
-                                                                                name="phone_number"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <div id="processingMessage2" style="display: none;">
-                                                                        Processing...</div>
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" id="submitPublisher"
-                                                                        class="btn btn-primary">Save</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
 
                                                     <!-- Modal End -->
                                                     <div id="publisherSuccessMessage"></div>
@@ -235,41 +259,7 @@
                                                         data-bs-toggle="modal" data-bs-target="#NewGenre"
                                                         style="padding: 0px 5px;">New
                                                         Genre</button>
-                                                    <div class="modal fade" id="NewGenre" tabindex="-1"
-                                                        aria-labelledby="NewGenreLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="NewGenreLabel">Add New
-                                                                        Genre</h5>
-                                                                    <a href="#" data-bs-dismiss="modal">
-                                                                        <i class="fas fa-x" style="outline: none"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!-- Your form field here -->
-                                                                    <form id="modalForm">
 
-                                                                        <div class="mb-3">
-                                                                            <label for="genre_name"
-                                                                                class="form-label">Genre
-                                                                                Name</label>
-                                                                            <input type="text" id="genre_name"
-                                                                                name="genre_name" class="form-control">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <div id="processingMessage3" style="display: none;">
-                                                                        Processing...</div>
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" id="submitGenre"
-                                                                        class="btn btn-primary">Save</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
 
 
 
@@ -299,8 +289,9 @@
                                         <div class="row">
                                             <div class="col">
                                                 <button type="submit" id="bookSubmission"
-                                                    class="btn btn-primary text-nowrap mr-2 float-left">Save Changes</button>
-                                            
+                                                    class="btn btn-primary text-nowrap mr-2 float-left">Save
+                                                    Changes</button>
+
                                                 <a href="inventory.php"><button type="button"
                                                         class="btn btn-secondary">Close</button></a>
                                             </div>
