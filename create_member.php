@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                        <button type="submit" id="memberSubmission" 
+                                            <button type="submit" id="memberSubmission"
                                                 class="btn btn-primary text-nowrap mr-2 float-left">Save
                                                 Member</button>
 
@@ -113,29 +113,27 @@
                                                     href="inventory.php"></a>
                                         </div>
                                     </div>
-                                    
+
                                 </form>
 
                             </div>
 
                         </div>
+
                     </section>
                 </div>
-
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer">
+                            <p>2023 © Fortuna</p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="footer">
-                <p>2023 © Caribbean Public Library <a href="#"></a></p>
 
-            </div>
-
-
-        </div>
-    </div>
 
 
 
@@ -171,8 +169,8 @@
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="create_member_processing.js"></script>
- <!-- validation-->
- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <!-- validation-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
 
 </body>
