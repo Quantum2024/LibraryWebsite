@@ -94,7 +94,7 @@
                                         checking out a new book.</p>
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="checkout_button" class="btn btn-primary">Complete Check
+                                <button type="button" id="checkout_button" class="btn btn-primary">Complete Check
                                     Out</button>
                                 </form>
                             </div>
@@ -133,52 +133,8 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <?php
-                                            include 'db_connection.php';
-                                            // Step 2: Query the database for book information
-                                            $query = "SELECT c.copy_id, b.book_isbn, c.book_condition, b.book_title
-                                                            FROM `copy` AS c
-                                                            JOIN book AS b ON b.book_isbn = c.book_isbn;";
-                                            $copy_result = $mysqli->query($query);
-                                            while ($row = $copy_result->fetch_assoc()) {
-                                                //check to see if book is checked out already
-                                                $query = "SELECT *
-                                                            FROM `loan_log` AS l
-                                                            WHERE l.date_checked_in IS NULL AND l.copy_id=" . $row["copy_id"] . ";";
-                                                $copies_checked_out = $mysqli->query($query);
-                                                //if the query returns any values, the copy is checked out, so it should be skipped
-                                                if ($copies_checked_out->num_rows > 0) {
-                                                    continue;
-                                                }
-                                                echo "<tr>";
-                                                echo "<td>" . $row['copy_id'] . "</td>";
-                                                echo "<td>" . $row['book_title'] . "</td>";
+                                        <tbody id="check_out_table_body">
 
-                                                //query the wrote table for authors
-                                                $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
-                                                    FROM author AS a
-                                                    JOIN wrote AS w ON a.author_id= w.author_id
-                                                    JOIN book AS b ON b.book_isbn = w.book_isbn
-                                                    WHERE b.book_isbn=" . $row['book_isbn'] . ";";
-                                                $author_result = $mysqli->query($query);
-                                                if (mysqli_num_rows($author_result) == 0) {
-                                                    $authors = "No Authors Found";
-                                                } else {
-                                                    $authors = "";
-                                                    while ($rowA = $author_result->fetch_assoc()) {
-                                                        $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
-                                                    }
-                                                }
-                                                echo '<td>' . $authors . '</td>';
-                                                echo '<td><button type="button" class="btn btn-danger btn-sm" 
-                                                    data-bs-toggle="modal" copy_id="' . $row["copy_id"] . '"
-                                                    loaned_condition="' . $row["book_condition"] . '" data-bs-target="#checkOutModal">Check
-                                                    Out</button></td>';
-                                                echo "</tr>";
-                                            }
-                                            $mysqli->close();
-                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -212,29 +168,19 @@
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
-    <script src="js/lib/circle-progress/circle-progress.min.js"></script>
-    <script src="js/lib/circle-progress/circle-progress-init.js"></script>
-    <script src="js/lib/chartist/chartist.min.js"></script>
-    <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
-    <script src="js/lib/sparklinechart/sparkline.init.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-     <!-- sweet alert 2-->
+    <!-- sweet alert 2-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- scripit init-->
-    <script src="js/dashboard2.js"></script>
-
     <script src="js/lib/data-table/datatables.min.js"></script>
     <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
     <script src="js/lib/data-table/buttons.flash.min.js"></script>
-    <script src="js/lib/data-table/jszip.min.js"></script>
-    <script src="js/lib/data-table/pdfmake.min.js"></script>
     <script src="js/lib/data-table/vfs_fonts.js"></script>
     <script src="js/lib/data-table/buttons.html5.min.js"></script>
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="check_out_processing.js"></script>
     <script>
         $(document).ready(function () {
             var table = $('#check_out-table').DataTable({
@@ -256,100 +202,95 @@
                 ]
             }).container().appendTo($('.export-options'));
 
-            // Initialize Bootstrap modal
-            var checkOutModal = new bootstrap.Modal(document.getElementById('checkOutModal'));
 
-        });
-
-
-        var members = [
-            {
-                id: 0,
-                text: 'Select a Member'
-            }<?php
-            include 'db_connection.php';
-            $query = "SELECT first_name, last_name, member_id
+            var members = [
+                {
+                    id: 0,
+                    text: 'Select a Member'
+                }<?php
+                include 'db_connection.php';
+                $query = "SELECT first_name, last_name, member_id
                 FROM `member`";
-            $member_result = $mysqli->query($query);
-            while ($row = $member_result->fetch_assoc()) {
-                echo ",
+                $member_result = $mysqli->query($query);
+                while ($row = $member_result->fetch_assoc()) {
+                    echo ",
                 {
                     id: " . $row["member_id"] . ",
                     text: '" . $row["first_name"] . " " . $row["last_name"] . "'
                 }";
-            }
-            $mysqli->close();
-            ?>
+                }
+                $mysqli->close();
+                ?>
 
-        ];
-        $('.member_id_select').select2({
-            placeholder: "Select a Member",
-            dropdownParent: $('#checkOutModal'),
-            data: members
+            ];
+            $('.member_id_select').select2({
+                placeholder: "Select a Member",
+                dropdownParent: $('#checkOutModal'),
+                data: members
 
-        })
+            })
 
-        $('#checkOutModal').on('show.bs.modal', function (e) {
-            // get information to update quickly to modal view as loading begins
-            var opener = e.relatedTarget;//this holds the element who called the modal
+            $('#checkOutModal').on('show.bs.modal', function (e) {
+                // get information to update quickly to modal view as loading begins
+                var opener = e.relatedTarget;//this holds the element who called the modal
 
-            //we get details from attributes
-            var copy_id = $(opener).attr('copy_id');
-            var loaned_condition = $(opener).attr('loaned_condition');
+                //we get details from attributes
+                var copy_id = $(opener).attr('copy_id');
+                var loaned_condition = $(opener).attr('loaned_condition');
 
-            //set what we got to our form
-            $('#modalForm').find('[name="copy_id"]').val(copy_id);
-            $('#modalForm').find('[name="loaned_condition"]').val(loaned_condition);
+                //set what we got to our form
+                $('#modalForm').find('[name="copy_id"]').val(copy_id);
+                $('#modalForm').find('[name="loaned_condition"]').val(loaned_condition);
 
-        });
-
-        $("#checkOutModal").on("hidden.bs.modal", function () {
-            $('body').css('padding-right', 0);
-        });
-
-        //check to see if a member has an overdue book, if they do, disable check_out
-        $('#member_id').on('change', function () {
-            var member = $('#member_id').val();
-            //checking eligibility
-            fetch('get_overdue.php?member_id=' + member)
-    .then(response => response.json())
-    .then(data => {
-        // Access the variable value from the response
-        const overdue = data.overdue;
-
-        if (overdue) {
-            // Show SweetAlert for overdue books
-            Swal.fire({
-                icon: 'warning',
-                title: 'Overdue Books',
-                text: 'This member has an overdue book. Please return it before renting another book.',
-                confirmButtonText: 'OK',
             });
 
-            // Disable submit button
-            document.getElementById("checkout_button").disabled = true;
-            
-        } else {
-            // Enable submit button
-            document.getElementById("checkout_button").disabled = false;
-            document.getElementById("overdue_warning").setAttribute("hidden", true);
-        }
-    })
-    .catch(error => {
-        console.error('Error: ' + error);
+            $("#checkOutModal").on("hidden.bs.modal", function () {
+                $('body').css('padding-right', 0);
+            });
 
-        // Show SweetAlert for error
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'An error occurred while checking for overdue books.',
-            confirmButtonText: 'OK',
+            //check to see if a member has an overdue book, if they do, disable check_out
+            $('#member_id').on('change', function () {
+                var member = $('#member_id').val();
+                //checking eligibility
+                fetch('get_overdue.php?member_id=' + member)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Access the variable value from the response
+                        const overdue = data.overdue;
+
+                        if (overdue) {
+                            // Show SweetAlert for overdue books
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Overdue Books',
+                                text: 'This member has an overdue book. Member must return it before borrowing another book.',
+                                confirmButtonText: 'OK',
+                            });
+
+                            // Disable submit button
+                            document.getElementById("checkout_button").disabled = true;
+
+                        } else {
+                            // Enable submit button
+                            document.getElementById("checkout_button").disabled = false;
+                            document.getElementById("overdue_warning").setAttribute("hidden", true);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error: ' + error);
+
+                        // Show SweetAlert for error
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'An error occurred while checking for overdue books.',
+                            confirmButtonText: 'OK',
+                        });
+                    });
+
+            });
+
         });
-    });
-    
-        });
-
-
     </script>
     <style>
         .select2 {

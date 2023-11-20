@@ -1,4 +1,3 @@
-
 <?php
 // Include the database connection
 include 'db_connection.php';
@@ -9,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $loan_log_id = $_POST['loan_log_id'];
     $condition_returned = $_POST['condition_returned'];
     $currentDate = date("Y-m-d");
-    $copy_id= $_POST['copy_id'];
+    $copy_id = $_POST['copy_id'];
 
     // Update date_returned in the "loan_log" table
     $updateLLQuery = "UPDATE loan_log SET date_checked_in = ? WHERE loan_log_id = ?";
@@ -30,9 +29,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         error_log("Error: " . $mysqli->error);
     }
 
+    // Execute the prepared statement
+    try {
+        if ($stmtLL->execute() && $stmtCopy->execute()) {
+            echo "Loan Log updated successfully.";
+            http_response_code(200); // Set HTTP status code to indicate success
+        } else {
+            echo "Error: Loan Log update failed.";
+            http_response_code(500); // Set HTTP status code to indicate success   
+        }
+    } catch (Exception $e) {
+        $response = array('error' => $e->getMessage());
+        http_response_code(500); // Set HTTP status code to indicate an error
+        header('Content-Type: application/json');
+        echo "Error: ".$e->getMessage(); 
+    }
+
     // Close the prepared statement and the database connection
     $stmtLL->close();
+    $stmtCopy->close();
     $mysqli->close();
-    header("Location: check_in.php");
 }
 ?>

@@ -67,17 +67,19 @@
                     <section id="main-content">
                         <div class="row mb-3">
                             <div class="col-lg-12">
-                                <form method="post" id="newBookForm"> 
+                                <form method="post" id="newBookForm">
 
                                     <div class="mb-3">
                                         <div class="row mb-3">
                                             <div class="col-4">
                                                 <label for="book_isbn" class="form-label">Book ISBN</label>
-                                                <input type="number" id="book_isbn" name="book_isbn" class="form-control" min="1000000000" max="9999999999999">
+                                                <input type="number" id="book_isbn" name="book_isbn"
+                                                    class="form-control" min="1000000000" max="9999999999999">
                                             </div>
                                             <div class="col-4">
                                                 <label for="book_title" class="form-label">Title</label>
-                                                <input type="text" id="book_title" name="book_title" class="form-control">
+                                                <input type="text" id="book_title" name="book_title"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="mb-3">
@@ -85,22 +87,26 @@
 
                                                 <div class="col-4">
                                                     <label for="edition" class="form-label">Edition</label>
-                                                    <input type="number" id="edition" name="edition" class="form-control">
+                                                    <input type="number" id="edition" name="edition"
+                                                        class="form-control">
                                                 </div>
                                                 <div class="col" id="author_col">
                                                     <label for="author_first_name" class="form-label">Author
                                                         Name</label>
 
                                                     <!-- Modal Start-->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#NewAuthor" style="padding: 0px 5px;">New
+                                                    <button type="button" class="btn btn-sm btn-primary float-right"
+                                                        data-bs-toggle="modal" data-bs-target="#NewAuthor"
+                                                        style="padding: 0px 5px;">New
                                                         Author</button>
-                                                    <div class="modal fade" id="NewAuthor" tabindex="-1" aria-labelledby="NewAuthorLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="NewAuthor" tabindex="-1"
+                                                        aria-labelledby="NewAuthorLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="NewAuthorLabel">New
                                                                         Author</h5>
-                                                                        <a href="#" data-bs-dismiss="modal">
+                                                                    <a href="#" data-bs-dismiss="modal">
                                                                         <i class="fas fa-x" style="outline: none"></i>
                                                                     </a>
                                                                 </div>
@@ -108,22 +114,30 @@
                                                                     <!-- Your form field here -->
                                                                     <form id="newAuthorForm">
                                                                         <div class="mb-3">
-                                                                            <label for="author_first_name" class="form-label">Author First
+                                                                            <label for="author_first_name"
+                                                                                class="form-label">Author First
                                                                                 Name</label>
-                                                                            <input type="text" id="author_first_name" name="author_first_name" class="form-control">
+                                                                            <input type="text" id="author_first_name"
+                                                                                name="author_first_name"
+                                                                                class="form-control">
                                                                         </div>
                                                                         <div class="mb-3">
-                                                                            <label for="author_last_name" class="form-label">Author Last
+                                                                            <label for="author_last_name"
+                                                                                class="form-label">Author Last
                                                                                 Name</label>
-                                                                            <input type="text" id="author_last_name" name="author_last_name" class="form-control">
+                                                                            <input type="text" id="author_last_name"
+                                                                                name="author_last_name"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </form>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <div id="processingMessage" style="display: none;">
                                                                         Processing...</div>
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" id="submitAuthor" class="btn btn-primary">Save</button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" id="submitAuthor"
+                                                                        class="btn btn-primary">Save</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -142,9 +156,12 @@
                                                     <label for="publisher_name" class="form-label">Publisher</label>
 
                                                     <!-- Modal Start -->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#NewPublisher" style="padding: 0px 5px;">New
+                                                    <button type="button" class="btn btn-sm btn-primary float-right"
+                                                        data-bs-toggle="modal" data-bs-target="#NewPublisher"
+                                                        style="padding: 0px 5px;">New
                                                         Publisher</button>
-                                                    <div class="modal fade" id="NewPublisher" tabindex="-1" aria-labelledby="NewPublisherLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="NewPublisher" tabindex="-1"
+                                                        aria-labelledby="NewPublisherLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -158,30 +175,44 @@
                                                                     <!-- Your form field here -->
                                                                     <form id="newPublisherForm" method="post">
                                                                         <div class="mb-3">
-                                                                            <label for="publisher_name" class="form-label">Publisher
+                                                                            <label for="publisher_name"
+                                                                                class="form-label">Publisher
                                                                                 Name</label>
-                                                                            <input type="text" id="new_publisher_name" name="publisher_name" class="form-control">
+                                                                            <input type="text" id="new_publisher_name"
+                                                                                name="publisher_name"
+                                                                                class="form-control">
                                                                         </div>
                                                                         <div class="mb-3">
-                                                                            <label for="publisher_country" class="form-label">Publisher
+                                                                            <label for="publisher_country"
+                                                                                class="form-label">Publisher
                                                                                 Country</label>
-                                                                            <input type="text" id="publisher_country" name="publisher_country" class="form-control">
+                                                                            <input type="text" id="publisher_country"
+                                                                                name="publisher_country"
+                                                                                class="form-control">
                                                                         </div>
                                                                         <div class="mb-3">
-                                                                            <label for="email_address" class="form-label">Email Address</label>
-                                                                            <input type="email" id="email_address" name="email_address" class="form-control">
+                                                                            <label for="email_address"
+                                                                                class="form-label">Email Address</label>
+                                                                            <input type="email" id="email_address"
+                                                                                name="email_address"
+                                                                                class="form-control">
                                                                         </div>
                                                                         <div class="mb-3">
-                                                                            <label for="phone_number" class="form-label">Phone Number</label>
-                                                                            <input type="text" id="phone_number" name="phone_number" class="form-control">
+                                                                            <label for="phone_number"
+                                                                                class="form-label">Phone Number</label>
+                                                                            <input type="text" id="phone_number"
+                                                                                name="phone_number"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </form>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <div id="processingMessage2" style="display: none;">
                                                                         Processing...</div>
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" id="submitPublisher" class="btn btn-primary">Save</button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" id="submitPublisher"
+                                                                        class="btn btn-primary">Save</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -200,9 +231,12 @@
                                                 <div class="col">
                                                     <label for="genre_name_primary" class="form-label">Genre</label>
                                                     <!-- Modal Start-->
-                                                    <button type="button" class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#NewGenre" style="padding: 0px 5px;">New
+                                                    <button type="button" class="btn btn-sm btn-primary float-right"
+                                                        data-bs-toggle="modal" data-bs-target="#NewGenre"
+                                                        style="padding: 0px 5px;">New
                                                         Genre</button>
-                                                    <div class="modal fade" id="NewGenre" tabindex="-1" aria-labelledby="NewGenreLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="NewGenre" tabindex="-1"
+                                                        aria-labelledby="NewGenreLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -217,17 +251,21 @@
                                                                     <form id="modalForm">
 
                                                                         <div class="mb-3">
-                                                                            <label for="genre_name" class="form-label">Genre
+                                                                            <label for="genre_name"
+                                                                                class="form-label">Genre
                                                                                 Name</label>
-                                                                            <input type="text" id="genre_name" name="genre_name" class="form-control">
+                                                                            <input type="text" id="genre_name"
+                                                                                name="genre_name" class="form-control">
                                                                         </div>
                                                                     </form>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <div id="processingMessage3" style="display: none;">
                                                                         Processing...</div>
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" id="submitGenre" class="btn btn-primary">Save</button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" id="submitGenre"
+                                                                        class="btn btn-primary">Save</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -239,29 +277,32 @@
 
                                                     <div id="genreSuccessMessage"></div>
 
-                                                    <select id="genre_name_primary" name="genre_name_primary" class="form-control">
+                                                    <select id="genre_name_primary" name="genre_name_primary"
+                                                        class="form-control">
 
                                                     </select>
                                                 </div>
                                                 <div class="col">
                                                     <label for="language" class="form-label">Language</label>
-                                                    <input type="text" id="language" name="language" class="form-control">
+                                                    <input type="text" id="language" name="language"
+                                                        class="form-control">
                                                 </div>
                                                 <div class="col-4">
                                                     <label for="num_of_pages" class="form-label">Number of
                                                         Pages</label>
-                                                    <input type="number" id="num_of_pages" name="num_of_pages" class="form-control">
+                                                    <input type="number" id="num_of_pages" name="num_of_pages"
+                                                        class="form-control">
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-1">
+                                            <div class="col">
                                                 <button type="submit" id="bookSubmission"
-                                                    class="btn btn-primary text-nowrap">Save Changes</button>
-                                            </div>
-                                            <div class="col-1">
-                                                <a href="inventory.php"><button type="button" class="btn btn-secondary">Close</button></a>
+                                                    class="btn btn-primary text-nowrap mr-2 float-left">Save Changes</button>
+                                            
+                                                <a href="inventory.php"><button type="button"
+                                                        class="btn btn-secondary">Close</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -301,8 +342,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
-   <!-- SweetAlert2 JS -->
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- scripit init-->
     <script src="js/lib/data-table/datatables.min.js"></script>
@@ -316,6 +357,8 @@
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="create_pub_genre_author.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="validation.js"></script>
 
 
 
@@ -369,5 +412,9 @@
         border-radius: 0;
         border-color: #e7e7e7;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .error {
+        color: red;
     }
 </style>

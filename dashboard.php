@@ -39,7 +39,7 @@ if ($returned_today_result) {
 }
 
 //Query for total number of books that are due today and store it in $due
-$query = "SELECT COUNT(loan_log_id) AS count FROM `loan_log` WHERE due_date = CURDATE()";
+$query = "SELECT COUNT(loan_log_id) AS count FROM `loan_log` WHERE date_checked_in IS NULL AND due_date = CURDATE()";
 $due_today_result = $mysqli->query($query);
 
 if ($due_today_result) {
@@ -221,11 +221,11 @@ if ($overdue_result) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $query = "SELECT b.book_title, c.copy_id, CONCAT(m.first_name, ' ', m.last_name), l.date_checked_out FROM `loan_log` AS l 
-                                                      LEFT JOIN `copy` AS c ON c.copy_id = l.copy_id
-                                                      LEFT JOIN book AS b ON b.book_isbn = c.book_isbn
-                                                      LEFT JOIN member AS m ON m.member_id = l.member_id
-                                                      WHERE l.date_checked_in IS NULL AND l.due_date = CURDATE()";
+                                                $query = "SELECT b.book_title, c.copy_id, CONCAT(m.first_name, ' ', m.last_name), l.date_checked_out FROM `loan_log` AS l 
+                                                    LEFT JOIN `copy` AS c ON c.copy_id = l.copy_id
+                                                    LEFT JOIN book AS b ON b.book_isbn = c.book_isbn
+                                                    LEFT JOIN member AS m ON m.member_id = l.member_id
+                                                    WHERE l.date_checked_in IS NULL AND l.due_date = CURDATE()";
                                                 $due_today_result_table = $mysqli->query($query);
                                                 //if the query returns any values, the copy is checked out, so it should be skipped
                                                 if ($due_today_result_table->num_rows > 0) {

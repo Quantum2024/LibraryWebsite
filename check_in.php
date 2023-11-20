@@ -80,7 +80,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Complete Check In</button>
+                                <button type="button" id="check_in_table_submit" class="btn btn-primary">Complete Check In</button>
                             </div>
                             </form>
                         </div>
@@ -113,7 +113,6 @@
                             <div class="col-lg-12">
 
                                 <div class="table-responsive">
-
                                     <table id="check_in-table" class="table table-bordered table-hover"
                                         style="margin-top: 10px">
                                         <thead>
@@ -127,53 +126,7 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-
-                                            <?php
-                                            include 'db_connection.php';
-                                            // Step 2: Query the database for book information
-                                            $query = "SELECT c.copy_id, b.book_isbn, c.book_condition, b.book_title, m.first_name, m.last_name, l.due_date, l.loan_log_id
-                                                            FROM loan_log AS l
-                                                            JOIN `copy` AS c ON l.copy_id = c.copy_id
-                                                            JOIN book AS b ON b.book_isbn = c.book_isbn                                                           
-                                                            JOIN member AS m ON m.member_id = l.member_id 
-                                                            WHERE l.date_checked_in IS NULL;";
-                                            $loaned_result = $mysqli->query($query);
-                                            while ($row = $loaned_result->fetch_assoc()) {
-                                                $i = 0;
-                                                echo "<tr>";
-                                                echo "<td>" . $row['loan_log_id'] . "</td>";
-                                                echo "<td>" . $row['copy_id'] . "</td>";
-                                                echo "<td>" . $row['book_title'] . "</td>";
-
-                                                //query the wrote table for authors
-                                                $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
-                                                    FROM author AS a
-                                                    JOIN wrote AS w ON a.author_id= w.author_id
-                                                    JOIN book AS b ON b.book_isbn = w.book_isbn
-                                                    WHERE b.book_isbn=" . $row['book_isbn'] . ";";
-                                                $author_result = $mysqli->query($query);
-                                                if (mysqli_num_rows($author_result) == 0) {
-                                                    $authors = "No Authors Found";
-                                                } else {
-                                                    $authors = "";
-                                                    while ($rowA = $author_result->fetch_assoc()) {
-                                                        $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
-                                                    }
-                                                }
-                                                echo "<td>" . $authors . "</td>";
-                                                echo "<td>" . $row['first_name'] . " " . $row["last_name"] . "</td>";
-                                                echo "<td>" . date("m/d/Y", strtotime(($row['due_date']))) . "</td>";
-                                                echo '<td><button type="button" class="btn btn-success btn-sm" id="check_in' . $i . '"
-                                                    data-bs-toggle="modal" loan_log_id="' . $row["loan_log_id"] . '" copy_id="' . $row["copy_id"] . '"
-                                                    loaned_condition="' . $row["book_condition"] . '" data-bs-target="#checkInModal">Check
-                                                    In</button></td>';
-                                                echo "</tr>";
-                                            }
-                                            $mysqli->close();
-                                            ?>
-
-
+                                        <tbody id="check_in_table_body">
 
                                         </tbody>
                                     </table>
@@ -215,6 +168,9 @@
     <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
     <script src="js/lib/sparklinechart/sparkline.init.js"></script>
 
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- scripit init-->
     <script src="js/dashboard2.js"></script>
 
@@ -227,48 +183,9 @@
     <script src="js/lib/data-table/buttons.html5.min.js"></script>
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
+    <script src="check_in_processing.js"></script>
     <script>
-        $(document).ready(function () {
-            var table = $('#check_in-table').DataTable({
-                "dom": 'frtip',
-                "buttons": [
-                    'excel',
-                    'pdf',
-                    'print'
-                ],
-                "paging": false,
-                "info": false,
-            });
-
-            var buttons = new $.fn.dataTable.Buttons(table, {
-                buttons: [
-                    'excel',
-                    'pdf',
-                    'print'
-                ]
-            }).container().appendTo($('.export-options'));
-
-            $('#checkInModal').on('show.bs.modal', function (e) {
-                // get information to update quickly to modal view as loading begins
-                var opener = e.relatedTarget;//this holds the element who called the modal
-
-                //we get details from attributes
-                var loan_log_id = $(opener).attr('loan_log_id');
-                var copy_id = $(opener).attr('copy_id');
-                var loaned_condition = $(opener).attr('loaned_condition');
-
-                //set what we got to our form
-                $('#modalForm').find('[name="loan_log_id"]').val(loan_log_id);
-                $('#modalForm').find('[name="copy_id"]').val(copy_id);
-                $('#modalForm').find('[name="loaned_condition"]').val(loaned_condition);
-                $('#modalForm').find('[id="condition_returned"]').val(loaned_condition);
-
-            });
-
-            $("#checkInModal").on("hidden.bs.modal", function () {
-                $('body').css('padding-right', 0);
-            });
-        });
+        
 
 
     </script>
