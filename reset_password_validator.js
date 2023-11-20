@@ -13,11 +13,11 @@ $(document).ready(function () {
             }
         },
         messages: {
-            reset_new_password: {
+            new_password: {
                 required: "Please enter a password",
                 minlength: "Password must be at least 8 characters long"
             },
-            reset_retype_password: {
+            retype_password: {
                 required: "Please re-enter password",
                 equalTo: "Passwords must match."
             }
