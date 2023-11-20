@@ -99,12 +99,4 @@ $(document).ready(function () {
         }
     });
 
-    // Handle blur and keyup events for specific input elements
-    $('#newAuthorForm input').on('blur keyup', function () {
-        if ($("#newAuthorForm").valid()) {
-            $('#submitAuthor').prop('disabled', false);
-        } else {
-            $('#submitAuthor').prop('disabled', true);
-        }
-});
 });
