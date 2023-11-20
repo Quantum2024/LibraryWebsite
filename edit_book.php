@@ -505,6 +505,8 @@ if ($book_result->num_rows == 0) {
     <script src="delete_book_processing.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="edit_book_validation.js"></script>
+   
+    <script src="validation.js"></script>
 
     <script>
         $(document).ready(function () {

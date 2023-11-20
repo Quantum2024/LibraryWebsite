@@ -104,6 +104,9 @@
                                 </div>
                             </div>
                         </div>
+                             <!-- End Author Modal-->
+
+
                         <!-- New Genre Modal-->
                         <div class="modal fade" id="NewGenre" tabindex="-1" aria-labelledby="NewGenreLabel"
                             aria-hidden="true">
@@ -138,6 +141,8 @@
                                 </div>
                             </div>
                         </div>
+                                <!-- End Genre Modal-->
+
                         <!-- New Publisher Modal-->
                         <div class="modal fade" id="NewPublisher" tabindex="-1" aria-labelledby="NewPublisherLabel"
                             aria-hidden="true">
@@ -187,6 +192,8 @@
                                 </div>
                             </div>
                         </div>
+                                 <!-- End Publisher Modal-->
+    
                         <div class="row mb-3">
                             <div class="col-lg-12">
                                 <form method="post" id="newBookForm">
@@ -349,7 +356,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="create_pub_genre_author.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-    <script src="validation.js"></script>
+    <script src="create_book_validation.js"></script>
+    
 
 
 
