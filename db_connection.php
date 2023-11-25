@@ -1,5 +1,5 @@
 <?php
-//  Step 1: Establish a database connection
+//  Step 1: Establish a database connection localhost=vm remotehost=xampp stack
 //$host = "20.150.222.134:3306";
 $host = "localhost";
 $username = "eciraco";
