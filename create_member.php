@@ -129,7 +129,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="footer">
-                <p>2023 © Caribbean Public Library <a href="#"></a></p>
+                <p>2023 © Fortuna <a href="#"></a></p>
 
             </div>
 
