@@ -111,7 +111,7 @@
                                                 } else {
                                                     $authors = "";
                                                     while ($rowA = $author_result->fetch_assoc()) {
-                                                        $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
+                                                        $authors .= $authors . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
                                                     }
                                                 }
                                                 echo "<td>" . $authors . "</td>";

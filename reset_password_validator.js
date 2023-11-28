@@ -9,7 +9,7 @@ $(document).ready(function () {
             retype_password: {
                 required: true,
                 minlength: 8,
-                equalTo: "#reset_new_password"
+                equalTo: "#new_password"
             }
         },
         messages: {
