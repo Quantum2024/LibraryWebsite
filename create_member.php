@@ -73,13 +73,11 @@
                                             <div class="row mb-3">
                                                 <div class="col-4">
                                                     <label for="first_name" class="form-label">First Name</label>
-                                                    <input type="text" id="first_name" name="first_name"
-                                                        class="form-control">
+                                                    <input type="text" id="first_name" name="first_name" class="form-control">
                                                 </div>
                                                 <div class="col-4" id="supplier_col">
                                                     <label for="last_name" class="form-label">Last Name</label>
-                                                    <input type="text" id="last_name" name="last_name"
-                                                        class="form-control">
+                                                    <input type="text" id="last_name" name="last_name" class="form-control">
                                                 </div>
 
                                             </div>
@@ -87,30 +85,24 @@
                                         <div class="row mb-3">
                                             <div class="col-4">
                                                 <label for="phone_number" class="form-label">Phone Number</label>
-                                                <input type="text" id="phone_number" name="phone_number"
-                                                    class="form-control">
+                                                <input type="text" id="phone_number" name="phone_number" class="form-control">
                                             </div>
                                             <div class="col-4">
                                                 <label for="email_address" class="form-label">Email Address</label>
-                                                <input type="email_address" id="email_address" name="email_address"
-                                                    class="form-control">
+                                                <input type="email_address" id="email_address" name="email_address" class="form-control">
                                             </div>
                                             <div class="col-4">
                                                 <label for="date_of_birth" class="form-label">Date Of Birth</label>
-                                                <input type="date" id="date_of_birth" name="date_of_birth"
-                                                    class="form-control">
+                                                <input type="date" id="date_of_birth" name="date_of_birth" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <button type="submit" id="memberSubmission"
-                                                class="btn btn-primary text-nowrap mr-2 float-left">Save
+                                            <button type="submit" id="memberSubmission" class="btn btn-primary text-nowrap mr-2 float-left">Save
                                                 Member</button>
 
-                                            <a href="members.php"><button type="button"
-                                                    class="btn btn-secondary">Cancel</button><a
-                                                    href="inventory.php"></a>
+                                            <button type="button" class="btn btn-secondary">Cancel</button><a href="inventory.php"></a>
                                         </div>
                                     </div>
 
@@ -119,21 +111,24 @@
                             </div>
 
                         </div>
-
                     </section>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer">
-                            <p>2023 © Fortuna</p>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="footer">
+                <p style="margin-left: 20px; margin-top: 100px;">2023 © Fortuna <a href="#"></a></p>
 
+
+            </div>
+
+
+        </div>
+    </div>
 
 
 
