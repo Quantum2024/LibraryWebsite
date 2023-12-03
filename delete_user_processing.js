@@ -7,7 +7,7 @@ function deleteUser(link) {
     // Display processing message using SweetAlert
     // Display a confirmation SweetAlert
     Swal.fire({
-        title: "Are you sure you want to PERMINANTLY DELETE this user? ",
+        title: "Are you sure you want to PERMANENTLY DELETE this user? ",
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Delete",
