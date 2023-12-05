@@ -1,4 +1,34 @@
 $(document).ready(function () {
+    var table = $('#check_out-table').DataTable({
+        "dom": "<'dataTables_wrapper dt-bootstrap no-footer' ft>",
+        "buttons": [
+            'excel',
+            'pdf',
+            'print'
+        ],
+        "paging": false,
+        "info": false,
+        "ajax": {
+            "url": "get_checkout_table.php",
+            "dataSrc": "" // Use an empty string to indicate that the data array is at the root of the returned JSON
+        },
+        "columns": [
+            { "data": "copy_id" },
+            { "data": "book_title" },
+            { "data": "authors" },
+            { "data": "check_out_button" }
+        ],
+        responsive: true
+    });
+
+    var buttons = new $.fn.dataTable.Buttons(table, {
+        buttons: [
+            'excel',
+            'pdf',
+            'print'
+        ]
+    }).container().appendTo($('.export-options'));
+
     $('#checkout_button').on('click', function () {
         // Display a confirmation SweetAlert
         Swal.fire({
@@ -45,7 +75,7 @@ $(document).ready(function () {
                             $('body').removeClass('modal-open');
                             $('.modal-backdrop').remove();
                             $('#modalForm')[0].reset();
-                            //updateCheckOutTable();
+                            table.ajax.reload();
                         } else {
                             // Display an error SweetAlert with the blue button
                             Swal.fire({

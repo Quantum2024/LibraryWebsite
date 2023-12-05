@@ -94,13 +94,14 @@ $(document).ready(function () {
                                 title: 'Success',
                                 text: 'Data submitted successfully',
                                 icon: 'success',
-                                confirmButtonClass: 'swal2-confirm'
                             });
                             $('#checkInModal').modal('hide');
                             $('body').removeClass('modal-open');
                             $('.modal-backdrop').remove();
                             $('#modalForm')[0].reset();
-                            //updateCheckInTable();
+                            console.log("Reloading Table");
+                            table.ajax.reload();
+                            console.log("table successfully reloaded");
                         } else {
                             // Display an error SweetAlert with the blue button
                             Swal.fire({

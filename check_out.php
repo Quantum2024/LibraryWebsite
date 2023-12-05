@@ -20,7 +20,6 @@
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
     <!-- Styles -->
-    <link href="css/lib/chartist/chartist.min.css" rel="stylesheet">
     <link href="css/lib/font-awesome.min.css" rel="stylesheet">
     <link href="css/lib/themify-icons.css" rel="stylesheet">
     <link href="css/lib/owl.carousel.min.css" rel="stylesheet" />
@@ -195,35 +194,6 @@
     <script src="check_out_processing.js"></script>
     <script>
         $(document).ready(function () {
-            var table = $('#check_out-table').DataTable({
-                "dom": "<'dataTables_wrapper dt-bootstrap no-footer' ft>",
-                "buttons": [
-                    'excel',
-                    'pdf',
-                    'print'
-                ],
-                "paging": false,
-                "info": false,
-                "ajax": {
-                    "url": "get_checkout_table.php",
-                    "dataSrc": "" // Use an empty string to indicate that the data array is at the root of the returned JSON
-                },
-                "columns": [
-                    { "data": "copy_id" },
-                    { "data": "book_title" },
-                    { "data": "authors" },
-                    { "data": "check_out_button" }
-                ],
-                responsive: true
-            });
-
-            var buttons = new $.fn.dataTable.Buttons(table, {
-                buttons: [
-                    'excel',
-                    'pdf',
-                    'print'
-                ]
-            }).container().appendTo($('.export-options'));
 
 
             var members = [

@@ -177,15 +177,11 @@
 
     <script src="js/lib/circle-progress/circle-progress.min.js"></script>
     <script src="js/lib/circle-progress/circle-progress-init.js"></script>
-    <script src="js/lib/chartist/chartist.min.js"></script>
-    <script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
-    <script src="js/lib/sparklinechart/sparkline.init.js"></script>
 
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- scripit init-->
-    <script src="js/dashboard2.js"></script>
 
     <script src="js/lib/data-table/datatables.min.js"></script>
     <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
