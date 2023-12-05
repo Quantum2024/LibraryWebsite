@@ -8,12 +8,15 @@ $query = "SELECT c.copy_id, b.book_isbn, c.book_condition, b.book_title, m.first
         JOIN member AS m ON m.member_id = l.member_id 
         WHERE l.date_checked_in IS NULL;";
 $loaned_result = $mysqli->query($query);
+
+$rows = array();
+$rowData[] = array();
 while ($row = $loaned_result->fetch_assoc()) {
     $i = 0;
-    echo "<tr>";
-    echo "<td>" . $row['loan_log_id'] . "</td>";
-    echo "<td>" . $row['copy_id'] . "</td>";
-    echo "<td>" . $row['book_title'] . "</td>";
+
+    $rowData["loan_log_id"] = $row['loan_log_id'];
+    $rowData["copy_id"] = $row['copy_id'];
+    $rowData["book_title"] = $row['book_title'];
 
     //query the wrote table for authors
     $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
@@ -30,14 +33,16 @@ WHERE b.book_isbn=" . $row['book_isbn'] . ";";
             $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
         }
     }
-    echo "<td>" . $authors . "</td>";
-    echo "<td>" . $row['first_name'] . " " . $row["last_name"] . "</td>";
-    echo "<td>" . date("m/d/Y", strtotime(($row['due_date']))) . "</td>";
-    echo '<td><button type="button" class="btn btn-success btn-sm" id="check_in' . $i . '"
+    $rowData["authors"] = $authors;
+    $rowData["member_name"] = $row['first_name'] . " " . $row["last_name"];
+    $rowData["due_date"] = date("m/d/Y", strtotime(($row['due_date'])));
+    $rowData["check_in_button"] = '<button type="button" class="btn btn-success btn-sm" id="check_in' . $i . '"
 data-bs-toggle="modal" loan_log_id="' . $row["loan_log_id"] . '" copy_id="' . $row["copy_id"] . '"
 loaned_condition="' . $row["book_condition"] . '" data-bs-target="#checkInModal">Check
-In</button></td>';
-    echo "</tr>";
+In</button>';
+    $rows[] = $rowData;
 }
+header('Content-Type: application/json');
+echo json_encode($rows);
 $mysqli->close();
 ?>

@@ -30,7 +30,19 @@
     <link href="css/lib/helper.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .dataTables_wrapper.dt-bootstrap.no-footer {
+            width: 100%;
+        }
 
+        #check_in-table {
+            width: 100%;
+        }
+
+        #check_out-table_filter>label {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -184,7 +196,7 @@
     <script>
         $(document).ready(function () {
             var table = $('#check_out-table').DataTable({
-                "dom": 'frtip',
+                "dom": "<'dataTables_wrapper dt-bootstrap no-footer' ft>",
                 "buttons": [
                     'excel',
                     'pdf',
@@ -192,6 +204,17 @@
                 ],
                 "paging": false,
                 "info": false,
+                "ajax": {
+                    "url": "get_checkout_table.php",
+                    "dataSrc": "" // Use an empty string to indicate that the data array is at the root of the returned JSON
+                },
+                "columns": [
+                    { "data": "copy_id" },
+                    { "data": "book_title" },
+                    { "data": "authors" },
+                    { "data": "check_out_button" }
+                ],
+                responsive: true
             });
 
             var buttons = new $.fn.dataTable.Buttons(table, {

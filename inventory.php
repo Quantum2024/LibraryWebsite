@@ -65,8 +65,9 @@
                     <section id="main-content">
                         <div class="row">
                             <div class="col">
-                            <a href="create_book.php"><button type="button" class="btn btn-sm btn-primary float-right">Create New
-                                    Book</button></a>
+                                <a href="create_book.php"><button type="button"
+                                        class="btn btn-sm btn-primary float-right">Create New
+                                        Book</button></a>
                             </div>
                         </div>
                         <div class="row">
@@ -122,10 +123,10 @@
                                                 if ($stock_result) {
                                                     $row_count = $stock_result->fetch_row();
                                                     $count = $row_count[0];
-                                                    echo '<td>'. $count . '</td>';
+                                                    echo '<td>' . $count . '</td>';
                                                 } else {
                                                     echo "Error executing the query: " . $mysqli->error;
-                                                }   
+                                                }
                                                 //get number of books available to check out
                                                 $query = "SELECT COUNT(*) 
                                                           FROM `loan_log` AS `l`
@@ -136,10 +137,10 @@
                                                 if ($checked_out_result) {
                                                     $row_count2 = $checked_out_result->fetch_row();
                                                     $num_of_copies_checked_out = $row_count2[0];
-                                                    echo '<td>'. $count - $num_of_copies_checked_out . '</td>';
+                                                    echo '<td>' . $count - $num_of_copies_checked_out . '</td>';
                                                 } else {
                                                     echo "Error executing the query: " . $mysqli->error;
-                                                }                                         
+                                                }
                                                 echo "</tr>";
                                             }
                                             $mysqli->close();

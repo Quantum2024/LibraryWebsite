@@ -73,8 +73,9 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Create New User</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                        <a href="#" data-bs-dismiss="modal">
+                                            <i class="fas fa-x" style="outline: none"></i>
+                                        </a>
                                     </div>
                                     <div class="modal-body">
                                         <!-- Your form field here -->
@@ -203,34 +204,42 @@
                             </div>
                         </div>
                         <!--Change User Password Modal -->
-                        <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="resetPasswordModal" tabindex="-1"
+                            aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="resetPasswordLabel">Reset Password for <span id="insert_name"></span></h5>
+                                        <h5 class="modal-title" id="resetPasswordLabel">Reset Password for <span
+                                                id="insert_name"></span></h5>
                                         <a href="#" data-bs-dismiss="modal">
                                             <i class="fas fa-x" style="outline: none"></i>
                                         </a>
                                     </div>
                                     <div class="modal-body">
                                         <!-- Your form field here -->
-                                        <form  id="resetPasswordForm" >
+                                        <form id="resetPasswordForm">
                                             <div class="mb-3">
                                                 <input type="hidden" id="user_id" name="user_id">
                                                 <div class="row mb-3">
-                                                    <label for="reset_new_password" class="form-label">New Password</label>
-                                                    <input type="password" id="reset_new_password" name="reset_new_password" class="form-control">
+                                                    <label for="reset_new_password" class="form-label">New
+                                                        Password</label>
+                                                    <input type="password" id="reset_new_password"
+                                                        name="reset_new_password" class="form-control">
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="reset_retype_password" class="form-label">Retype New Password</label>
-                                                    <input type="password" id="reset_retype_password" name="reset_retype_password" class="form-control">
+                                                    <label for="reset_retype_password" class="form-label">Retype New
+                                                        Password</label>
+                                                    <input type="password" id="reset_retype_password"
+                                                        name="reset_retype_password" class="form-control">
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" id="changePasswordButton" class="btn btn-primary" disabled>Change Password</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" id="changePasswordButton" class="btn btn-primary"
+                                            disabled>Change Password</button>
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +322,7 @@
     <script src="update_user_type_processing.js"></script>
     <script src="change_other_user_pass_processing.js"></script>
     <script src="delete_user_processing.js"></script>
-    
+
 </body>
 
 </html>

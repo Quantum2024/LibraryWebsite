@@ -1,12 +1,4 @@
 $(document).ready(function () {
-    // Initialize Bootstrap modal
-    
-    function updateCheckOutTable() {
-        $("#check_out_table_body").load("get_checkout_table.php");
-    }
-
-    updateCheckOutTable();
-
     $('#checkout_button').on('click', function () {
         // Display a confirmation SweetAlert
         Swal.fire({
@@ -53,7 +45,7 @@ $(document).ready(function () {
                             $('body').removeClass('modal-open');
                             $('.modal-backdrop').remove();
                             $('#modalForm')[0].reset();
-                            updateCheckOutTable();
+                            //updateCheckOutTable();
                         } else {
                             // Display an error SweetAlert with the blue button
                             Swal.fire({

@@ -5,6 +5,9 @@ $query = "SELECT c.copy_id, b.book_isbn, c.book_condition, b.book_title
 FROM `copy` AS c
 JOIN book AS b ON b.book_isbn = c.book_isbn;";
 $copy_result = $mysqli->query($query);
+
+$rows = array();
+$rowData[] = array();
 while ($row = $copy_result->fetch_assoc()) {
     //check to see if book is checked out already
     $query = "SELECT *
@@ -15,9 +18,8 @@ WHERE l.date_checked_in IS NULL AND l.copy_id=" . $row["copy_id"] . ";";
     if ($copies_checked_out->num_rows > 0) {
         continue;
     }
-    echo "<tr>";
-    echo "<td>" . $row['copy_id'] . "</td>";
-    echo "<td>" . $row['book_title'] . "</td>";
+    $rowData["copy_id"] = $row['copy_id'];
+    $rowData["book_title"] = $row['book_title'];
 
     //query the wrote table for authors
     $query = "SELECT a.author_first_name, a.author_last_name, a.author_id
@@ -34,12 +36,14 @@ WHERE b.book_isbn=" . $row['book_isbn'] . ";";
             $authors .= $authors . "<a href=edit_author.php?author_id=" . $rowA['author_id'] . ">" . $rowA["author_first_name"] . " " . $rowA["author_last_name"] . "<br>";
         }
     }
-    echo '<td>' . $authors . '</td>';
-    echo '<td><button type="button" class="btn btn-danger btn-sm" 
+    $rowData["authors"] = $authors;
+    $rowData["check_out_button"] = '<button type="button" class="btn btn-danger btn-sm" 
 data-bs-toggle="modal" copy_id="' . $row["copy_id"] . '"
 loaned_condition="' . $row["book_condition"] . '" data-bs-target="#checkOutModal">Check
-Out</button></td>';
-    echo "</tr>";
+Out</button>';
+    $rows[] = $rowData;
 }
+header('Content-Type: application/json');
+echo json_encode($rows);
 $mysqli->close();
 ?>

@@ -29,6 +29,19 @@
     <link href="css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="css/lib/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .dataTables_wrapper.dt-bootstrap.no-footer {
+            width: 100%;
+        }
+
+        #check_in-table {
+            width: 100%;
+        }
+
+        #check_in-table_filter>label {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -80,7 +93,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" id="check_in_table_submit" class="btn btn-primary">Complete Check In</button>
+                                <button type="button" id="check_in_table_submit" class="btn btn-primary">Complete Check
+                                    In</button>
                             </div>
                             </form>
                         </div>
@@ -111,7 +125,6 @@
                     <section id="main-content">
                         <div class="row">
                             <div class="col-lg-12">
-
                                 <div class="table-responsive">
                                     <table id="check_in-table" class="table table-bordered table-hover"
                                         style="margin-top: 10px">
@@ -184,11 +197,6 @@
     <script src="js/lib/data-table/buttons.print.min.js"></script>
     <script src="js/lib/data-table/datatables-init.js"></script>
     <script src="check_in_processing.js"></script>
-    <script>
-        
-
-
-    </script>
 </body>
 
 </html>

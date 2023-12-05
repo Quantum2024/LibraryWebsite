@@ -1,6 +1,7 @@
 $(document).ready(function () {
+
     var table = $('#check_in-table').DataTable({
-        "dom": 'frtip',
+        "dom": "<'dataTables_wrapper dt-bootstrap no-footer' ft>",
         "buttons": [
             'excel',
             'pdf',
@@ -8,6 +9,20 @@ $(document).ready(function () {
         ],
         "paging": false,
         "info": false,
+        "ajax": {
+            "url": "get_check_in_table.php",
+            "dataSrc": "" // Use an empty string to indicate that the data array is at the root of the returned JSON
+        },
+        "columns": [
+            {"data": "loan_log_id"},
+            {"data": "copy_id"},
+            {"data": "book_title"},
+            {"data": "authors"},
+            {"data": "member_name"},
+            {"data": "due_date"},
+            {"data": "check_in_button"}
+        ],
+        responsive: true
     });
 
     var buttons = new $.fn.dataTable.Buttons(table, {
@@ -17,14 +32,6 @@ $(document).ready(function () {
             'print'
         ]
     }).container().appendTo($('.export-options'));
-
-    function updateCheckInTable() {
-        $("#check_in_table_body").load("get_check_in_table.php");
-    }
-
-    updateCheckInTable();
-
-
 
     $('#checkInModal').on('show.bs.modal', function (e) {
         // get information to update quickly to modal view as loading begins
@@ -93,7 +100,7 @@ $(document).ready(function () {
                             $('body').removeClass('modal-open');
                             $('.modal-backdrop').remove();
                             $('#modalForm')[0].reset();
-                            updateCheckInTable();
+                            //updateCheckInTable();
                         } else {
                             // Display an error SweetAlert with the blue button
                             Swal.fire({
