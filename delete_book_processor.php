@@ -4,7 +4,7 @@ include 'db_connection.php';
 include 'session_check.php';
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["user_type"]==2) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["user_type"] != 1) {
     // Get data from the HTML form
     $book_isbn = $_POST['book_isbn'];
 
@@ -25,13 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["user_type"]==2) {
         $response = array('error' => $e->getMessage());
         http_response_code(500); // Set HTTP status code to indicate an error
         header('Content-Type: application/json');
-        echo "Error: ".$e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
 
     // Close the prepared statement and the database connection
     $stmt->close();
     $mysqli->close();
-}else{
+} else {
     echo "Error: Access Denied";
 }
 ?>
