@@ -42,6 +42,7 @@
     include 'db_connection.php';
     if ($_SESSION['user_type'] != 2) {
         header("Location: 404.php");
+        exit();
     }
     ?>
 
