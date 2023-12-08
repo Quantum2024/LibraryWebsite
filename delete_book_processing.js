@@ -72,7 +72,7 @@ function deleteBook(button) {
                                 confirmButtonClass: 'swal2-confirm'
                             });
                             setTimeout(function () {
-                                window.history.back();
+                                window.location.href = "inventory.php";
                             }, 3000); // 3000 milliseconds = 3 seconds
                         } else {
                             // Display error message using SweetAlert
