@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#submitAuthor").click(function () {
+    function submitAuthor() {
         var author_first_name = $("#author_first_name").val();
         var author_last_name = $("#author_last_name").val();
         var dataType = "Author"; // Define dataType for Author
@@ -41,9 +41,9 @@ $(document).ready(function () {
                 console.log("Error: " + errorThrown);
             }
         });
-    });
+    };
 
-    $("#submitGenre").click(function () {
+    function submitGenre() {
         var genre_name = $("#genre_name").val();
         var dataType = "Genre"; // Define dataType for Genre
 
@@ -77,9 +77,9 @@ $(document).ready(function () {
                 console.log("Error: " + errorThrown);
             }
         });
-    });
+    };
 
-    $("#submitPublisher").click(function () {
+    function submitPublisher() {
         var publisher_name = $("#new_publisher_name").val();
         var publisher_country = $("#publisher_country").val();
         var email_address = $("#email_address").val();
@@ -122,7 +122,7 @@ $(document).ready(function () {
                 console.log("Error: " + errorThrown);
             }
         });
-    });
+    };
 
     // Function to display the success modal
     function displaySuccessModal(dataType) {

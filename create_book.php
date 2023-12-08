@@ -99,12 +99,13 @@
                                             Processing...</div>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" id="submitAuthor" class="btn btn-primary">Save</button>
+                                        <button type="button" id="submitAuthor" class="btn btn-primary"
+                                            onclick="submitAuthor()">Save</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                             <!-- End Author Modal-->
+                        <!-- End Author Modal-->
 
 
                         <!-- New Genre Modal-->
@@ -136,12 +137,13 @@
                                             Processing...</div>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" id="submitGenre" class="btn btn-primary">Save</button>
+                                        <button type="button" id="submitGenre" class="btn btn-primary"
+                                            onclick="submitGenre()">Save</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                                <!-- End Genre Modal-->
+                        <!-- End Genre Modal-->
 
                         <!-- New Publisher Modal-->
                         <div class="modal fade" id="NewPublisher" tabindex="-1" aria-labelledby="NewPublisherLabel"
@@ -187,13 +189,14 @@
                                             Processing...</div>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" id="submitPublisher" class="btn btn-primary">Save</button>
+                                        <button type="button" id="submitPublisher" class="btn btn-primary"
+                                            onclick="submitPublisher()">Save</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                                 <!-- End Publisher Modal-->
-    
+                        <!-- End Publisher Modal-->
+
                         <div class="row mb-3">
                             <div class="col-lg-12">
                                 <form method="post" id="newBookForm">
@@ -357,7 +360,7 @@
     <script src="create_pub_genre_author.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="create_book_validation.js"></script>
-    
+
 
 
 
