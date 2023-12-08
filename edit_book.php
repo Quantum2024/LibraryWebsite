@@ -107,7 +107,8 @@ if ($book_result->num_rows == 0) {
                     <div id="processingMessage" style="display: none;">
                         Processing...</div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="submitAuthor" class="btn btn-primary">Save</button>
+                    <button type="button" id="submitAuthor" class="btn btn-primary"
+                        onclick="submitAuthor()">Save</button>
                 </div>
             </div>
         </div>
@@ -184,7 +185,8 @@ if ($book_result->num_rows == 0) {
                     <div id="processingMessage2" style="display: none;">
                         Processing...</div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="submitPublisher" class="btn btn-primary">Save</button>
+                    <button type="button" id="submitPublisher" class="btn btn-primary"
+                        onclick="submitPublisher()">Save</button>
                 </div>
             </div>
         </div>
@@ -638,7 +640,7 @@ if ($book_result->num_rows == 0) {
 
             updatePublisherSelect();
 
-            $("#submitAuthor").click(function () {
+            function submitAuthor() {
                 var author_first_name = $("#author_first_name").val();
                 var author_last_name = $("#author_last_name").val();
                 var dataType = "Author"; // Define dataType for Author
@@ -673,7 +675,7 @@ if ($book_result->num_rows == 0) {
                         console.log("Error: " + errorThrown);
                     }
                 });
-            });
+            };
 
             function submitGenre() {
                 var genre_name = $("#genre_name").val();
@@ -703,7 +705,7 @@ if ($book_result->num_rows == 0) {
                 });
             }
 
-            $("#submitPublisher").click(function () {
+            function submitPublisher() {
                 var publisher_name = $("#new_publisher_name").val();
                 var publisher_country = $("#publisher_country").val();
                 var email_address = $("#email_address").val();
@@ -738,7 +740,7 @@ if ($book_result->num_rows == 0) {
                         console.log("Error: " + errorThrown);
                     }
                 });
-            });
+            }
 
             // Function to display the success modal
             function displaySuccessModal(dataType) {

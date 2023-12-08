@@ -94,7 +94,7 @@ $(document).ready(function () {
     });
 
     // Trigger form validation when the modal is shown
-    $('#NewAuthor').on('shown.bs.modal', function () {
+    $('#NewAuthor').on('input', function () {
         // Enable the Save button if the form is valid
         if ($("#newAuthorForm").valid()) {
             $('#submitAuthor').prop('disabled', false);
@@ -146,7 +146,7 @@ $(document).ready(function () {
 });
 
 
-$('#NewPublisher').on('shown.bs.modal', function () {
+$('#NewPublisher').on('input', function () {
     if ($("#newPublisherForm").valid()) {
         $('#submitPublisher').prop('disabled', false);
     } else {
@@ -172,7 +172,7 @@ $("#modalForm").validate({
 });
 
 
-$('#NewGenre').on('shown.bs.modal', function () {
+$('#NewGenre').on('input', function () {
     if ($("#modalForm").valid()) {
         $('#submitGenre').prop('disabled', false);
     } else {
