@@ -139,7 +139,7 @@ if ($book_result->num_rows == 0) {
                     <div id="processingMessage3" style="display: none;">
                         Processing...</div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="submitGenre" class="btn btn-primary">Save</button>
+                    <button type="button" id="submitGenre" class="btn btn-primary" onclick="submitGenre()">Save</button>
                 </div>
             </div>
         </div>
@@ -324,7 +324,7 @@ if ($book_result->num_rows == 0) {
 
                                 <div class="row">
                                     <div class="col">
-                                        <button type="button" id="submit-form" disabled
+                                        <button type="button" id="submit-form"
                                             class="btn btn-primary text-nowrap mr-2 float-left">Save
                                             Changes</button>
 
@@ -490,7 +490,6 @@ if ($book_result->num_rows == 0) {
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="edit_book_validation.js"></script>
 
-    <script src="validation.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -676,12 +675,10 @@ if ($book_result->num_rows == 0) {
                 });
             });
 
-            $("#submitGenre").click(function () {
+            function submitGenre() {
                 var genre_name = $("#genre_name").val();
                 var dataType = "Genre"; // Define dataType for Genre
-
-                // Show processing message
-                $("#processingMessage3").show();
+                console.log("entered ajax");
                 $.ajax({
                     type: "POST",
                     url: "insert_data_new_genre.php",
@@ -689,8 +686,9 @@ if ($book_result->num_rows == 0) {
                         genre_name: genre_name
                     },
                     success: function (data) {
+                        console.log("entered ajax");
                         //hide processing message
-                        $("#processingMessage3").hide();
+
                         // Update the modal or display a success message
                         $("#NewGenre").modal('hide'); // Close the modal
                         displaySuccessModal(dataType);
@@ -703,7 +701,7 @@ if ($book_result->num_rows == 0) {
                         console.log("Error: " + errorThrown);
                     }
                 });
-            });
+            }
 
             $("#submitPublisher").click(function () {
                 var publisher_name = $("#new_publisher_name").val();
